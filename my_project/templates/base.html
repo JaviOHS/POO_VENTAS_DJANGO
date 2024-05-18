@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href={% static 'css/main.css' %}>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+
+
+  <title>{% block title %} SGV {% endblock title %}  </title>
+</head>
+<body>
+   <header id="header">
+    
+   <span class="logo">TeacherCode</span>
+   <nav >
+    <ul class="menu" >
+      <li>
+        <a href={% url 'home' %}>Inicio</a>
+      </li>
+      <li>
+        <a href={% url 'core:product_list' %}>Productos</a>
+      </li>
+      <li>
+        <a href={% url 'core:category_list' %}>Categorias</a>
+      </li>
+      <li>
+        <a href={% url 'core:brand_list' %}>Marcas</a>
+      </li>
+      <li>
+        <a href={% url 'core:supplier_list' %}>Proveedores</a>
+      </li>
+    </ul>
+   </nav>
+  </header>
+  <main id="content">
+   {% block content %}
+    <h1>{{title2}}</h1>
+   {% endblock content %}
+
+  </main>
+  
+</body>
+</html>
