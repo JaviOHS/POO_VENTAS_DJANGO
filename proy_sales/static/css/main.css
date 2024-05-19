@@ -2,21 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
 
 body{
-    background-color: #000;
+    background-color: black;
     color: #fff;
     font-family: "Ubuntu Sans", sans-serif;
     font-optical-sizing: auto;
     /* <weight>: Use a value from 100 to 800 */
-    font-weight: 200; 
+    font-weight: 500; 
     font-style: normal;
     font-variation-settings:
       "wdth" 100;
     margin: 0;
-    font-size: 16px;
-}
-
-h1, h2, h3, h4, h5, h6, p, span{
-    margin-top: 10px;
+    font-size: 18px;
 
 }
 
@@ -55,10 +51,12 @@ h1, h2, h3, h4, h5, h6, p, span{
 
 .nav-item {
     margin-right: 25px;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .nav-link {
-    color: #fff; /* Color del texto */
+    color: gray;
     transition: color 0.3s; /* Transición suave para el cambio de color del texto */
 }
 
@@ -69,13 +67,11 @@ h1, h2, h3, h4, h5, h6, p, span{
 
 /* CENTENIDO */
 #home-content {
-    background-color: #000; /* Fondo oscuro */
-    color: #fff; /* Texto blanco */
-    padding: 100px 0; /* Añadir espacio interno */
+    padding: 100px 0 100px 0; /* Añadir espacio interno */
 }
 
 .welcome-message {
-    margin: 80px 20px ; /* Añadir espacio inferior */
+    margin: 50px 20px ; /* Añadir espacio inferior */
     background-color: #111010;
     border-radius: 25px;
     padding: 30px;
@@ -85,8 +81,19 @@ h1, h2, h3, h4, h5, h6, p, span{
     text-transform: uppercase; /* Convertir el texto del h2 en mayúsculas */
     color: gold; /* Color dorado */
     font-weight: 800;
+    font-size: 40px;
+}
+.welcome-message p {
+    color: gray; /* Color dorado */
+    font-weight: 600;
+    font-size: 25px;
 }
 
+.welcome-message span {
+    color: gray; /* Color dorado */
+    font-weight: 500;
+    font-size: 20px;
+}
 
 /* Estilos para las imágenes del carrusel */
 #image-carousel:hover {
@@ -138,24 +145,71 @@ h1, h2, h3, h4, h5, h6, p, span{
     color: #fff;
 }
 
-/* Footer */
-.footer {
-    width: 100%; /* Ancho completo */
-    text-align: center;
-    font-size: 20px;
-    background-color: #111010;
+/* Estilos para modulos */
+#home-modulos {
+    padding: 60px 0 100px 0; /* Añadir espacio interno */
+}
+
+.module-head {
+    padding: 30px;
+}
+
+.module-head h2 {
+    text-transform: uppercase; /* Convertir el texto del h2 en mayúsculas */
+    color: gold; /* Color dorado */
+    font-weight: 800;
+    font-size: 40px;
+}
+.module-head p {
+    color: gray;
+    font-weight: 600;
+    font-size: 25px;
 }
 
 /* Tablas */
-table{
-    font-size: 18px;
-}
-.styled-table {
-    border: 1px solid grey; /* Agrega un borde de 1px sólido gris a la tabla */
+
+.module-table {
+    background-color: #111010;
+    border-radius: 25px;
+    padding: 30px;
+    width: auto;
+    margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
 }
 
-.styled-table th,
-.styled-table td {
-    border: 1px solid grey; /* Agrega un borde de 1px sólido gris a las celdas */
-    padding: 10px; /* Añade espacio interno de 10px */
+.module-table table {
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    border-spacing: 0; /* En lugar de border-collapse: collapse; */
+    border: 1px solid #000; /* Ajusta el grosor y el color de los bordes */
+    border-radius: 15px; /* Agrega bordes redondos */
+}
+
+.module-table thead th {
+    background-color: rgb(0, 0, 0); /* Color oscuro de fondo */
+    color: gold; /* Texto blanco */
+    text-transform: uppercase; /* Convertir el texto en mayúsculas */
+    font-weight: 900; /* Peso de la fuente */
+    align-items: center;
+    padding: 10px;
+    font-size: 20px;
+
+}
+.module-table tbody td{
+    background-color: gainsboro; /* Color oscuro de fondo */
+    color: black; /* Texto blanco */
+    font-weight: 600; /* Peso de la fuente */
+    font-size: 18px;
+    padding: 10px;
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    background-color: #111010;
+    z-index: 999; /* Asegura que esté por encima de otros elementos */
 }

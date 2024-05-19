@@ -1,61 +1,62 @@
 {% extends 'base.html' %}
 {% block content %}
-<section id="home-content" class="mt-4 d-flex justify-content-center align-items-center"
-    style="background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.5));">
-    <div class="container">
+<section id="home-modulos" class="mt-4 d-flex justify-content-center align-items-center">
+    <div class="container text-center">
         <div class="row">
             <!-- Mensaje de bienvenida a la izquierda -->
             <div class="col-lg-12">
-                <div class="welcome-message">
+                <div class="module-head">
                     <h2 class="title text-center">{{ title2 }}</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, omnis magnam quam et ipsam assumenda odio voluptate sequi cum exercitationem? Tenetur quas in odio recusandae fugiat non. Dignissimos, asperiores et.</p>
-                    <div class="table-responsive"> <!-- Clase de Bootstrap para tablas responsivas -->
-                        <table class="table table-bordered table-striped text-center">
-                            <thead class="thead-dark"> <!-- Encabezado oscuro -->
-                                <tr>
-                                    <th>Imagen</th>
-                                    <th>Descripción</th>
-                                    <th>Precio</th>
-                                    <th>Stock</th>
-                                    <th>Marca</th>
-                                    <th>Categorías</th>
-                                    <th>Línea</th>
-                                    <th>Proveedor</th>
-                                    <th>Fecha Caducidad</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in products %}
-                                <tr>
-                                    <td><img src="{{ item.image.url }}" alt="" width="50px"></td> <!-- Corrijo la sintaxis de la imagen -->
-                                    <td>{{ item.description }}</td>
-                                    <td>{{ item.price }}</td>
-                                    <td>{{ item.stock }}</td>
-                                    <td>{{ item.brand }}</td>
-                                    <td>{{ item.get_categories }}</td>
-                                    <td>{{ item.get_line_display }}</td>
-                                    <td>{{ item.supplier }}</td>
-                                    <td>{{ item.expiration_date | date:"Y-m-d" }}</td>
-                                    <td>{% if item.state %}
-                                        <i class="fa-solid fa-square-check" style="font-size: 30px;color: darkgreen;"></i>
-                                        {% else %}
-                                        <i class="fa-solid fa-square-minus" style="font-size: 30px;color: red;"></i>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        <a href="{% url 'core:product_update' item.id %}"><i class="fa-solid fa-pen-to-square" style="font-size: 30px;color: darkblue;"></i></a>
-                                        <a href="{% url 'core:product_delete' item.id %}"><i class="fa-solid fa-square-xmark" style="font-size: 30px;color: red;"></i></a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="form-group text-center">
-                        <a class="btn btn-details" href="{% url 'core:product_create' %}">Nuevo Producto</a> <!-- Clase de botón de Bootstrap -->
-                    </div>
+                    <p>Administra tu inventario con facilidad y precisión gracias a nuestro sistema de consulta de productos.</p>
+                </div>
+            </div>
+            <div class="module-table">
+                <div class="table-responsive"> <!-- Clase de Bootstrap para tablas responsivas -->
+                    <table class="table table-hover table-bordered">
+                        <thead> <!-- Encabezado oscuro -->
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Marca</th>
+                                <th>Categoría</th>
+                                <th>Línea</th>
+                                <th>Proveedor</th>
+                                <th>Fecha Caducidad</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in products %}
+                            <tr>
+                                <td><img src="{{ item.image.url }}" alt="" width="50px"></td>
+                                <td>{{ item.description }}</td>
+                                <td>{{ item.price }}</td>
+                                <td>{{ item.stock }}</td>
+                                <td>{{ item.brand }}</td>
+                                <td>{{ item.get_categories }}</td>
+                                <td>{{ item.get_line_display }}</td>
+                                <td>{{ item.supplier }}</td>
+                                <td>{{ item.expiration_date | date:"Y-m-d" }}</td>
+                                <td>{% if item.state %}
+                                    <i class="fa-solid fa-check" style="font-size: 30px;color: green;"></i>
+                                    {% else %}
+                                    <i class="fa-solid fa-square-minus" style="font-size: 30px;color: red;"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'core:product_update' item.id %}"><i class="fa-solid fa-gear" style="font-size: 30px;color: black;"></i></a>
+                                    <a href="{% url 'core:product_delete' item.id %}"><i class="fa-solid fa-trash" style="font-size: 30px;color: darkred;"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group text-center">
+                    <a class="btn btn-details" href="{% url 'core:product_create' %}"><i class="fa-solid fa-plus"></i> Nuevo Producto </a> <!-- Clase de botón de Bootstrap -->
                 </div>
             </div>
         </div>

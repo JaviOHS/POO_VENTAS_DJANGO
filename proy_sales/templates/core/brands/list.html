@@ -1,40 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
-   <div class="table-container">
-    <br>
-    <h1 class="title">{{ title2 }}</h1>
-    <table class="styled-table">
-      <thead>
-        <tr>
-          <th>Descripcion</th>
-          <th>Creacion</th>
-          <th>Ultima actualizacion</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-      </tr>
-      </thead>
-      <tbody>
-        {% for item in brands %}
-          <tr>
-          <td>{{item.description}}</td>
-          <td>{{item.created}}</td>
-          <td>{{item.updated}}</td>
-          <td>{% if item.state %}
-               ✔
-              {% else %}
-               ➖
-              {% endif %}
-          </td>
-          <td>
-            <a href={% url 'core:brand_update' item.id %}>✏️</a>
-            <a href={% url 'core:brand_delete' item.id %}>❌</a>
-          </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-     <div class="form-group">
-       <a class="btn blue" href={% url 'core:brand_create' %}>Nueva Marca</a>
-     </div>
-  </div>
-{% endblock content  %}
+<section id="home-modulos" class="mt-4 d-flex justify-content-center align-items-center">
+    <div class="container text-center">
+        <div class="row">
+            <!-- Mensaje de bienvenida a la izquierda -->
+            <div class="col-lg-12">
+                <div class="module-head">
+                    <h2 class="title text-center">{{ title2 }}</h2>
+                    <p>Gestione con los clientes de la empresa con facilidad. </p>
+                </div>
+            </div>
+            <div class="module-table">
+                <div class="table-responsive"> <!-- Clase de Bootstrap para tablas responsivas -->
+                    <table class="table table-hover table-bordered">
+                        <thead> <!-- Encabezado oscuro -->
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Creacion</th>
+                                <th>Ultima actualizacion</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in brands %}
+                            <tr>
+                                <td>{{item.description}}</td>
+                                <td>{{item.created}}</td>
+                                <td>{{item.updated}}</td>
+                                <td>{% if item.state %}
+                                    <i class="fa-solid fa-check" style="font-size: 30px;color: green;"></i>
+                                    {% else %}
+                                    <i class="fa-solid fa-square-minus" style="font-size: 30px;color: red;"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'core:brand_update' item.id %}"><i class="fa-solid fa-gear" style="font-size: 30px;color: black;"></i></a>
+                                    <a href="{% url 'core:brand_delete' item.id %}"><i class="fa-solid fa-trash" style="font-size: 30px;color: darkred;"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group text-center">
+                    <a class="btn btn-details" href="{% url 'core:brand_create' %}"><i class="fa-solid fa-plus"></i> Nueva Marca </a>
+                    <!-- Clase de botón de Bootstrap -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -7,7 +7,6 @@
                 <div class="card-body">
                     <h2 class="card-title">{{ title2 }}</h2>
                     <form method="post" enctype="multipart/form-data" id="product-form">
-
                         {% csrf_token %}
                         {% for field in form %}
                         <div class="mb-3">
@@ -25,46 +24,4 @@
         </div>
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Agrega un evento submit al formulario
-        document.getElementById('product-form').addEventListener('submit', function (event) {
-            // Previene el comportamiento por defecto de enviar el formulario
-            event.preventDefault();
-            
-            // Muestra el SweetAlert para confirmar la acción
-            swal({
-                title: "¿Estás seguro?",
-                text: "¿Quieres guardar los cambios?",
-                icon: "warning",
-                buttons: ["Cancelar", "Guardar"],
-                dangerMode: true,
-            }).then((willSave) => {
-                if (willSave) {
-                    // Si el usuario confirma, envía el formulario
-                    this.submit();
-                }
-            });
-        });
-    });
-    // Sweet Alert para cancelar cambios
-    document.getElementById('cancel-btn').addEventListener('click', function (event) {
-        event.preventDefault(); // Prevenir el comportamiento predeterminado del botón de cancelar
-
-        swal({
-            title: "¿Estás seguro?",
-            text: "¿Quieres cancelar los cambios?",
-            icon: "warning",
-            buttons: ["No", "Sí"],
-            dangerMode: false,
-        })
-        .then((willCancel) => {
-            if (willCancel) {
-                // Si el usuario confirma, redirige
-                window.location.href = "{% url 'core:product_list' %}";
-            }
-        });
-    });
-</script>
-    
 {% endblock content %}
