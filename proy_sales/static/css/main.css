@@ -1,0 +1,161 @@
+/* Estilos para la barra de navegación */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+
+body{
+    background-color: #000;
+    color: #fff;
+    font-family: "Ubuntu Sans", sans-serif;
+    font-optical-sizing: auto;
+    /* <weight>: Use a value from 100 to 800 */
+    font-weight: 200; 
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+    margin: 0;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6, p, span{
+    margin-top: 10px;
+
+}
+
+/* BARRA DE NAVEGACION */
+.navbar {
+    background-color: #111010 !important; /* Fondo semi-transparente */
+    position: fixed; /* Fijar la barra de navegación en la parte superior */
+    width: 100%; /* Ancho completo */
+    z-index: 1000; /* Colocar la barra de navegación encima de otros elementos */
+    display: flex; /* Utilizar flexbox para centrar los elementos */
+    justify-content: center; /* Centrar horizontalmente los elementos */
+    transition: background-color 0.3s; /* Transición suave para el cambio de color */
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 25px;
+    left: 50%; /* Mover la barra de navegación hacia la mitad de la pantalla */
+    transform: translateX(-50%); /* Corregir la mitad del ancho de la barra de navegación */
+}
+
+.navbar-brand {
+    color: gold; /* Color del texto */
+    font-size: 30px; /* Tamaño de fuente */
+    font-weight: 800; /* Peso de la fuente */
+    margin-left: 20px;
+    margin-right: 50px;
+}
+/* Cambiar el color de fondo al pasar el cursor */
+.navbar:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Cambiar a un color más oscuro */
+}
+
+/* Estilos para los elementos de la barra de navegación */
+.navbar-nav {
+    text-align: center; /* Centrar horizontalmente los elementos del menú */
+}
+
+.nav-item {
+    margin-right: 25px;
+}
+
+.nav-link {
+    color: #fff; /* Color del texto */
+    transition: color 0.3s; /* Transición suave para el cambio de color del texto */
+}
+
+/* Cambiar el color del texto al pasar el cursor */
+.nav-link:hover {
+    color: gold; /* Cambiar a color dorado */
+}
+
+/* CENTENIDO */
+#home-content {
+    background-color: #000; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 100px 0; /* Añadir espacio interno */
+}
+
+.welcome-message {
+    margin: 80px 20px ; /* Añadir espacio inferior */
+    background-color: #111010;
+    border-radius: 25px;
+    padding: 30px;
+}
+
+.welcome-message h2 {
+    text-transform: uppercase; /* Convertir el texto del h2 en mayúsculas */
+    color: gold; /* Color dorado */
+    font-weight: 800;
+}
+
+
+/* Estilos para las imágenes del carrusel */
+#image-carousel:hover {
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+}
+
+.carousel-item img {
+    border-radius: 25px; /* Bordes redondeados */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+    max-width: 100%; /* Ancho máximo */
+    height: auto; /* Altura automática */
+    background: linear-gradient(to bottom right, #000, #333); /* Degradado */
+}
+
+/* Estilos para los botones */
+.btn-details{
+    margin-top: 10px;
+    background-color: gold; /* Color de fondo dorado */
+    color: #000; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 25px; /* Bordes redondeados */
+    padding: 10px 20px; /* Añadir espacio interno */
+    font-size: 20px; /* Tamaño de fuente */
+    font-weight: 600; /* Peso de la fuente */
+    text-transform: uppercase; /* Convertir el texto en mayúsculas */
+    transition: background-color 0.3s; /* Transición suave para el cambio de color de fondo */
+}
+
+.btn-details:hover {
+    background-color: rgb(59, 59, 57); /* Cambiar a un color más claro */
+    color: #fff;
+}
+
+.btn-cancel{
+    margin-top: 10px;
+    background-color: rgb(201, 13, 13); /* Color de fondo dorado */
+    color: #000; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 25px; /* Bordes redondeados */
+    padding: 10px 20px; /* Añadir espacio interno */
+    font-size: 20px; /* Tamaño de fuente */
+    font-weight: 600; /* Peso de la fuente */
+    text-transform: uppercase; /* Convertir el texto en mayúsculas */
+    transition: background-color 0.3s; /* Transición suave para el cambio de color de fondo */
+}
+
+.btn-cancel:hover {
+    background-color: rgb(110, 8, 8); /* Cambiar a un color más claro */
+    color: #fff;
+}
+
+/* Footer */
+.footer {
+    width: 100%; /* Ancho completo */
+    text-align: center;
+    font-size: 20px;
+    background-color: #111010;
+}
+
+/* Tablas */
+table{
+    font-size: 18px;
+}
+.styled-table {
+    border: 1px solid grey; /* Agrega un borde de 1px sólido gris a la tabla */
+}
+
+.styled-table th,
+.styled-table td {
+    border: 1px solid grey; /* Agrega un borde de 1px sólido gris a las celdas */
+    padding: 10px; /* Añade espacio interno de 10px */
+}
