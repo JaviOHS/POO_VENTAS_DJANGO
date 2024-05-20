@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
+<title>{% block title %} SGV - Productos {% endblock title %}</title>
+
 <section id="home-modulos" class="mt-4 d-flex justify-content-center align-items-center">
     <div class="container text-center">
         <div class="row">
@@ -31,7 +34,7 @@
                         <tbody>
                             {% for item in products %}
                             <tr>
-                                <td><img src="{{ item.image.url }}" alt="" width="50px"></td>
+                                <td class="product-image"><img src="{% if item.image %}{{ item.image.url }}{% else %}{% static 'img/default.png' %}{% endif %}" alt="Imagen del producto"></td>
                                 <td>{{ item.description }}</td>
                                 <td>{{ item.price }}</td>
                                 <td>{{ item.stock }}</td>

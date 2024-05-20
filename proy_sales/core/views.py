@@ -1,8 +1,9 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
-
 from core.forms import ProductForm, BrandForm, SupplierForm, CategoryForm
 from core.models import Product, Brand, Supplier, Category
+from django.conf import settings
+import os
 
 # ----------------- Vistas de Home -----------------
 def home(request):
@@ -185,3 +186,4 @@ def category_delete(request, id):
         category.delete()
         return redirect("core:category_list")
     return render(request, "core/categories/delete.html", data)
+

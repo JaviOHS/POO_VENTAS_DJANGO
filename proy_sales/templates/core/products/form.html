@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<title>{% block title %} SGV - Crear Productos {% endblock title %}</title>
+
 <section id="home-modulos" class="mt-4 d-flex justify-content-center align-items-center">
     <div class="container text-center">
         <div class="row">
@@ -66,14 +68,16 @@
                     <div class="form-group">
                     
                         <div class="text-center">
+                            <hr>
                             <button type="submit" class="btn btn-details">
-                                <i class="fa-solid fa-person-circle-plus"></i>
+                                <i class="fa-solid fa-boxes-packing"></i>
                                 Guardar
                             </button>
                             <a href="{% url 'core:product_list' %}" class="btn btn-cancel">
                                 <i class="fa-solid fa-xmark"></i>  Cancelar
                             </a>
                         </div>
+                        <hr>
                     
                     </div>
                 </form>                

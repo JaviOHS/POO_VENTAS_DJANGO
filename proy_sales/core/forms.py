@@ -3,6 +3,8 @@ from core.models import Product
 from core.models import Brand
 from core.models import Supplier
 from core.models import Category
+from django.utils import timezone
+import datetime
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -13,12 +15,12 @@ class ProductForm(forms.ModelForm):
             'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese precio del producto', 'id': 'id_price'}),
             'stock': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese stock del producto', 'id': 'id_stock'}),
             'brand': forms.Select(attrs={'class': 'form-select', 'id': 'id_brand'}),
-            'categories': forms.Select(attrs={'class': 'form-select', 'id': 'id_categories'}),
+            'categories': forms.SelectMultiple(attrs={'class': 'form-select', 'id': 'id_categories'}),
             'line': forms.Select(attrs={'class': 'form-select', 'id': 'id_line'}),
             'supplier': forms.Select(attrs={'class': 'form-select', 'id': 'id_supplier'}),
             'expiration_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'id': 'id_expiration_date'}),
             'image': forms.FileInput(attrs={'class': 'form-control', 'type': 'file', 'id': 'id_image'}),
-            'state': forms.CheckboxInput(attrs={'class': 'form-check-input', 'id': 'id_state'})
+            'state': forms.CheckboxInput(attrs={'class': 'form-check-input', 'id': 'id_state'}),
         }
         labels = {
             'description': 'Producto:',
@@ -33,6 +35,10 @@ class ProductForm(forms.ModelForm):
             'state': 'Estado:',
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not self.instance.pk:  # Solo establecer el valor predeterminado si el objeto es nuevo
+            self.fields['expiration_date'].initial = (timezone.now() + datetime.timedelta(days=30)).date().isoformat()
 
 class BrandForm(forms.ModelForm):
     class Meta:

@@ -10,7 +10,7 @@
                     <p>Complete el formulario para registrar una nueva categoría en el sistema.</p>
                 </div>
             </div>
-            <div class="form-container">
+            <div id="form-category" class="form-container">
                 <form method="post" enctype="multipart/form-data" >
                     {% csrf_token %}
                     {% for field in form %}

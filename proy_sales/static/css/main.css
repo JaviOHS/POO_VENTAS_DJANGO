@@ -34,92 +34,203 @@ hr {
     display: flex; /* Utilizar flexbox para centrar los elementos */
     justify-content: center; /* Centrar horizontalmente los elementos */
     transition: background-color 0.3s; /* Transición suave para el cambio de color */
-    font-size: 20px;
-    font-weight: 400;
 }
 
-.navbar-brand {
+.navbar-brand { /* Estilos para el logotipo */
     color: gold; /* Color del texto */
-    font-size: 30px; /* Tamaño de fuente */
+    font-size: 24px; /* Tamaño de fuente */
     font-weight: 800; /* Peso de la fuente */
     margin-left: 20px;
     margin-right: 50px;
 }
 
-.navbar-nav {
-    text-align: center; /* Centrar horizontalmente los elementos del menú */
+.nav-item { /* Estilos para los elementos de la barra de navegación */
+    margin-right: auto;
+    font-size: 20px;
+    font-weight: 500;
 }
 
-.nav-item {
-    margin-right: 25px;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.nav-link {
+.nav-link { /* Estilos para los enlaces de la barra de navegación */
     color: gray;
     transition: color 0.3s; /* Transición suave para el cambio de color del texto */
 }
 
-.nav-link:hover {
-    color: gold; /* Cambiar a color dorado */
+.nav-link:hover { /* Estilos para los enlaces de la barra de navegación al pasar el cursor */
+    color: gold;
 }
 
-#home-content {
-    padding: 100px 0 100px 0; /* Añadir espacio interno */
+/* Estilos para Home */
+#home-content { /* Estilos para el contenido de la página de inicio */
+    padding: 60px 0 100px 0; /* Añadir espacio interno */
 }
 
-.welcome-message {
-    margin: 50px 20px ; /* Añadir espacio inferior */
+.welcome-message { /* Estilos para el mensaje de bienvenida */
     background-color: #111010;
     border-radius: 25px;
-    padding: 30px;
+    padding: 28px;
+    margin: 0 10px 0 10px ;
+    transition: transform 0.3s;
 }
 
 .welcome-message h2 {
     text-transform: uppercase; /* Convertir el texto del h2 en mayúsculas */
-    color: gold; /* Color dorado */
+    color: gold; 
     font-weight: 800;
     font-size: 40px;
 }
 
 .welcome-message p {
-    color: gray; /* Color dorado */
-    font-weight: 600;
-    font-size: 25px;
+    color: gray; 
+    font-weight: 500;
+    font-size: 24px;
 }
 
 .welcome-message span {
-    color: gray; /* Color dorado */
-    font-weight: 500;
+    color: gray; 
+    font-weight: 400;
     font-size: 20px;
 }
 
 /* Estilos para las imágenes del carrusel */
-#image-carousel:hover {
-    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+#image-carousel {
+    transition: transform 0.3s;
 }
 
 .carousel-item img {
-    border-radius: 25px; /* Bordes redondeados */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
-    max-width: 100%; /* Ancho máximo */
+    border-radius: 50px; /* Bordes redondeados */
+    max-width: 90%; /* Ancho máximo */
     height: auto; /* Altura automática */
     background: linear-gradient(to bottom right, #000, #333); /* Degradado */
+}
+
+#image-carousel:hover, .welcome-message:hover {
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+}
+
+
+/* Estilos para los botones */
+.btn-details, .btn-cancel{
+    margin-top: 10px;
+    border-radius: 30px; /* Bordes redondeados */
+    padding: 10px 20px; /* Añadir espacio interno */
+    font-size: 18px; /* Tamaño de fuente */
+    font-weight: 600; /* Peso de la fuente */
+    text-transform: uppercase; /* Convertir el texto en mayúsculas */
+    transition: transform 0.3s;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.btn-details {
+    background-color: gold; /* Color de fondo */
+    color: #111010; /* Color del texto */
+}
+
+.btn-cancel {
+    background-color: red; /* Color de fondo */
+    color: #111010; /* Color del texto */
+}
+
+.btn-details:hover {
+    background-color: rgb(59, 59, 57); /* Cambiar a un color más claro */
+    color: #fff;
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+}
+
+.btn-cancel:hover {
+    background-color: rgb(110, 8, 8); /* Cambiar a un color más claro */
+    color: #fff;
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+}
+
+/* Estilos para modulos */
+#home-modulos {
+    padding: 60px 0 100px 0; /* Añadir espacio interno */
+}
+
+.module-head {
+    padding: 30px;
+}
+
+.module-head h2 {
+    text-transform: uppercase; /* Convertir el texto del h2 en mayúsculas */
+    color: gold; 
+    font-weight: 800;
+    font-size: 32px;
+}
+.module-head p {
+    color: gray;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+/* Tablas */
+.module-table {
+    background-color: #111010;
+    border-radius: 25px;
+    padding: 20px;
+    width: auto;
+    margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
+
+}
+
+.module-table table {
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    border: 2px solid hsl(0, 0%, 0%); /* Ajusta el grosor y el color de los bordes */
+    vertical-align: middle; /* Centra verticalmente el contenido */
+    align-items: center;
+}
+
+.module-table thead th {
+    background-color: rgb(0, 0, 0); /* Color oscuro de fondo */
+    color: gold; 
+    text-transform: uppercase; /* Convertir el texto en mayúsculas */
+    font-weight: 750; /* Peso de la fuente */
+    font-size: 18px;
+    border: 2px solid hsl(0, 0%, 0%); /* Ajusta el grosor y el color de los bordes */
+}
+.module-table tbody td{
+    background-color: gainsboro; 
+    color: rgb(41, 44, 44);
+    font-weight: 450; /* Peso de la fuente */
+    font-size: 16px;
+    border: 2px solid hsl(0, 0%, 0%); /* Ajusta el grosor y el color de los bordes */
+}
+
+.module-table tbody td.product-image img {
+    width: 60px;
+    border-radius: 15px;
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    background-color: #111010;
+    z-index: 999; /* Asegura que esté por encima de otros elementos */
 }
 
 /* Estilos para los formularios */
 .form-container{
     background-color: #111010;
     border-radius: 25px;
-    padding: 15px;
-    width: 50%;
     margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
+    width: 70%;
 }
+
+#form-brand, #form-category {
+    width: 40%;
+} 
 
 label{
     color: white; /* Color del texto */
-    font-size: 20px; /* Tamaño de fuente */
+    font-size: 18px; /* Tamaño de fuente */
     font-weight: 600; /* Peso de la fuente */
     text-transform: uppercase;
 }
@@ -134,37 +245,30 @@ form select,
 form input[type="date"], 
 form input [type="checkbox"], 
 form input[type="file"] {
-    margin: 10px 0 10px; /* Añadir espacio superior e inferior */
+    margin: 10px 0 25px; /* Añadir espacio superior e inferior */
     background-color: whitesmoke;
-    border: whitesmoke 4px solid; /* Color del borde */
+    border: whitesmoke 2px solid; /* Color del borde */
     border-radius: 10px;
-    font-size: 18px; /* Tamaño de fuente */
+    font-size: 16px; /* Tamaño de fuente */
     font-weight: 600; /* Peso de la fuente */
     box-sizing: border-box; /* Asegurar que el padding y el borde se incluyan en el tamaño total */
     width: 100%; /* Hacer que todos los elementos tengan el mismo ancho */
     padding: 10px; /* Espaciado interno para consistencia */
 }
 
-form input[type="file"] {
-    background-color: whitesmoke;
-    border: whitesmoke 4px solid; /* Color del borde */
-}
 
 form input[type="text"]:focus, 
 form input[type="number"]:focus, 
-form input[type="date"]:focus, 
-form input[type="file"]:focus {
+form input[type="date"]:focus{
     outline: none;
     border-color: gold; /* Color del borde al enfocar */
-    background-color: #111010;
-    color: gold;
 }
 
 form select {
     appearance: none; /* Eliminar la apariencia por defecto del select en algunos navegadores */
     -webkit-appearance: none; /* Eliminar la apariencia por defecto del select en Safari y Chrome */
     -moz-appearance: none; /* Eliminar la apariencia por defecto del select en Firefox */
-    height: 55px; /* Asegurar que la altura sea consistente con otros campos */
+    height: 48px; /* Asegurar que la altura sea consistente con otros campos */
     background-color: #111010;
 }
 
@@ -174,113 +278,4 @@ form select {
     padding: 15px;
     width: 75%;
     margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
-}
-
-/* Estilos para los botones */
-.btn-details{
-    margin-top: 10px;
-    background-color: gold; /* Color de fondo dorado */
-    color: #000; /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 25px; /* Bordes redondeados */
-    padding: 10px 20px; /* Añadir espacio interno */
-    font-size: 20px; /* Tamaño de fuente */
-    font-weight: 600; /* Peso de la fuente */
-    text-transform: uppercase; /* Convertir el texto en mayúsculas */
-    transition: background-color 0.3s; /* Transición suave para el cambio de color de fondo */
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.btn-details:hover {
-    background-color: rgb(59, 59, 57); /* Cambiar a un color más claro */
-    color: #fff;
-}
-
-.btn-cancel{
-    margin-top: 10px;
-    background-color: rgb(201, 13, 13); /* Color de fondo dorado */
-    color: #000; /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 25px; /* Bordes redondeados */
-    padding: 10px 20px; /* Añadir espacio interno */
-    font-size: 20px; /* Tamaño de fuente */
-    font-weight: 600; /* Peso de la fuente */
-    text-transform: uppercase; /* Convertir el texto en mayúsculas */
-    transition: background-color 0.3s; /* Transición suave para el cambio de color de fondo */
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.btn-cancel:hover {
-    background-color: rgb(110, 8, 8); /* Cambiar a un color más claro */
-    color: #fff;
-}
-
-/* Estilos para modulos */
-#home-modulos {
-    padding: 60px 0 100px 0; /* Añadir espacio interno */
-}
-
-.module-head {
-    padding: 30px;
-}
-
-.module-head h2 {
-    text-transform: uppercase; /* Convertir el texto del h2 en mayúsculas */
-    color: gold; /* Color dorado */
-    font-weight: 800;
-    font-size: 40px;
-}
-.module-head p {
-    color: gray;
-    font-weight: 600;
-    font-size: 25px;
-}
-
-/* Tablas */
-.module-table {
-    background-color: #111010;
-    border-radius: 25px;
-    padding: 30px;
-    width: auto;
-    margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
-}
-
-.module-table table {
-    width: 100%;
-    white-space: nowrap;
-    overflow-x: auto;
-    border-spacing: 0; /* En lugar de border-collapse: collapse; */
-    border: 1px solid #000; /* Ajusta el grosor y el color de los bordes */
-    border-radius: 15px; /* Agrega bordes redondos */
-}
-
-.module-table thead th {
-    background-color: rgb(0, 0, 0); /* Color oscuro de fondo */
-    color: gold; /* Texto blanco */
-    text-transform: uppercase; /* Convertir el texto en mayúsculas */
-    font-weight: 900; /* Peso de la fuente */
-    align-items: center;
-    padding: 10px;
-    font-size: 20px;
-
-}
-.module-table tbody td{
-    background-color: gainsboro; /* Color oscuro de fondo */
-    color: darkslategray;
-    font-weight: 600; /* Peso de la fuente */
-    font-size: 18px;
-    padding: 10px;
-}
-
-/* Footer */
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 16px;
-    background-color: #111010;
-    z-index: 999; /* Asegura que esté por encima de otros elementos */
 }
