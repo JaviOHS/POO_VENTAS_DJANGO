@@ -1,44 +1,61 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="container">
-    <div class="form-container">
-        <h2 class="title">{{title2}}</h2>
-
-        <form id="supplier-form" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% comment %} {{ form.as_p }} {% endcomment %}
-            {% for field in form %}
-            <div class="form-group">
-                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {{ field }}
+<section id="home-modulos" class="mt-4 d-flex justify-content-center align-items-center">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="module-head">
+                    <h2 class="title text-center">{{ title2 }}</h2>
+                    <p>Complete el formulario para registrar un nuevo proveedor en el sistema.</p>
+                </div>
             </div>
-            {% endfor %}
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn blue">
-                <a href={% url 'core:supplier_list' %} class="btn red"> Cancelar </a>
+            <div class="form-container">
+                <form id="supplier-form" method="post" enctype="multipart/form-data" onsubmit="validarFormulario(event)">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                                {{ form.name }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.address.id_for_label }}">{{ form.address.label }}</label>
+                                {{ form.address }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="{{ form.ruc.id_for_label }}">{{ form.ruc.label }}</label>
+                                {{ form.ruc }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+                                {{ form.phone }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.state.id_for_label }}">{{ form.state.label }}</label>
+                        {{ form.state }}
+                    </div>
+                    <div class="form-group">
+                        <hr>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-details">
+                                <i class="fa-solid fa-person-circle-plus"></i>
+                                Guardar
+                            </button>
+                            <a href="{% url 'core:supplier_list' %}" class="btn btn-cancel">
+                                <i class="fa-solid fa-xmark"></i> Cancelar 
+                            </a>
+                        </div>
+                        <hr>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-</div>
-
+</section>
 <script src="{% static 'js/validaciones.js' %}"></script>
-
-<script>
-    // Escuchar el evento de envío del formulario
-    document.getElementById('supplier-form').addEventListener('submit', async function(event) {
-        event.preventDefault(); // Evitar el envío del formulario por defecto
-
-        const rucInput = document.getElementById('id_ruc'); // Obtener el campo de RUC
-
-        if (Validaciones.esCedulaValida(rucInput.value)) { // Validar el RUC
-            // Si el RUC es válido, enviar el formulario
-            this.submit();
-        } else {
-            // Si el RUC no es válido, mostrar un mensaje de error
-            swal('Error', 'El RUC ingresado no es válido', 'error');
-        }
-    });
-</script>
-
 {% endblock content %}

@@ -23,4 +23,4 @@ class ProductAdmin(admin.ModelAdmin):
     # Define un método para mostrar las categorías de cada producto en la lista del panel de administración
     def categorias(self, obj):
         # Devuelve una cadena que contiene las descripciones de todas las categorías asociadas al producto, separadas por un guion (-)
-        return " - ".join([c.description for c in obj.categories.all().order_by('description')])
+        return obj.get_categories

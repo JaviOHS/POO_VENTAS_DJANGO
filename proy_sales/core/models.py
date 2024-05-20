@@ -19,9 +19,9 @@ class Brand(models.Model):
 
 class Supplier(models.Model):
     name = models.CharField(max_length=100)
-    ruc = models.CharField(max_length=13)
+    ruc = models.CharField(max_length=10)
     address = models.CharField(max_length=200)
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=10)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

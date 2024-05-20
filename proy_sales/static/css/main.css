@@ -1,6 +1,5 @@
 /* Estilos para la barra de navegación */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
-
 body{
     background-color: black;
     color: #fff;
@@ -9,14 +8,24 @@ body{
     /* <weight>: Use a value from 100 to 800 */
     font-weight: 500; 
     font-style: normal;
-    font-variation-settings:
-      "wdth" 100;
     margin: 0;
     font-size: 18px;
-
 }
 
-/* BARRA DE NAVEGACION */
+::selection {
+    background-color: gold;
+    color: black; /* Color de texto para la selección */
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 20px 0;
+}
+
+
+/*Barra de navegacion */
 .navbar {
     background-color: #111010 !important; /* Fondo semi-transparente */
     position: fixed; /* Fijar la barra de navegación en la parte superior */
@@ -27,9 +36,6 @@ body{
     transition: background-color 0.3s; /* Transición suave para el cambio de color */
     font-size: 20px;
     font-weight: 400;
-    border-radius: 25px;
-    left: 50%; /* Mover la barra de navegación hacia la mitad de la pantalla */
-    transform: translateX(-50%); /* Corregir la mitad del ancho de la barra de navegación */
 }
 
 .navbar-brand {
@@ -39,12 +45,7 @@ body{
     margin-left: 20px;
     margin-right: 50px;
 }
-/* Cambiar el color de fondo al pasar el cursor */
-.navbar:hover {
-    background-color: rgba(0, 0, 0, 0.9); /* Cambiar a un color más oscuro */
-}
 
-/* Estilos para los elementos de la barra de navegación */
 .navbar-nav {
     text-align: center; /* Centrar horizontalmente los elementos del menú */
 }
@@ -60,12 +61,10 @@ body{
     transition: color 0.3s; /* Transición suave para el cambio de color del texto */
 }
 
-/* Cambiar el color del texto al pasar el cursor */
 .nav-link:hover {
     color: gold; /* Cambiar a color dorado */
 }
 
-/* CENTENIDO */
 #home-content {
     padding: 100px 0 100px 0; /* Añadir espacio interno */
 }
@@ -83,6 +82,7 @@ body{
     font-weight: 800;
     font-size: 40px;
 }
+
 .welcome-message p {
     color: gray; /* Color dorado */
     font-weight: 600;
@@ -108,6 +108,74 @@ body{
     background: linear-gradient(to bottom right, #000, #333); /* Degradado */
 }
 
+/* Estilos para los formularios */
+.form-container{
+    background-color: #111010;
+    border-radius: 25px;
+    padding: 15px;
+    width: 50%;
+    margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
+}
+
+label{
+    color: white; /* Color del texto */
+    font-size: 20px; /* Tamaño de fuente */
+    font-weight: 600; /* Peso de la fuente */
+    text-transform: uppercase;
+}
+
+form{
+    margin: 20px 0; /* Añadir espacio superior e inferior */
+}
+
+form input[type="text"], 
+form input[type="number"], 
+form select, 
+form input[type="date"], 
+form input [type="checkbox"], 
+form input[type="file"] {
+    margin: 10px 0 10px; /* Añadir espacio superior e inferior */
+    background-color: whitesmoke;
+    border: whitesmoke 4px solid; /* Color del borde */
+    border-radius: 10px;
+    font-size: 18px; /* Tamaño de fuente */
+    font-weight: 600; /* Peso de la fuente */
+    box-sizing: border-box; /* Asegurar que el padding y el borde se incluyan en el tamaño total */
+    width: 100%; /* Hacer que todos los elementos tengan el mismo ancho */
+    padding: 10px; /* Espaciado interno para consistencia */
+}
+
+form input[type="file"] {
+    background-color: whitesmoke;
+    border: whitesmoke 4px solid; /* Color del borde */
+}
+
+form input[type="text"]:focus, 
+form input[type="number"]:focus, 
+form input[type="date"]:focus, 
+form input[type="file"]:focus {
+    outline: none;
+    border-color: gold; /* Color del borde al enfocar */
+    background-color: #111010;
+    color: gold;
+}
+
+form select {
+    appearance: none; /* Eliminar la apariencia por defecto del select en algunos navegadores */
+    -webkit-appearance: none; /* Eliminar la apariencia por defecto del select en Safari y Chrome */
+    -moz-appearance: none; /* Eliminar la apariencia por defecto del select en Firefox */
+    height: 55px; /* Asegurar que la altura sea consistente con otros campos */
+    background-color: #111010;
+}
+
+.form-product-container {
+    background-color: #111010;
+    border-radius: 25px;
+    padding: 15px;
+    width: 75%;
+    margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
+}
+
 /* Estilos para los botones */
 .btn-details{
     margin-top: 10px;
@@ -120,6 +188,8 @@ body{
     font-weight: 600; /* Peso de la fuente */
     text-transform: uppercase; /* Convertir el texto en mayúsculas */
     transition: background-color 0.3s; /* Transición suave para el cambio de color de fondo */
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .btn-details:hover {
@@ -138,6 +208,8 @@ body{
     font-weight: 600; /* Peso de la fuente */
     text-transform: uppercase; /* Convertir el texto en mayúsculas */
     transition: background-color 0.3s; /* Transición suave para el cambio de color de fondo */
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .btn-cancel:hover {
@@ -167,7 +239,6 @@ body{
 }
 
 /* Tablas */
-
 .module-table {
     background-color: #111010;
     border-radius: 25px;
@@ -197,7 +268,7 @@ body{
 }
 .module-table tbody td{
     background-color: gainsboro; /* Color oscuro de fondo */
-    color: black; /* Texto blanco */
+    color: darkslategray;
     font-weight: 600; /* Peso de la fuente */
     font-size: 18px;
     padding: 10px;
