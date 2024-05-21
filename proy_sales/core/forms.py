@@ -23,16 +23,16 @@ class ProductForm(forms.ModelForm):
             'state': forms.CheckboxInput(attrs={'class': 'form-check-input', 'id': 'id_state'}),
         }
         labels = {
-            'description': 'Producto:',
-            'price': 'Precio:',
-            'stock': 'Stock:',
-            'brand': 'Marca:',
-            'categories': 'Categoría:',
-            'line': 'Línea:',
-            'supplier': 'Proveedor:',
-            'expiration_date': 'Fecha de vencimiento:',
-            'image': 'Imagen:',
-            'state': 'Estado:',
+            'description': 'Producto',
+            'price': 'Precio',
+            'stock': 'Stock',
+            'brand': 'Marca',
+            'categories': 'Categoría',
+            'line': 'Línea',
+            'supplier': 'Proveedor',
+            'expiration_date': 'Fecha de vencimiento',
+            'image': 'Imagen',
+            'state': 'Estado',
         }
 
     def __init__(self, *args, **kwargs):
@@ -49,27 +49,29 @@ class BrandForm(forms.ModelForm):
             'state': forms.CheckboxInput(attrs={'class': 'form-check-input'})
         }
         labels = {
-            'description': 'Nombre de la marca:',
-            'state': 'Estado:', # Agrega la etiqueta para el campo 'state'
+            'description': 'Nombre de la marca',
+            'state': 'Estado', # Agrega la etiqueta para el campo 'state'
         }
 
 class SupplierForm(forms.ModelForm):
     class Meta:
         model = Supplier
-        fields = ['name','ruc','address','phone', 'state']
+        fields = ['name','ruc','address','phone', 'state', 'image']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese nombre del proveedor', 'id': 'id_name'}),
             'ruc': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese RUC del proveedor', 'id': 'id_ruc'}),
             'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese dirección del proveedor'}),
-            'phone': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese número celular', 'id': 'id_phone'}),
-            'state': forms.CheckboxInput(attrs={'class': 'form-check-input'})
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese número celular', 'id': 'id_phone'}),
+            'state': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'image': forms.FileInput(attrs={'class': 'form-control', 'type': 'file', 'id': 'id_image'}),
         }
         labels = {
-            'name': 'Nombre:',
-            'ruc': 'RUC:',
-            'address': 'Dirección:',
-            'phone': 'Celular:',
-            'state': 'Estado:',
+            'name': 'Nombre',
+            'ruc': 'RUC',
+            'address': 'Dirección',
+            'phone': 'Celular',
+            'state': 'Estado',
+            'image': 'Imagen',
         }
 
 class CategoryForm(forms.ModelForm):
@@ -81,6 +83,6 @@ class CategoryForm(forms.ModelForm):
             'state': forms.CheckboxInput(attrs={'class': 'form-check-input'})
         }
         labels = {
-            'description': 'Categoría:',
-            'state': 'Estado:', 
+            'description': 'Categoría',
+            'state': 'Estado', 
         }

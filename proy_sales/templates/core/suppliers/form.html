@@ -37,21 +37,23 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
+                        {{ form.image }}
+                    </div>
+                    <div class="form-group">
                         <label for="{{ form.state.id_for_label }}">{{ form.state.label }}</label>
                         {{ form.state }}
                     </div>
                     <div class="form-group">
-                        <hr>
                         <div class="text-center">
                             <button type="submit" class="btn btn-details">
-                                <i class="fa-solid fa-person-circle-plus"></i>
+                                <i class="fa-solid fa-user-plus"></i>
                                 Guardar
                             </button>
                             <a href="{% url 'core:supplier_list' %}" class="btn btn-cancel">
                                 <i class="fa-solid fa-xmark"></i> Cancelar 
                             </a>
                         </div>
-                        <hr>
                     </div>
                 </form>
             </div>

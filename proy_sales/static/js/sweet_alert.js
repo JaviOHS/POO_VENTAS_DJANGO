@@ -1,6 +1,20 @@
+const DarkSwal = Swal.mixin({
+    customClass: {
+        popup: 'dark-popup',
+        title: 'dark-title',
+        icon: 'dark-icon',
+        confirmButton: 'dark-confirm-button',
+        cancelButton: 'dark-cancel-button'
+    },
+    background: '#333', // Fondo oscuro
+    color: '#fff', // Texto blanco
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33'
+});
+
 function mostrarEsperaAutomatica() {
     document.addEventListener('DOMContentLoaded', function () {
-        Swal.fire({
+        DarkSwal.fire({
             title: 'Espera un momento...',
             text: 'Realizando la operación...',
             icon: 'info',
@@ -11,11 +25,11 @@ function mostrarEsperaAutomatica() {
 }
 
 function mostrarError(mensaje) {
-    Swal.fire({
+    DarkSwal.fire({
         icon: 'error',
-        title: 'Error',
+        title: '<span class="error-title">¡Error!</span>',
         text: mensaje,
-        confirmButtonText: 'Aceptar'
+        confirmButtonText: 'Continuar'
     });
 }
 
@@ -32,9 +46,9 @@ async function validarFormulario(event) {
           } else if (!Validaciones.soloNumeros(phone) || phone.length !== 10) {
             mostrarError('Celular incorrecto. Por favor, inténtelo de nuevo.');
           } else {
-            Swal.fire({
-                title: 'Proveedor agregado!',
-                text: 'El proveedor se ha agregado correctamente.',
+            DarkSwal.fire({
+                title: '<span class="success-title">¡Éxito!</span>',
+                text: 'Información válida. Enviando formulario...',
                 icon: 'success',
                 confirmButtonText: 'Aceptar'
             }).then(() => {
@@ -49,18 +63,15 @@ async function validarFormulario(event) {
 
 async function validarFormularioProductos(event) {
     event.preventDefault(); 
-    const name = document.getElementById('id_description').value;
     const price= document.getElementById('id_price').value;
     const stock = document.getElementById('id_stock').value;
     try {
-        if (!Validaciones.soloLetras(name)) {
-            mostrarError('El nombre del producto es inválido. Por favor, inténtelo de nuevo.');
-          } else if (!Validaciones.soloDecimales(price)) {
+        if (!Validaciones.soloDecimales(price)) {
             mostrarError('El precio debe ser un número decimal positivo. Por favor, inténtelo de nuevo.');
           } else if (!Validaciones.soloNumeros(stock)) {
             mostrarError('El stock debe ser un número entero. Por favor, inténtelo de nuevo.');
           } else {
-            Swal.fire({
+            DarkSwal.fire({
                 title: '¡Producto agregado!',
                 text: 'El producto se ha agregado correctamente.',
                 icon: 'success',

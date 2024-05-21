@@ -6,7 +6,7 @@
     --content: #111010;
 
     --save: rgb(223, 189, 0);
-    --save-hover: rgb(37, 32, 0);
+    --save-hover: rgb(59, 59, 57);
     --cancel: rgb(255, 0, 0);
     --cancel-hover: rgb(128, 0, 0);
     --update: rgb(0, 204, 255);
@@ -14,6 +14,9 @@
     --color-1:  rgb(59, 59, 57);
 
     --card-header-footer: rgb(94, 91, 91);
+
+    --labels: wheat;
+    
 }
 
 body{
@@ -33,45 +36,47 @@ body{
     color: black; /* Color de texto para la selección */
 }
 
-hr {
-    border: 0;
-    height: 1px;
-    background: #ccc;
-    margin: 20px 0;
-}
-
-/*Barra de navegacion */
+/* Barra de navegacion */
 .navbar {
     background-color: black;
     position: fixed; /* Fijar la barra de navegación en la parte superior */
     width: 100%; /* Ancho completo */
     z-index: 1000; /* Colocar la barra de navegación encima de otros elementos */
     display: flex; /* Utilizar flexbox para centrar los elementos */
-    justify-content: center; /* Centrar horizontalmente los elementos */
-    transition: background-color 0.3s; /* Transición suave para el cambio de color */
+    align-items: center; /* Alinear verticalmente los elementos */
+    padding: 0 20px; /* Espaciado a los lados */
 }
 
 .navbar-brand { /* Estilos para el logotipo */
     color: var(--title); /* Color del texto */
     font-size: 24px; /* Tamaño de fuente */
     font-weight: 800; /* Peso de la fuente */
-    margin-left: 20px;
-    margin-right: 50px;
+    margin-right: 20px;
 }
 
-.nav-item { /* Estilos para los elementos de la barra de navegación */
-    margin-right: auto;
-    font-size: 20px;
-    font-weight: 500;
+.navbar-nav {
+    display: flex; /* Flexbox para los elementos de navegación */
+    justify-content: center; /* Centrar los elementos de navegación */
+    flex-grow: 1; /* Tomar el espacio restante entre el logotipo y el botón de login */
+    list-style: none; /* Eliminar los puntos de la lista */
+    margin: 0;
+    padding: 0;
 }
 
-.nav-link { /* Estilos para los enlaces de la barra de navegación */
+.nav-item {
+    margin: 0 15px; /* Espaciado entre los elementos de navegación */
+}
+
+.nav-link {
     color: var(--subtitle);
     transition: color 0.3s; /* Transición suave para el cambio de color del texto */
+    text-decoration: none; /* Eliminar subrayado */
+    font-size: 20px;
+    font-weight: 800;
 }
 
-.nav-link:hover { /* Estilos para los enlaces de la barra de navegación al pasar el cursor */
-    color: var(--title);
+.nav-link:hover,  nav.active .nav-link{
+    color: var(--title); /* Cambiar color al pasar el cursor */
 }
 
 /* Estilos para Home */
@@ -123,7 +128,7 @@ hr {
 
 /* Estilos para los botones */
 .btn-details, .btn-cancel, .btn-update{
-    margin-top: 10px;
+    margin: 10px;
     border-radius: 10px; /* Bordes redondeados */
     padding: 10px 20px; /* Añadir espacio interno */
     font-size: 18px; /* Tamaño de fuente */
@@ -134,6 +139,7 @@ hr {
     margin-bottom: 10px;
     margin-left: 10px;
     color: black;
+    border: none;
 }
 
 .btn-details {
@@ -147,23 +153,20 @@ hr {
 .btn-update {
     background-color: var(--update); /* Color de fondo */
 }
-
-.btn-details:hover {
-    background-color: var(--save-hover); /* Cambiar a un color más claro */
+.btn-details:hover, .btn-cancel:hover, .btn-update:hover {
     color: #fff;
     transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+}
+.btn-details:hover {
+    background-color: var(--save-hover); /* Cambiar a un color más claro */
 }
 
 .btn-cancel:hover {
     background-color: var(--cancel-hover); /* Cambiar a un color más claro */
-    color: #fff;
-    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
 }
 
 .btn-update:hover {
     background-color: var(--update-hover); /* Cambiar a un color más claro */
-    color: #fff;
-    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
 }
 
 /* Estilos para modulos */
@@ -187,7 +190,7 @@ hr {
     font-size: 22px;
 }
 
-/* Cards */
+/* Cards de Modulos */
 .module-cards {
     background-color: var(--content);
     border-radius: 25px;
@@ -199,7 +202,7 @@ hr {
 }
 
 .card {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     transition: transform 0.3s, box-shadow 0.3s; /* Añade una transición para la sombra */
     border: none; /* Elimina cualquier borde no deseado */
     border-radius: 15px; /* Añade bordes redondeados a las tarjetas */
@@ -227,6 +230,10 @@ hr {
     padding: 15px; /* Ajusta el espaciado interno */
     width: 100%;
 }
+.module-cards{
+    width: 100%;
+    line-height: 1.6; /* Mejora la legibilidad con un mayor interlineado */
+}
 
 .module-cards h2 {
     color: var(--title); /* Color amarillo para destacarlo */
@@ -237,7 +244,28 @@ hr {
     margin: 0 0 10px 0; /* Ajusta el margen para separarlo del contenido siguiente */
 }
 
+.module-cards h3 {
+    color: var(--labels); /* Color amarillo para destacarlo */
+    text-transform: uppercase; /* Convertir el texto en mayúsculas */
+    font-weight: 800; /* Peso de la fuente */
+    font-size: 20px;
+}
+
+h3 .info {
+    color: var(--subtitle); /* Cambia esto al color que desees */
+    margin-left: 5px; /* Añade un pequeño espacio entre el texto y los datos */
+    text-transform: capitalize;
+    font-size: 18px;
+}
+
 .module-cards p {
+    color: var(--subtitle); /* Color más claro para mejor contraste */
+    font-weight: 700; /* Peso de la fuente */
+    font-size: 18px;
+    margin: 0 0 10px 0; /* Ajusta el margen para separar los párrafos */
+}
+
+.module-cards .description {
     color: var(--subtitle); /* Color más claro para mejor contraste */
     font-weight: 700; /* Peso de la fuente */
     font-size: 20px;
@@ -245,9 +273,10 @@ hr {
     margin: 0 0 10px 0; /* Ajusta el margen para separar los párrafos */
 }
 
-.module-table tbody td.product-image img {
-    width: 60px;
+.module-cards img {
+    width: 50%;
     border-radius: 15px;
+    margin: 0 auto 10px; /* Esto centrará horizontalmente el contenedor */
 }
 
 /* Footer */
@@ -274,9 +303,9 @@ hr {
 } 
 
 label{
-    color: white; /* Color del texto */
-    font-size: 18px; /* Tamaño de fuente */
-    font-weight: 600; /* Peso de la fuente */
+    color: var(--labels); /* Color del texto */
+    font-size: 20px; /* Tamaño de fuente */
+    font-weight: 800; /* Peso de la fuente */
     text-transform: uppercase;
 }
 
@@ -323,4 +352,28 @@ form select {
     padding: 15px;
     width: 75%;
     margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
+}
+
+/* Estilos para Sweet Alert */
+.dark-popup {
+    background: #333 !important; /* Fondo oscuro */
+    color: #fff !important; /* Texto blanco */
+}
+
+.dark-confirm-button {
+    background-color: #3085d6 !important; /* Color del botón de confirmación */
+    color: #fff !important; /* Texto del botón de confirmación */
+}
+
+.dark-cancel-button {
+    background-color: #d33 !important; /* Color del botón de cancelación */
+    color: #fff !important; /* Texto del botón de cancelación */
+}
+
+.error-title {
+    color: #ff4d4d !important; /* Rojo para errores */
+}
+
+.success-title {
+    color: #4CAF50 !important; /* Verde para éxitos */
 }

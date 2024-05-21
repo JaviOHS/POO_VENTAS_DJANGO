@@ -29,6 +29,7 @@ class Supplier(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     state = models.BooleanField('Estado', default=True)
+    image = models.ImageField(upload_to='suppliers/', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Proveedor'
