@@ -1,5 +1,21 @@
 /* Estilos para la barra de navegación */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+:root{
+    --title: gold;
+    --subtitle: gray;
+    --content: #111010;
+
+    --save: rgb(223, 189, 0);
+    --save-hover: rgb(37, 32, 0);
+    --cancel: rgb(255, 0, 0);
+    --cancel-hover: rgb(128, 0, 0);
+    --update: rgb(0, 204, 255);
+    --update-hover: rgb(0, 102, 128);
+    --color-1:  rgb(59, 59, 57);
+
+    --card-header-footer: rgb(94, 91, 91);
+}
+
 body{
     background-color: black;
     color: #fff;
@@ -24,10 +40,9 @@ hr {
     margin: 20px 0;
 }
 
-
 /*Barra de navegacion */
 .navbar {
-    background-color: #111010 !important; /* Fondo semi-transparente */
+    background-color: black;
     position: fixed; /* Fijar la barra de navegación en la parte superior */
     width: 100%; /* Ancho completo */
     z-index: 1000; /* Colocar la barra de navegación encima de otros elementos */
@@ -37,7 +52,7 @@ hr {
 }
 
 .navbar-brand { /* Estilos para el logotipo */
-    color: gold; /* Color del texto */
+    color: var(--title); /* Color del texto */
     font-size: 24px; /* Tamaño de fuente */
     font-weight: 800; /* Peso de la fuente */
     margin-left: 20px;
@@ -51,12 +66,12 @@ hr {
 }
 
 .nav-link { /* Estilos para los enlaces de la barra de navegación */
-    color: gray;
+    color: var(--subtitle);
     transition: color 0.3s; /* Transición suave para el cambio de color del texto */
 }
 
 .nav-link:hover { /* Estilos para los enlaces de la barra de navegación al pasar el cursor */
-    color: gold;
+    color: var(--title);
 }
 
 /* Estilos para Home */
@@ -65,7 +80,7 @@ hr {
 }
 
 .welcome-message { /* Estilos para el mensaje de bienvenida */
-    background-color: #111010;
+    background-color: var(--content);
     border-radius: 25px;
     padding: 28px;
     margin: 0 10px 0 10px ;
@@ -74,19 +89,19 @@ hr {
 
 .welcome-message h2 {
     text-transform: uppercase; /* Convertir el texto del h2 en mayúsculas */
-    color: gold; 
+    color: var(--title); 
     font-weight: 800;
     font-size: 40px;
 }
 
 .welcome-message p {
-    color: gray; 
+    color: var(--subtitle); 
     font-weight: 500;
     font-size: 24px;
 }
 
 .welcome-message span {
-    color: gray; 
+    color: var(--subtitle); 
     font-weight: 400;
     font-size: 20px;
 }
@@ -100,18 +115,16 @@ hr {
     border-radius: 50px; /* Bordes redondeados */
     max-width: 90%; /* Ancho máximo */
     height: auto; /* Altura automática */
-    background: linear-gradient(to bottom right, #000, #333); /* Degradado */
 }
 
 #image-carousel:hover, .welcome-message:hover {
     transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
 }
 
-
 /* Estilos para los botones */
-.btn-details, .btn-cancel{
+.btn-details, .btn-cancel, .btn-update{
     margin-top: 10px;
-    border-radius: 30px; /* Bordes redondeados */
+    border-radius: 10px; /* Bordes redondeados */
     padding: 10px 20px; /* Añadir espacio interno */
     font-size: 18px; /* Tamaño de fuente */
     font-weight: 600; /* Peso de la fuente */
@@ -120,26 +133,35 @@ hr {
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
+    color: black;
 }
 
 .btn-details {
-    background-color: gold; /* Color de fondo */
-    color: #111010; /* Color del texto */
+    background-color: var(--save); /* Color de fondo */
 }
 
 .btn-cancel {
-    background-color: red; /* Color de fondo */
-    color: #111010; /* Color del texto */
+    background-color: var(--cancel); /* Color de fondo */
+}
+
+.btn-update {
+    background-color: var(--update); /* Color de fondo */
 }
 
 .btn-details:hover {
-    background-color: rgb(59, 59, 57); /* Cambiar a un color más claro */
+    background-color: var(--save-hover); /* Cambiar a un color más claro */
     color: #fff;
     transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
 }
 
 .btn-cancel:hover {
-    background-color: rgb(110, 8, 8); /* Cambiar a un color más claro */
+    background-color: var(--cancel-hover); /* Cambiar a un color más claro */
+    color: #fff;
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+}
+
+.btn-update:hover {
+    background-color: var(--update-hover); /* Cambiar a un color más claro */
     color: #fff;
     transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
 }
@@ -155,49 +177,72 @@ hr {
 
 .module-head h2 {
     text-transform: uppercase; /* Convertir el texto del h2 en mayúsculas */
-    color: gold; 
+    color: var(--title); 
     font-weight: 800;
     font-size: 32px;
 }
 .module-head p {
-    color: gray;
+    color: var(--subtitle);
     font-weight: 600;
     font-size: 22px;
 }
 
-/* Tablas */
-.module-table {
-    background-color: #111010;
+/* Cards */
+.module-cards {
+    background-color: var(--content);
     border-radius: 25px;
-    padding: 20px;
+    padding: 30px;
     width: auto;
     margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
-
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra para darle profundidad */
+    max-width: 1200px; /* Establece un ancho máximo para evitar que se extienda demasiado */
 }
 
-.module-table table {
+.card {
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s; /* Añade una transición para la sombra */
+    border: none; /* Elimina cualquier borde no deseado */
+    border-radius: 15px; /* Añade bordes redondeados a las tarjetas */
+    overflow: hidden; /* Asegura que los contenidos no sobresalgan del borde redondeado */
+    background-color: #333; /* Fondo oscuro para mayor contraste */
+}
+
+.card:hover {
+    border: none; /* Elimina cualquier borde no deseado */
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al pasar el cursor */
+}
+
+.card-header, .card-footer {
+    border: none; /* Elimina cualquier borde no deseado */
+    background-color: black;
+    padding: 10px 15px; /* Ajusta el espaciado interno */
     width: 100%;
-    white-space: nowrap;
-    overflow-x: auto;
-    border: 2px solid hsl(0, 0%, 0%); /* Ajusta el grosor y el color de los bordes */
-    vertical-align: middle; /* Centra verticalmente el contenido */
-    align-items: center;
+    text-align: center; /* Centra el texto */
+    font-weight: bold; /* Resalta el texto */
 }
 
-.module-table thead th {
-    background-color: rgb(0, 0, 0); /* Color oscuro de fondo */
-    color: gold; 
-    text-transform: uppercase; /* Convertir el texto en mayúsculas */
-    font-weight: 750; /* Peso de la fuente */
-    font-size: 18px;
-    border: 2px solid hsl(0, 0%, 0%); /* Ajusta el grosor y el color de los bordes */
+.card-body {
+    background-color: rgb(24, 22, 22);
+    padding: 15px; /* Ajusta el espaciado interno */
+    width: 100%;
 }
-.module-table tbody td{
-    background-color: gainsboro; 
-    color: rgb(41, 44, 44);
-    font-weight: 450; /* Peso de la fuente */
-    font-size: 16px;
-    border: 2px solid hsl(0, 0%, 0%); /* Ajusta el grosor y el color de los bordes */
+
+.module-cards h2 {
+    color: var(--title); /* Color amarillo para destacarlo */
+    text-transform: uppercase; /* Convertir el texto en mayúsculas */
+    font-weight: 800; /* Peso de la fuente */
+    font-size: 20px;
+    padding: 10px;
+    margin: 0 0 10px 0; /* Ajusta el margen para separarlo del contenido siguiente */
+}
+
+.module-cards p {
+    color: var(--subtitle); /* Color más claro para mejor contraste */
+    font-weight: 700; /* Peso de la fuente */
+    font-size: 20px;
+    line-height: 1.6; /* Mejora la legibilidad con un mayor interlineado */
+    margin: 0 0 10px 0; /* Ajusta el margen para separar los párrafos */
 }
 
 .module-table tbody td.product-image img {

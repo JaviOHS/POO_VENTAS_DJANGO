@@ -3,44 +3,41 @@
 <section id="home-modulos" class="mt-4 d-flex justify-content-center align-items-center">
     <div class="container text-center">
         <div class="row">
-            <!-- Mensaje de bienvenida a la izquierda -->
+            <!-- Mensaje de bienvenida -->
             <div class="col-lg-12">
                 <div class="module-head">
                     <h2 class="title text-center">{{ title2 }}</h2>
-                    <p>Agregue y edite categorias para los multiples productos.</p>
+                    <p>Agregue y edite categorias para los múltiples productos.</p>
                 </div>
             </div>
-            <div class="module-table">
-                <div class="table-responsive"> <!-- Clase de Bootstrap para tablas responsivas -->
-                    <table class="table table-hover table-bordered">
-                        <thead> <!-- Encabezado oscuro -->
-                            <tr>
-                                <th>Categoría</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in categories %}
-                            <tr>
-                                <td>{{item.description}}</td>
-                                <td>{% if item.state %}
-                                    <i class="fa-solid fa-check" style="font-size: 30px;color: green;"></i>
+            <div class="module-cards">
+                <div class="row">
+                    {% for item in categories %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card card-custom">
+                            <div class="card-header">
+                                <h2 class="card-title">{{ item.description }}</h2>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Estado: 
+                                    {% if item.state %}
+                                    <i class="fa-solid fa-check" style="color: green;"></i>
                                     {% else %}
                                     <i class="fa-solid fa-square-minus" style="font-size: 30px;color: red;"></i>
                                     {% endif %}
-                                </td>
-                                <td>
-                                    <a href="{% url 'core:category_update' item.id %}"><i class="fa-solid fa-gear" style="font-size: 30px;color: black;"></i></a>
-                                    <a href="{% url 'core:category_delete' item.id %}"><i class="fa-solid fa-trash" style="font-size: 30px;color: darkred;"></i></a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                </p>
+                            </div> 
+                            <div class="card-footer">
+                                <a href="{% url 'core:category_update' item.id %}" class="btn btn-update"><i class="fa-solid fa-gear"></i> Editar</a>
+                                <a href="{% url 'core:category_delete' item.id %}" class="btn btn-cancel"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
-                <div class="form-group text-center">
-                    <a class="btn btn-details" href="{% url 'core:category_create' %}"><i class="fa-solid fa-plus"></i> Nueva categoría </a> <!-- Clase de botón de Bootstrap -->
+                <div class="form-group text-center mt-4">
+                    <a class="btn btn-details" href="{% url 'core:category_create' %}"><i class="fa-solid fa-plus"></i> Nueva categoría </a>
                 </div>
             </div>
         </div>
