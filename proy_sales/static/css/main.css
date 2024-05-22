@@ -14,9 +14,9 @@
     --color-1:  rgb(59, 59, 57);
 
     --card-header-footer: rgb(94, 91, 91);
+    --card-body: rgb(24, 22, 22);
 
     --labels: wheat;
-    
 }
 
 body{
@@ -37,49 +37,50 @@ body{
 }
 
 /* Barra de navegacion */
+/* Estilos personalizados */
 .navbar {
     background-color: black;
-    position: fixed; /* Fijar la barra de navegación en la parte superior */
-    width: 100%; /* Ancho completo */
-    z-index: 1000; /* Colocar la barra de navegación encima de otros elementos */
-    display: flex; /* Utilizar flexbox para centrar los elementos */
-    align-items: center; /* Alinear verticalmente los elementos */
-    padding: 0 20px; /* Espaciado a los lados */
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
 }
 
-.navbar-brand { /* Estilos para el logotipo */
-    color: var(--title); /* Color del texto */
-    font-size: 24px; /* Tamaño de fuente */
-    font-weight: 800; /* Peso de la fuente */
+.navbar-brand {
+    color: var(--title);
+    font-size: 24px;
+    font-weight: 800;
     margin-right: 20px;
 }
 
 .navbar-nav {
-    display: flex; /* Flexbox para los elementos de navegación */
-    justify-content: center; /* Centrar los elementos de navegación */
-    flex-grow: 1; /* Tomar el espacio restante entre el logotipo y el botón de login */
-    list-style: none; /* Eliminar los puntos de la lista */
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    list-style: none;
     margin: 0;
     padding: 0;
 }
 
 .nav-item {
-    margin: 0 15px; /* Espaciado entre los elementos de navegación */
+    margin: 0 15px;
 }
 
 .nav-link {
     color: var(--subtitle);
-    transition: color 0.3s; /* Transición suave para el cambio de color del texto */
-    text-decoration: none; /* Eliminar subrayado */
+    transition: color 0.3s;
+    text-decoration: none;
     font-size: 20px;
     font-weight: 800;
 }
 
-.nav-link:hover,  nav.active .nav-link{
-    color: var(--title); /* Cambiar color al pasar el cursor */
+.nav-link:hover, .nav-link.active {
+    color: var(--title);
 }
 
-/* Estilos para Home */
+/* Home - Bienvenida */
 #home-content { /* Estilos para el contenido de la página de inicio */
     padding: 60px 0 100px 0; /* Añadir espacio interno */
 }
@@ -87,27 +88,26 @@ body{
 .welcome-message { /* Estilos para el mensaje de bienvenida */
     background-color: var(--content);
     border-radius: 25px;
-    padding: 28px;
+    padding: 20px;
     margin: 0 10px 0 10px ;
     transition: transform 0.3s;
 }
 
-.welcome-message h2 {
+h2 {
     text-transform: uppercase; /* Convertir el texto del h2 en mayúsculas */
     color: var(--title); 
     font-weight: 800;
     font-size: 40px;
 }
 
-.welcome-message p {
+p {
     color: var(--subtitle); 
     font-weight: 500;
     font-size: 24px;
 }
 
-.welcome-message span {
+span {
     color: var(--subtitle); 
-    font-weight: 400;
     font-size: 20px;
 }
 
@@ -124,6 +124,105 @@ body{
 
 #image-carousel:hover, .welcome-message:hover {
     transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+}
+
+/* Home - Informacion */
+.info-container {
+    margin-top: 100px;
+}
+
+.info-card {
+    background-color: var(--content);
+    border-radius: 25px;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+    max-width: 1200px;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    overflow: hidden;
+}
+
+.info-card i,
+.info-card h2,
+.info-card p {
+    transition: color 0.3s; /* Añade transición de color */
+}
+
+.info-card i {
+    font-size: 40px;
+    color: whitesmoke;
+    margin: 20px;
+}
+
+.info-card h2 {
+    font-size: 24px;
+}
+
+.info-card p {
+    font-size: 20px;
+}
+
+.info-img {
+    width: 80%;
+    border-radius: 50px;
+    transition: transform 0.3s;
+    margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
+    padding: 20px;
+}
+
+.info-card:hover,
+.info-card:hover h2,
+.info-card:hover p,
+.info-card:hover i {
+    color: #111010; /* Cambia el color al pasar el cursor */
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+    background-color: var(--title); /* Cambia el color de fondo al pasar el cursor */
+}
+
+/* Home - Equipo de Trabajo */
+.team-container {
+    margin-top: 100px;
+}
+
+.team-card {
+    background-color: var(--card-body);
+    border-radius: 25px;
+    width: 100%;
+    max-width: 1200px;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    overflow: hidden;
+}
+
+.team-card i,
+.team-card h2,
+.team-card p {
+    padding: 10px;
+    transition: color 0.3s; /* Añade transición de color */
+}
+
+.team-card i {
+    font-size: 30px;
+    color: whitesmoke;
+}
+
+.team-card h2 {
+    font-size: 24px;
+}
+
+.team-card p {
+    font-size: 20px;
+}
+
+.team-img {
+    width: 50%;
+    border-radius: 25px;
+    transition: transform 0.3s;
+    margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
+}
+
+.team-card:hover{
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+    border: 4px solid var(--title);
 }
 
 /* Estilos para los botones */
@@ -226,10 +325,11 @@ body{
 }
 
 .card-body {
-    background-color: rgb(24, 22, 22);
+    background-color: var(--card-body);
     padding: 15px; /* Ajusta el espaciado interno */
     width: 100%;
 }
+
 .module-cards{
     width: 100%;
     line-height: 1.6; /* Mejora la legibilidad con un mayor interlineado */
@@ -281,13 +381,15 @@ h3 .info {
 
 /* Footer */
 .footer {
-    position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
-    font-size: 16px;
-    background-color: #111010;
-    z-index: 999; /* Asegura que esté por encima de otros elementos */
+}
+
+.footer a {
+    color: var(--title);
+    text-decoration: none;
+    font-weight: 800;
 }
 
 /* Estilos para los formularios */
@@ -296,11 +398,16 @@ h3 .info {
     border-radius: 25px;
     margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
     width: 70%;
+    padding: 20px;
 }
 
 #form-brand, #form-category {
     width: 40%;
 } 
+
+#form-product{
+    width:  100%;
+}
 
 label{
     color: var(--labels); /* Color del texto */
@@ -309,19 +416,16 @@ label{
     text-transform: uppercase;
 }
 
-form{
-    margin: 20px 0; /* Añadir espacio superior e inferior */
-}
-
 form input[type="text"], 
 form input[type="number"], 
 form select, 
 form input[type="date"], 
 form input [type="checkbox"], 
-form input[type="file"] {
+form input[type="file"], .custom-select {
     margin: 10px 0 25px; /* Añadir espacio superior e inferior */
-    background-color: whitesmoke;
-    border: whitesmoke 2px solid; /* Color del borde */
+    background-color: gray;
+    border: var(--card-body); /* Color del borde */
+    color: black;
     border-radius: 10px;
     font-size: 16px; /* Tamaño de fuente */
     font-weight: 600; /* Peso de la fuente */
@@ -329,29 +433,25 @@ form input[type="file"] {
     width: 100%; /* Hacer que todos los elementos tengan el mismo ancho */
     padding: 10px; /* Espaciado interno para consistencia */
 }
-
+form input[type="file"]{
+    background-color: lightgray;
+}
 
 form input[type="text"]:focus, 
 form input[type="number"]:focus, 
-form input[type="date"]:focus{
+form input[type="date"]:focus,
+form input[type="file"]:focus,
+.custom-select:focus{
     outline: none;
-    border-color: gold; /* Color del borde al enfocar */
+    background-color: gray;
+    color: var(--title);
 }
 
-form select {
-    appearance: none; /* Eliminar la apariencia por defecto del select en algunos navegadores */
-    -webkit-appearance: none; /* Eliminar la apariencia por defecto del select en Safari y Chrome */
-    -moz-appearance: none; /* Eliminar la apariencia por defecto del select en Firefox */
-    height: 48px; /* Asegurar que la altura sea consistente con otros campos */
-    background-color: #111010;
-}
-
-.form-product-container {
-    background-color: #111010;
+.custom-select option {
+    color: black; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: 600; /* Peso de la fuente */
     border-radius: 25px;
-    padding: 15px;
-    width: 75%;
-    margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
 }
 
 /* Estilos para Sweet Alert */

@@ -6,10 +6,7 @@ const DarkSwal = Swal.mixin({
         confirmButton: 'dark-confirm-button',
         cancelButton: 'dark-cancel-button'
     },
-    background: '#333', // Fondo oscuro
-    color: '#fff', // Texto blanco
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33'
+    buttonsStyling: false // Desactiva los estilos por defecto de los botones
 });
 
 function mostrarEsperaAutomatica() {
@@ -41,11 +38,11 @@ async function validarFormulario(event) {
     try {
         if (!Validaciones.esCedulaValida(ruc)) {
             mostrarError('El formato del DNI es inválido. Por favor, inténtelo de nuevo.');
-          } else if (!Validaciones.soloLetras(name)) {
+        } else if (!Validaciones.soloLetras(name)) {
             mostrarError('Formato de nombre incorrecto. Por favor, inténtelo de nuevo.');
-          } else if (!Validaciones.soloNumeros(phone) || phone.length !== 10) {
+        } else if (!Validaciones.soloNumeros(phone) || phone.length !== 10) {
             mostrarError('Celular incorrecto. Por favor, inténtelo de nuevo.');
-          } else {
+        } else {
             DarkSwal.fire({
                 title: '<span class="success-title">¡Éxito!</span>',
                 text: 'Información válida. Enviando formulario...',
@@ -63,14 +60,14 @@ async function validarFormulario(event) {
 
 async function validarFormularioProductos(event) {
     event.preventDefault(); 
-    const price= document.getElementById('id_price').value;
+    const price = document.getElementById('id_price').value;
     const stock = document.getElementById('id_stock').value;
     try {
         if (!Validaciones.soloDecimales(price)) {
             mostrarError('El precio debe ser un número decimal positivo. Por favor, inténtelo de nuevo.');
-          } else if (!Validaciones.soloNumeros(stock)) {
+        } else if (!Validaciones.soloNumeros(stock)) {
             mostrarError('El stock debe ser un número entero. Por favor, inténtelo de nuevo.');
-          } else {
+        } else {
             DarkSwal.fire({
                 title: '¡Producto agregado!',
                 text: 'El producto se ha agregado correctamente.',

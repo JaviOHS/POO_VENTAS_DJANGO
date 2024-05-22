@@ -12,8 +12,8 @@ class ProductForm(forms.ModelForm):
         fields = ['description', 'price', 'stock', 'brand', 'categories', 'line', 'supplier', 'expiration_date', 'image', 'state']
         widgets = {
             'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese descripción del producto', 'id': 'id_description'}),
-            'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese precio del producto', 'id': 'id_price'}),
-            'stock': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese stock del producto', 'id': 'id_stock'}),
+            'price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese precio del producto', 'id': 'id_price'}),
+            'stock': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese stock del producto', 'id': 'id_stock'}),
             'brand': forms.Select(attrs={'class': 'form-select', 'id': 'id_brand'}),
             'categories': forms.SelectMultiple(attrs={'class': 'form-select', 'id': 'id_categories'}),
             'line': forms.Select(attrs={'class': 'form-select', 'id': 'id_line'}),
