@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<title>{% block title %} SGV - Iniciar sesión {% endblock title %}</title>
+<section id="home-modulos" class="mt-4 d-flex justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+    <div class="container text-center">
+        <div class="row">
+            <div id="form-signin" class="form-container">
+                <form method="POST" enctype="multipart/form-data">
+                    <h2 class="title text-center">{{ title2 }}</h2>
+                    {% csrf_token %}
+                    {{error}}
+                    {{ form.as_p }}
+                    <button class="btn btn-details" type="submit">Iniciar sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content  %}
+<form method="POST">
+
+</form>

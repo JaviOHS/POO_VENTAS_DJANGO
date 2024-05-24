@@ -4,6 +4,85 @@ from core.forms import ProductForm, BrandForm, SupplierForm, CategoryForm
 from core.models import Product, Brand, Supplier, Category
 from django.conf import settings
 import os
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django .contrib.auth.models import User
+from django.db import IntegrityError
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import user_passes_test
+
+# ----------------- Verificar si el usuario es normal o super usuario -----------------
+def is_normal_user(user):
+    return not user.is_superuser
+
+# ----------------- Registro -----------------
+def signup(request):
+    data = {"title1": "Registro | TeacherCode", "title2": "Registro de Usuarios"}
+
+    if request.method == "GET":
+        return render(request, "registration/signup.html", {
+            "form": UserCreationForm(),
+            **data
+        })
+    else:
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            try:
+                user = User.objects.create_user(username=username, password=password)
+                user.save()
+                login(request, user)
+                return redirect("core:home")  
+            except IntegrityError:
+                return render(request, "registration/signup.html", {
+                    "form": form,
+                    "error": "El nombre de usuario ya existe",
+                    **data
+                })
+        else:
+            return render(request, "registration/signup.html", {
+                "form": form,
+                **data
+            })
+            
+# ----------------- Cerrar Sesion -----------------
+def signout(request):
+    logout(request)
+    return redirect("core:home")
+
+# ----------------- Iniciar Sesion -----------------
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate
+
+def signin(request):
+    data = {"title1": "Inicio de Sesión | TeacherCode", "title2": "Inicio de Sesión"}
+
+    if request.method == "GET":
+        return render(request, "registration/signin.html", {
+            "form": AuthenticationForm(),
+            **data
+        })
+    else:
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect("core:home")
+            else:
+                return render(request, "registration/signin.html", {
+                    "form": form,
+                    "error": "El usuario o la contraseña son incorrectos",
+                    **data
+                })
+        else:
+            return render(request, "registration/signin.html", {
+                "form": form,
+                **data
+            })
 
 # ----------------- Vistas de Home -----------------
 def home(request):
@@ -11,6 +90,7 @@ def home(request):
    return render(request,'core/home.html',data)
 
 # ----------------- Vistas de Productos -----------------
+@user_passes_test(is_normal_user)
 def product_List(request):
     data = {"title1": "Productos","title2": "Consulta De Productos"}
     products = Product.objects.all() # select * from Product
@@ -134,7 +214,7 @@ def supplier_update(request,id):
         data["form"]=form
     return render(request, "core/suppliers/form.html", data)
 
-# Eliminar una marca
+# Eliminar un proveedor 
 def supplier_delete(request,id):
     supplier = Supplier.objects.get(pk=id)
     data = {"title1":"Eliminar","title2":"Eliminar al Proveedor","supplier":supplier}

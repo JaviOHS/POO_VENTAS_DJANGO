@@ -2,9 +2,10 @@ const DarkSwal = Swal.mixin({
     customClass: {
         popup: 'dark-popup',
         title: 'dark-title',
+        text: 'dark-text',
         icon: 'dark-icon',
-        confirmButton: 'dark-confirm-button',
-        cancelButton: 'dark-cancel-button'
+        confirmButton: 'btn-update',
+        cancelButton: 'btn-cancel'
     },
     buttonsStyling: false // Desactiva los estilos por defecto de los botones
 });
@@ -20,6 +21,7 @@ function mostrarEsperaAutomatica() {
         });
     });
 }
+
 
 function mostrarError(mensaje) {
     DarkSwal.fire({

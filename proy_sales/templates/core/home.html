@@ -9,7 +9,9 @@
             <!-- Mensaje de bienvenida a la izquierda -->
             <div class="col-lg-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="200">
                 <div class="welcome-message">
-                    <p>Bienvenido, username. </p>
+                    {% if user.is_authenticated %}
+                        <p>Bienvenido, <span class="username">{{ user.username }}</span>.</p>
+                    {% endif %}
                     <h2>Explora nuestro increíble sistema!</h2>
                     <span>Te invitamos a descubrir un mundo de múltiples posibilidades y beneficios, con el objetivo de optimizar tu emprendimiento al siguiente nivel.</span><br>
                     <a href="#info">
@@ -39,7 +41,7 @@
                                 <i class="fas fa-chart-line"></i>
                                 <h2 class="info-title-cards">Optimizar tus operaciones</h2>
                                 <p>Aumenta la eficiencia de tu equipo con herramientas automatizadas y análisis detallados.</p>
-                                <img class="info-img img-fluid" src="{% static 'img/home-info/client-2.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="300">
+                                <img class="info-img img-fluid mt-auto" src="{% static 'img/home-info/client-2.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="300">
                             </div>
                         </div>
                         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
@@ -54,14 +56,14 @@
                                 <p>El cliente recibe un servicio personalizado y una atención excepcional lo que garantiza su satisfacción.</p>
                             </div>
                         </div>
-                        <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="500">
+                        <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                             <div class="info-card info-card-success d-flex flex-column">
                                 <i class="fas fa-balance-scale"></i>
                                 <h2 class="info-title-cards">Gestionar tus finanzas</h2>
                                 <p>Administra tus finanzas de manera eficiente y toma decisiones informadas con análisis financieros detallados sobre los producto</p>
-                                <img class="info-img img-fluid" src="{% static 'img/home-info/client-1.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="300">
+                                <img class="info-img img-fluid mt-auto" src="{% static 'img/home-info/client-1.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="300">
                             </div>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             </div>

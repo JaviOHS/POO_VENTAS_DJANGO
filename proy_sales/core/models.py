@@ -3,6 +3,8 @@ from decimal import Decimal
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.contrib.auth.models import Group
+
 
 class Brand(models.Model):
     description = models.CharField('Articulo', max_length=100)
@@ -91,3 +93,4 @@ class Product(models.Model):
     @property
     def get_categories(self):
         return " - ".join([c.description for c in self.categories.all().order_by('description')])
+    
