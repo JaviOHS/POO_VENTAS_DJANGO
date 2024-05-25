@@ -5,36 +5,21 @@ from core.models import Supplier
 from core.models import Category
 from django.utils import timezone
 import datetime
+
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from django import forms
+from .models import CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
-    error_messages = {
-        'password_mismatch': ("Las dos contraseñas no coinciden."),
-    }
-    username = forms.CharField(
-        label="Nombre de usuario",
-        help_text="",
-    )
-    password1 = forms.CharField(
-        label="Contraseña",
-        strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
-        help_text="",  # Elimina el mensaje de ayuda para la contraseña
-    )
-    password2 = forms.CharField(
-        label="Confirmar contraseña",
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
-        strip=False,
-        help_text="",  # Elimina el mensaje de ayuda para la confirmación de la contraseña
-    )
+    dni = forms.CharField(max_length=10, label='DNI')
+    first_name = forms.CharField(max_length=30, label='Nombres')
+    last_name = forms.CharField(max_length=150, label='Apellidos')
+    celular = forms.CharField(max_length=15, required=False, label='Celular')
+    correo = forms.EmailField(required=False, label='Correo electrónico')
 
     class Meta(UserCreationForm.Meta):
-        model = User
-        fields = ("username",)
+        model = CustomUser
+        fields = ('username', 'dni', 'first_name', 'last_name', 'celular', 'correo', 'password1', 'password2')
 
-        
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product

@@ -4,40 +4,30 @@ from core.forms import ProductForm, BrandForm, SupplierForm, CategoryForm
 from core.models import Product, Brand, Supplier, Category
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django .contrib.auth.models import User
-from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 from .forms import CustomUserCreationForm
-
+# ----------------- Registro -----------------
 def signup(request):
     data = {"title1": "Registro | TeacherCode", "title2": "Registro de Usuarios"}
 
     if request.method == "GET":
+        form = CustomUserCreationForm()
         return render(request, "registration/signup.html", {
-            "form": CustomUserCreationForm(),
+            "form": form,
             **data
         })
-    else:
+    elif request.method == "POST":
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            try:
-                user = User.objects.create_user(username=username, password=password)
-                user.save()
-                login(request, user)
-                return redirect("core:home")  
-            except IntegrityError:
-                return render(request, "registration/signup.html", {
-                    "form": form,
-                    "error": "El nombre de usuario ya existe",
-                    **data
-                })
+            user = form.save()
+            login(request, user)
+            return redirect("core:home")  
         else:
             return render(request, "registration/signup.html", {
                 "form": form,
                 **data
             })
-
+            
 # ----------------- Cerrar Sesion -----------------
 def signout(request):
     logout(request)

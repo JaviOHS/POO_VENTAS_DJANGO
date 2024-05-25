@@ -3,12 +3,24 @@ from decimal import Decimal
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 
+class CustomUser(AbstractUser):
+    dni = models.CharField(max_length=10)
+    full_name = models.CharField(max_length=100)
+    celular = models.CharField(max_length=10, blank=True, null=True)
+    correo = models.EmailField(blank=True, null=True)
 
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def __str__(self):
+        return self.username
+    
 class Brand(models.Model):
     description = models.CharField('Articulo', max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     state = models.BooleanField('Estado', default=True)
@@ -27,7 +39,7 @@ class Supplier(models.Model):
     ruc = models.CharField(max_length=13)  # RUC tiene 13 dígitos en Ecuador
     address = models.CharField(max_length=200)
     phone = models.CharField(max_length=10)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     state = models.BooleanField('Estado', default=True)
@@ -44,7 +56,7 @@ class Supplier(models.Model):
 
 class Category(models.Model):
     description = models.CharField('Categoría', max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     state = models.BooleanField('Estado', default=True)
@@ -72,7 +84,7 @@ class Product(models.Model):
     stock = models.IntegerField(default=100)
     expiration_date = models.DateTimeField(default=timezone.now() + datetime.timedelta(days=30))
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='product', verbose_name='Marca')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     supplier = models.OneToOneField(Supplier, on_delete=models.CASCADE, verbose_name='Proveedor')
     categories = models.ManyToManyField('Category', verbose_name='Categoria')
     line = models.CharField(max_length=2, choices=Status.choices)
@@ -93,4 +105,3 @@ class Product(models.Model):
     @property
     def get_categories(self):
         return " - ".join([c.description for c in self.categories.all().order_by('description')])
-    

@@ -60,6 +60,32 @@ async function validarFormulario(event) {
     }
 }
 
+async function validarRegistro(event) {
+    event.preventDefault(); // Detiene el envío del formulario
+    const dni = document.getElementById('id_dni').value;
+    const first_name = document.getElementById('id_first_name').value;
+    const last_name = document.getElementById('id_last_name').value;
+    try {
+        if (!Validaciones.esCedulaValida(dni)) {
+            mostrarError('El formato del DNI es inválido. Por favor, inténtelo de nuevo.');
+        } else if (!Validaciones.soloLetras(first_name) || !Validaciones.soloLetras(last_name)) {
+            mostrarError('Formato de nombre incorrecto. Por favor, inténtelo de nuevo.');
+        } else {
+            DarkSwal.fire({
+                title: '<span class="success-title">¡Éxito!</span>',
+                text: 'Información válida. Enviando formulario...',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
+                event.target.submit();
+            });
+        }
+    } catch (error) {
+        console.error('Error al validar el formulario:', error);
+        mostrarError('Hubo un error al validar el formulario. Por favor, inténtelo de nuevo.');
+    }
+}
+
 async function validarFormularioProductos(event) {
     event.preventDefault(); 
     const price = document.getElementById('id_price').value;

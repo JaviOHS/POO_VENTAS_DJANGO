@@ -14,6 +14,7 @@
             <div class="form-container">
                 <form id="supplier-form" method="post" enctype="multipart/form-data" onsubmit="validarFormulario(event)">
                     {% csrf_token %}
+                    {{ error.as_p }}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
