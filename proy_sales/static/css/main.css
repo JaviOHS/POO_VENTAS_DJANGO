@@ -226,7 +226,7 @@ span {
 }
 
 /* Estilos para los botones */
-.btn-details, .btn-cancel, .btn-update{
+.btn-details, .btn-cancel, .btn-update, .btn-add{
     margin: 10px;
     border-radius: 10px; /* Bordes redondeados */
     padding: 10px 20px; /* Añadir espacio interno */
@@ -252,7 +252,12 @@ span {
 .btn-update {
     background-color: var(--update); /* Color de fondo */
 }
-.btn-details:hover, .btn-cancel:hover, .btn-update:hover {
+
+.btn-add {
+    background-color: greenyellow; /* Color de fondo */
+}
+
+.btn-details:hover, .btn-cancel:hover, .btn-update:hover, .btn-add:hover {
     color: #fff;
     transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
 }
@@ -266,6 +271,10 @@ span {
 
 .btn-update:hover {
     background-color: var(--update-hover); /* Cambiar a un color más claro */
+}
+
+.btn-add:hover {
+    background-color: #32CD32; /* Cambiar a un color más claro */
 }
 
 /* Estilos para modulos */
@@ -496,4 +505,8 @@ form input[type="password"]:focus,
 
 .success-title {
     color: #4CAF50; /* Verde para éxitos */
+}
+
+.passwords {
+    margin: 0 auto;
 }

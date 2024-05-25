@@ -9,8 +9,10 @@
             <!-- Mensaje de bienvenida a la izquierda -->
             <div class="col-lg-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="200">
                 <div class="welcome-message">
-                    {% if user.is_authenticated %}
-                        <p>Bienvenido, <span class="username">{{ user.username }}</span>.</p>
+                    {% if user.is_superuser %}
+                        <p>Bienvenido, <span class="username">{{ user.username }}</span>. <i class="fa-solid fa-hat-cowboy fa-bounce" style="color: greenyellow;"></i></p>
+                    {% else %}
+                        <p>Bienvenido, <span class="username">{{ user.username }}</span>.</p></i>
                     {% endif %}
                     <h2>Explora nuestro increíble sistema!</h2>
                     <span>Te invitamos a descubrir un mundo de múltiples posibilidades y beneficios, con el objetivo de optimizar tu emprendimiento al siguiente nivel.</span><br>

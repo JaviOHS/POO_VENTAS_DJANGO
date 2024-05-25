@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from core import views
  
 app_name='core' # define un espacio de nombre para la aplicacion
@@ -24,4 +24,7 @@ urlpatterns = [
     path('category_create/', views.category_create,name='category_create'),
     path('category_update/<int:id>/', views.category_update,name='category_update'),
     path('category_delete/<int:id>/', views.category_delete,name='category_delete'),
+    
+    path('purchase/', include('purchase.urls')),
+
 ]
