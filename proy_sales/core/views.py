@@ -2,29 +2,22 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from core.forms import ProductForm, BrandForm, SupplierForm, CategoryForm
 from core.models import Product, Brand, Supplier, Category
-from django.conf import settings
-import os
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django .contrib.auth.models import User
 from django.db import IntegrityError
-from django.contrib.auth import login, logout
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth import login, logout, authenticate
+from .forms import CustomUserCreationForm
 
-# ----------------- Verificar si el usuario es normal o super usuario -----------------
-def is_normal_user(user):
-    return not user.is_superuser
-
-# ----------------- Registro -----------------
 def signup(request):
     data = {"title1": "Registro | TeacherCode", "title2": "Registro de Usuarios"}
 
     if request.method == "GET":
         return render(request, "registration/signup.html", {
-            "form": UserCreationForm(),
+            "form": CustomUserCreationForm(),
             **data
         })
     else:
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
@@ -44,17 +37,13 @@ def signup(request):
                 "form": form,
                 **data
             })
-            
+
 # ----------------- Cerrar Sesion -----------------
 def signout(request):
     logout(request)
     return redirect("core:home")
 
 # ----------------- Iniciar Sesion -----------------
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
-
 def signin(request):
     data = {"title1": "Inicio de Sesión | TeacherCode", "title2": "Inicio de Sesión"}
 
@@ -90,7 +79,6 @@ def home(request):
    return render(request,'core/home.html',data)
 
 # ----------------- Vistas de Productos -----------------
-@user_passes_test(is_normal_user)
 def product_List(request):
     data = {"title1": "Productos","title2": "Consulta De Productos"}
     products = Product.objects.all() # select * from Product

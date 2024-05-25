@@ -111,6 +111,7 @@ span {
 
 .username {
     color: var(--title);
+    font-weight: 800;
 }
 
 /* Estilos para las imágenes del carrusel */
@@ -175,8 +176,7 @@ span {
 .info-card:hover h2,
 .info-card:hover p,
 .info-card:hover i {
-    color: #111010; /* Cambia el color al pasar el cursor */
-    background-color: var(--title); /* Cambia el color de fondo al pasar el cursor */
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
 }
 
 /* Home - Equipo de Trabajo */
@@ -271,6 +271,11 @@ span {
 /* Estilos para modulos */
 #home-modulos {
     padding: 60px 0 100px 0; /* Añadir espacio interno */
+}
+
+#home-signup, #home-signin {
+    width: 60%;
+    padding: 10px 0 20px; /* Añadir espacio interno */
 }
 
 .module-head {
@@ -401,12 +406,18 @@ h3 .info {
     padding: 20px;
 }
 
-#form-brand, #form-category, #form-signup {
+#form-brand, #form-category{
     width: 40%;
 } 
 
-#form-product, #form-signin {
+#form-product{
     width:  100%;
+}
+
+.error-messages p {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 label{
@@ -448,7 +459,6 @@ form input[type="password"]:focus,
 .custom-select:focus{
     outline: none;
     background-color: gray;
-    color: var(--title);
 }
 
 .custom-select option {

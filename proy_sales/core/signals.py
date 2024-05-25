@@ -5,11 +5,17 @@ from django.dispatch import receiver
 from django.contrib.auth.models import Permission
 from django.db.models.signals import post_migrate
 
-@receiver(post_migrate)
-def crear_grupos(sender, **kwargs):
-    if kwargs.get('app_config').name == 'core':  # Asegúrate de que el código solo se ejecute cuando se migre la aplicación 'core'
-        Group.objects.get_or_create(name='Administradores')
-        Group.objects.get_or_create(name='Clientes')
+@receiver(post_save, sender=User)
+def assign_user_group(sender, instance, created, **kwargs):
+    if created:
+        # Check if the user is a superuser
+        if instance.is_superuser:
+            admin_group, created = Group.objects.get_or_create(name='Administradores')
+            instance.groups.add(admin_group)
+        else:
+            client_group, created = Group.objects.get_or_create(name='Clientes')
+            instance.groups.add(client_group)
+
 
 @receiver(post_save, sender=User)
 def asignar_permisos(sender, instance, created, **kwargs):

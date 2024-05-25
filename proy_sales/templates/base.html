@@ -20,6 +20,7 @@
     <title>{% block title %} SGV {% endblock title %}</title>
 </head>
 <body>
+    {% if user.is_authenticated %}
     <header id="header">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container-fluid">
@@ -32,6 +33,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'home' %}">Inicio</a>
                         </li>
+                        {% if user.is_superuser %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'core:product_list' %}">Productos</a>
                         </li>
@@ -44,23 +46,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'core:supplier_list' %}">Proveedores</a>
                         </li>
-                        {% if user.is_authenticated %}
+                        {% endif %}
                         <li class="nav-item">
                             <a class="btn btn-cancel" href="{% url 'logout' %}">Cerrar sesión</a>
                         </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="btn btn-details" href="{% url 'signin' %}">Iniciar sesión</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-details" href="{% url 'signup' %}">Registrarse</a>
-                        </li>
-                        {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    {% endif %}
+
 
     <section id="content" class="mt-4 d-flex justify-content-center align-items-center">
         {% block content %}
