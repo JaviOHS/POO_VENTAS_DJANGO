@@ -21,7 +21,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("core:home")  
+            return redirect("signin")  
         else:
             return render(request, "registration/signup.html", {
                 "form": form,
@@ -65,8 +65,15 @@ def signin(request):
 
 # ----------------- Vistas de Home -----------------
 def home(request):
-   data = {"title1":"Autor | TeacherCode", "title2":"Super Mercado Economico"}
-   return render(request,'core/home.html',data)
+    data = {"title1": "Autor | TeacherCode", "title2": "Super Mercado Economico"}
+    is_authenticated = request.user.is_authenticated  # Obtener el estado de autenticación del usuario
+    data["is_authenticated"] = is_authenticated  # Agregar el estado de autenticación al contexto
+    return render(request, 'core/home.html', data)
+
+
+def home_guest(request):
+    return render(request, 'core/home_guest.html', {'title2': 'Iniciar sesión'})
+
 
 # ----------------- Vistas de Productos -----------------
 def product_List(request):

@@ -11,14 +11,12 @@ const DarkSwal = Swal.mixin({
 });
 
 function mostrarEsperaAutomatica() {
-    document.addEventListener('DOMContentLoaded', function () {
-        DarkSwal.fire({
-            title: 'Espera un momento...',
-            text: 'Realizando la operación...',
-            icon: 'info',
-            showConfirmButton: false,
-            timer: 1000 // tiempo en milisegundos (1 segundo)
-        });
+    DarkSwal.fire({
+        title: 'Espera un momento...',
+        text: 'Realizando la operación...',
+        icon: 'info',
+        showConfirmButton: false,
+        timer: 1000 // tiempo en milisegundos (1 segundo)
     });
 }
 
@@ -71,14 +69,7 @@ async function validarRegistro(event) {
         } else if (!Validaciones.soloLetras(first_name) || !Validaciones.soloLetras(last_name)) {
             mostrarError('Formato de nombre incorrecto. Por favor, inténtelo de nuevo.');
         } else {
-            DarkSwal.fire({
-                title: '<span class="success-title">¡Éxito!</span>',
-                text: 'Información válida. Enviando formulario...',
-                icon: 'success',
-                confirmButtonText: 'Aceptar'
-            }).then(() => {
-                event.target.submit();
-            });
+            event.target.submit();
         }
     } catch (error) {
         console.error('Error al validar el formulario:', error);

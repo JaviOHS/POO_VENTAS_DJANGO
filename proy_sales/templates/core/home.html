@@ -1,21 +1,77 @@
-<!-- En home.html -->
 {% extends 'base.html' %}
 {% load static %}
 <title>{% block title %} SGV - Home {% endblock title %}</title>
 {% block content %}
 <section id="home-content" class="mt-4 d-flex justify-content-center align-items-center">
+    <!-- Nuevo código para mostrar sobre el formulario -->
+    {% if not user.is_authenticated %}
+    <div class="modal-overlay blur-background no-scroll" data-aos="fade-up" data-aos-delay="50">
+        <div class="modal-body">
+            <div class="text-center my-lg-6 mx-lg-10 my-sm-3 mx-sm-5">
+                <h2>PERFILES</h2>
+                <p>Selecciona tu perfil para iniciar sesión:</p>
+                <h2 class="model-logo">TeacherCode <i class="fa-solid fa-crown"></i></h2>
+                <p>Accede a funcionalidades específicas.</p>
+                <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4 mt-3 justify-content-center">
+                    <div class="col">
+                        <div class="model-card border-0 shadow-none h-100">
+                            <div class="d-flex justify-content-center">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h2 class="model-title text-center">Cliente</h2>
+                            <p class="model-text text-center">Da gestión de seguimiento a tus compras y ventas.</p>
+                            <a class="btn btn-details btn-large mt-2 rounded-pill px-6" href="{% url 'signin' %}"
+                                id="btnUsuarioComun">Ingresar</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="model-card border-0 shadow-none h-100">
+                            <div class="d-flex justify-content-center">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h2 class="model-title text-center">Administrador</h2>
+                            <p class="model-text text-center">Gestiona las categorías, marcas y proveedores de tus
+                                productos.</p>
+                            <a class="btn btn-details btn-large mt-2 rounded-pill px-6" href="{% url 'signin' %}"
+                                id="btnUsuarioAdministrativo">Ingresar</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="model-card border-0 shadow-none h-100">
+                            <div class="d-flex justify-content-center">
+                                <i class="fas fa-user-secret"></i>
+                            </div>
+                            <h2 class="model-title text-center">Invitado</h2>
+                            <p class="model-text text-center">Revisa las diversas funciones de nuestro sistema.</p>
+                            <a class="btn btn-details btn-large mt-2 rounded-pill px-6" href="{% url 'home' %}"
+                                id="btnModoInvitado">Ingresar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     <div class="container">
         <div class="row home-container" data-aos="fade">
             <!-- Mensaje de bienvenida a la izquierda -->
             <div class="col-lg-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="200">
                 <div class="welcome-message">
-                    {% if user.is_superuser %}
-                        <p>Bienvenido, <span class="username">{{ user.username }}</span>. <i class="fa-solid fa-hat-cowboy fa-bounce" style="color: greenyellow;"></i></p>
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                            <p>Bienvenido, <span class="username">{{ user.username }}</span>. <i class="fa-solid fa-toolbox"
+                            style="color: whitesmoke;"></i></p>
+                        {% else %}
+                            <p>Bienvenido, <span class="username">{{ user.username }}</span>. <i class="fa-solid fa-user" style="color: whitesmoke;"></i></p>
+                        {% endif %}
                     {% else %}
-                        <p>Bienvenido, <span class="username">{{ user.username }}</span>.</p></i>
+                        <p>Bienvenido, <span class="username">usuario anónimo</span>. <i class="fa-solid fa-user-secret" style="color: whitesmoke;"></i></p>
                     {% endif %}
+
                     <h2>Explora nuestro increíble sistema!</h2>
-                    <span>Te invitamos a descubrir un mundo de múltiples posibilidades y beneficios, con el objetivo de optimizar tu emprendimiento al siguiente nivel.</span><br>
+                    <span>Te invitamos a descubrir un mundo de múltiples posibilidades y beneficios, con el objetivo de
+                        optimizar tu emprendimiento al siguiente nivel.</span><br>
                     <a href="#info">
                         <button class="btn btn-details" style="margin-top: 20px;">Explorar
                             <i class="fas fa-arrow-right"></i>
@@ -25,7 +81,8 @@
             </div>
             <!-- Secuencia de imágenes a la derecha -->
             <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
-                <div id="image-carousel" class="carousel slide animate__animated animate__fadeIn" data-bs-ride="carousel">
+                <div id="image-carousel" class="carousel slide animate__animated animate__fadeIn"
+                    data-bs-ride="carousel">
                     <div class="carousel-inner" id="carousel-inner">
                     </div>
                 </div>
@@ -36,36 +93,44 @@
             <div class="col-12 align-items-center">
                 <div class="home-info text-center">
                     <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">Impulsa tu Negocio con Nuestro Sistema</h2>
-                    <p class="mb-4" data-aos="fade-up" data-aos-delay="300">Nuestro sistema innovador ofrece las herramientas necesarias para maximizar el potencial de tu negocio.</p>
+                    <p class="mb-4" data-aos="fade-up" data-aos-delay="300">Nuestro sistema innovador ofrece las
+                        herramientas necesarias para maximizar el potencial de tu negocio.</p>
                     <div class="row">
                         <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                             <div class="info-card info-card-primary d-flex flex-column">
                                 <i class="fas fa-chart-line"></i>
                                 <h2 class="info-title-cards">Optimizar tus operaciones</h2>
-                                <p>Aumenta la eficiencia de tu equipo con herramientas automatizadas y análisis detallados.</p>
-                                <img class="info-img img-fluid mt-auto" src="{% static 'img/home-info/client-2.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="300">
+                                <p>Aumenta la eficiencia de tu equipo con herramientas automatizadas y análisis
+                                    detallados.</p>
+                                <img class="info-img img-fluid mt-auto" src="{% static 'img/home-info/client-2.jfif' %}"
+                                    alt="Image" data-aos="fade-up" data-aos-delay="300">
                             </div>
                         </div>
                         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
                             <div class="info-card info-card-secondary d-flex flex-column align-items-center">
                                 <i class="fas fa-cogs"></i>
                                 <h2 class="info-title-cards">Aumentar tus ventas</h2>
-                                <p>Realiza ventas identificando nuevas oportunidades de negocio y cerrando más acuerdos.</p>
+                                <p>Realiza ventas identificando nuevas oportunidades de negocio y cerrando más acuerdos.
+                                </p>
                             </div>
-                            <div class="info-card info-card-info d-flex flex-column align-items-center" data-aos="fade-up" data-aos-delay="400">
+                            <div class="info-card info-card-info d-flex flex-column align-items-center"
+                                data-aos="fade-up" data-aos-delay="400">
                                 <i class="fas fa-users"></i>
                                 <h2 class="info-title-cards">Mejorar la satisfacción del cliente</h2>
-                                <p>El cliente recibe un servicio personalizado y una atención excepcional lo que garantiza su satisfacción.</p>
+                                <p>El cliente recibe un servicio personalizado y una atención excepcional lo que
+                                    garantiza su satisfacción.</p>
                             </div>
                         </div>
                         <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                             <div class="info-card info-card-success d-flex flex-column">
                                 <i class="fas fa-balance-scale"></i>
                                 <h2 class="info-title-cards">Gestionar tus finanzas</h2>
-                                <p>Administra tus finanzas de manera eficiente y toma decisiones informadas con análisis financieros detallados sobre los producto</p>
-                                <img class="info-img img-fluid mt-auto" src="{% static 'img/home-info/client-1.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="300">
+                                <p>Administra tus finanzas de manera eficiente y toma decisiones informadas con análisis
+                                    financieros detallados sobre los producto</p>
+                                <img class="info-img img-fluid mt-auto" src="{% static 'img/home-info/client-1.jfif' %}"
+                                    alt="Image" data-aos="fade-up" data-aos-delay="300">
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,7 +146,8 @@
                     <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                         <div class="team-card team-card-primary d-flex flex-column">
                             <div class="card-header">
-                                <img class="team-img img-fluid" src="{% static 'img/home-team/team-1.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="400">
+                                <img class="team-img img-fluid" src="{% static 'img/home-team/team-1.jfif' %}"
+                                    alt="Image" data-aos="fade-up" data-aos-delay="400">
                             </div>
                             <card-body>
                                 <h2>STEVEN ALEXANDER<br>NIETO DURAN</h2>
@@ -97,14 +163,16 @@
                                 </p>
                             </card-body>
                             <div class="card-footer">
-                                <a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
+                                <a href="https://github.com/Alexis2024" target="_blank"><i
+                                        class="fa-brands fa-github"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                         <div class="team-card team-card-primary d-flex flex-column">
                             <div class="card-header">
-                                <img class="team-img img-fluid" src="{% static 'img/home-team/team-2.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="400">
+                                <img class="team-img img-fluid" src="{% static 'img/home-team/team-2.jfif' %}"
+                                    alt="Image" data-aos="fade-up" data-aos-delay="400">
                             </div>
                             <card-body>
                                 <h2>JAVIER OMAR<br>HARO SOLEDISPA</h2>
@@ -120,16 +188,158 @@
                                 </p>
                             </card-body>
                             <div class="card-footer">
-                                <a href="https://github.com/JaviOHS" target="_blank"><i class="fa-brands fa-github"></i></a>
+                                <a href="https://github.com/JaviOHS" target="_blank"><i
+                                        class="fa-brands fa-github"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact" style="margin-top: 100px;">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2 style="text-align: center" class="mb-4" data-aos="fade-up" data-aos-delay="300">Contáctanos</h2>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="contact-about">
+                            <div class="logo">
+                                <a href="index.html"><img src="static/img/logo1.png" alt="" class="img-fluid"></a>
+                            </div>
+                            <p style="text-align: justify;">Estamos aquí para ayudarte a impulsar el crecimiento de tu
+                                negocio mediante una gestión de ventas inteligente y orientada al futuro. Confía en
+                                nosotros para llevar tu proceso de ventas al siguiente nivel.</p>
+                            <div class="social-links">
+                                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+                        <div class="info">
+                            <div>
+                                <i class="ri-map-pin-line"></i>
+                                <p><a href="https://www.google.com/maps/place/CYBER+NARANJAL+CITY/@-2.6742357,-79.6256401,17z/data=!3m1!4b1!4m6!3m5!1s0x9032b98b5de80471:0xc56f07b10f1d590!8m2!3d-2.6742357!4d-79.6207745!16s%2Fg%2F11kb5crss4?entry=ttu"
+                                        target="_blank">
+                                        Universidad Estatal de Milagro (UNEMI) Ecuador - Guayas - Milagro <br>Av. 17 de
+                                        Septiembre
+                                    </a></p>
+                            </div>
+                            <div>
+                                <i class="ri-mail-send-line"></i>
+                                <p><a href="mailto:snietod@unemi.edu.ec" target="_blank">snietod@unemi.edu.ec</a></p> <i
+                                    class="ri-mail-send-line"></i>
+                                <p><a href="mailto:jharos@unemi.edu.ec" target="_blank">jharos@unemi.edu.ec</a></p>
+                            </div>
+
+                            <div>
+                                <i class="ri-phone-line"></i>
+                                <p><a href="https://wa.me/593997932650" target="_blank">+593 997 932 650</a></p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">
+                        <form action="https://formspree.io/f/myyrwqgz" method="post" role="form" class="php-email-form">
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Nombre"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" rows="5" placeholder="Mensaje"
+                                    required></textarea>
+                            </div>
+                            <div class="my-3">
+                                <!--              <div class="loading">Loading</div>-->
+                                <!--              <div class="error-message"></div>-->
+                                <div class="sent-message">Tu mensaje ha sido enviado. ¡Gracias!</div>
+                            </div>
+                            <div class="text-center"><button type="submit">Enviar Mensaje</button></div>
+                        </form>
+                    </div>
+                    <script>
+                        // Espera a que el documento esté completamente cargado
+                        document.addEventListener("DOMContentLoaded", function () {
+                            // Obtén el formulario
+                            var form = document.querySelector('.php-email-form');
+
+                            // Agrega un evento para escuchar el envío del formulario
+                            form.addEventListener('submit', function (event) {
+                                // Evita que el formulario se envíe de forma predeterminada
+                                event.preventDefault();
+
+                                // Realiza una solicitud AJAX para enviar el formulario
+                                var formData = new FormData(form);
+                                var xhr = new XMLHttpRequest();
+                                xhr.open(form.method, form.action);
+                                xhr.setRequestHeader('Accept', 'application/json');
+                                xhr.onreadystatechange = function () {
+                                    if (xhr.readyState !== XMLHttpRequest.DONE) return;
+                                    if (xhr.status === 200) {
+                                        // Éxito: Oculta el mensaje de error si existe
+                                        var errorMessage = document.querySelector('.error-message');
+                                        if (errorMessage) {
+                                            errorMessage.style.display = 'none';
+                                        }
+
+                                        // Muestra el mensaje de éxito solo si la respuesta es válida
+                                        try {
+                                            var response = JSON.parse(xhr.responseText);
+                                            if (response.ok) {
+                                                var sentMessage = document.querySelector('.sent-message');
+                                                if (sentMessage) {
+                                                    sentMessage.style.display = 'block';
+                                                }
+
+                                                // Reinicia el formulario si es necesario
+                                                form.reset();
+                                            } else {
+                                                throw new Error(response);
+                                            }
+                                        } catch (error) {
+                                            console.error('Error al analizar la respuesta JSON:', error);
+                                        }
+                                    } else {
+                                        // Error: Muestra el mensaje de error si existe
+                                        var errorMessage = document.querySelector('.error-message');
+                                        if (errorMessage) {
+                                            errorMessage.style.display = 'block';
+                                            errorMessage.textContent = 'Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo más tarde.';
+                                        }
+                                    }
+                                };
+                                xhr.send(formData);
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </section>
+        <!-- End Contact Section -->
 </section>
+
+<!-- Botón de ir arriba -->
+<button onclick="topFunction()" id="goTopBtn" title="Ir arriba"><i class="fa-solid fa-caret-up"></i></button>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.min.css">
 
 <script>
     // Array de rutas de imágenes
@@ -145,13 +355,48 @@
     ];
 
     // Función para generar los elementos del carrusel dinámicamente
-    $(document).ready(function() {
+    $(document).ready(function () {
         var carouselInner = $('#carousel-inner');
-        imagePaths.forEach(function(imagePath, index) {
+        imagePaths.forEach(function (imagePath, index) {
             var activeClass = index === 0 ? 'active' : '';
             carouselInner.append('<div class="carousel-item ' + activeClass + '"><img src="' + imagePath + '" class="d-block w-10" alt="..."></div>');
         });
     });
 </script>
 
+<script>
+    // Función para ocultar el modal al hacer clic en el botón de "Modo Invitado"
+    $(document).ready(function () {
+        $('#btnModoInvitado').click(function (e) {
+            e.preventDefault(); // Evita que el enlace se siga
+            $('.modal-overlay').hide(); // Oculta el modal
+        });
+    });
+</script>
+<script src="{% static 'js/sweet_alert.js' %}"></script>
+<script>
+    // Función para ocultar el modal al hacer clic en el botón de "Modo Invitado"
+    $(document).ready(function () {
+        $('#btnModoInvitado').click(function (e) {
+            e.preventDefault(); // Evita que el enlace se siga
+
+            $('.modal-overlay').hide(); // Oculta el modal
+
+            // Muestra el SweetAlert personalizado
+            DarkSwal.fire({
+                icon: 'warning',
+                title: '<h2 class="dark-title">ADVERTENCIA</h2>',
+                text: 'Para usar las funciones de nuestra aplicación, debe registrarse en nuestro sistema.',
+                showCancelButton: true,
+                confirmButtonText: 'Registrarse',
+                cancelButtonText: 'Continuar con el modo invitado',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirecciona a la página de registro
+                    window.location.href = "{% url 'signup' %}";
+                }
+            });
+        });
+    });
+</script>
 {% endblock content %}

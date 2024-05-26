@@ -2,23 +2,37 @@
 {% load static %}
 {% block content %}
 <title>{% block title %} SGV - Iniciar sesión {% endblock title %}</title>
-<section id="home-signin" class="mt-4 d-flex justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
-    <div class="container text-center">
-        <div class="row">
-            <h2 class="title text-center">{{ title2 }}</h2>
-            <div id="form-signin" class="form-container">
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="error-messages">
-                        {{ error.as_p }}
-                    </div>
-                    {{ form.as_p }}
-                    <button class="btn btn-details" type="submit" style="margin-bottom: 40px;">Iniciar sesión</button>
-                </form>
-                <span>¿No tienes una cuenta? </span><br>
-                <a class="btn btn-details" href="{% url 'signup' %}">Regístrate ahora</a>
+
+<section id="home-signin" class="mt-4" data-aos="fade-up" data-aos-delay="200">
+    <div class="container">
+        <div class="row home-container" data-aos="fade">
+            <!-- Mensaje de bienvenida a la izquierda -->
+            <div class="col-lg-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="200">
+                <div class="welcome-message text-center">
+                    <h2 class="title">{{ title2 }}</h2>
+                    <p>Por favor, complete el formulario para continuar. </p>
+                    <img src="{% static 'img/register/signin.jfif' %}" class="img-fluid mx-auto d-block" alt="Signin" style="width: 70%; border-radius: 25px;">
+                </div>
+            </div>
+            <!-- Columna del formulario de inicio de sesión -->
+            <div class="col-lg-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="200">
+                <div id="form-signin" class="form-container-login">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{error}}
+                        {{ form.as_p }}
+                        <div class="text-center">
+                            <button class="btn btn-details btn-block mt-3" type="submit"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</button> <!-- Agregado icono -->
+                            <button class="btn btn-details btn-block mt-2" onclick="window.location.href='{% url 'home' %}'"><i class="fas fa-arrow-left"></i> Volver</button> <!-- Agregado icono -->
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
+        <p class="lol text-center mt-3">¿No tienes una cuenta? <a href="{% url 'signup' %}">Regístrate</a></p>
     </div>
 </section>
 {% endblock content %}
+
+{% block navbar %}
+{% endblock navbar %}

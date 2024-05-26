@@ -13,7 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
     dni = forms.CharField(max_length=10, label='DNI')
     first_name = forms.CharField(max_length=30, label='Nombres')
     last_name = forms.CharField(max_length=150, label='Apellidos')
-    celular = forms.CharField(max_length=15, required=False, label='Celular')
+    celular = forms.CharField(max_length=10, required=False, label='Celular')
     correo = forms.EmailField(required=False, label='Correo electrónico')
 
     class Meta(UserCreationForm.Meta):

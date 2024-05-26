@@ -45,6 +45,8 @@ body{
     display: flex;
     align-items: center;
     padding: 0 20px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(5px);
 }
 
 .navbar-brand {
@@ -285,6 +287,11 @@ span {
 #home-signup, #home-signin {
     width: 60%;
     padding: 10px 0 20px; /* Añadir espacio interno */
+    margin-bottom: 100px;
+}
+
+#home-signup {
+    width: 100%;
 }
 
 .module-head {
@@ -393,25 +400,20 @@ h3 .info {
     margin: 0 auto 10px; /* Esto centrará horizontalmente el contenedor */
 }
 
-/* Footer */
-.footer {
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-}
-
-.footer a {
-    color: var(--title);
-    text-decoration: none;
-    font-weight: 800;
-}
-
 /* Estilos para los formularios */
 .form-container{
     background-color: #111010;
     border-radius: 25px;
     margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
     width: 70%;
+    padding: 20px;
+}
+
+.form-container-login{
+    background-color: var(--content);
+    border-radius: 25px;
+    margin: 0 auto; /* Esto centrará horizontalmente el contenedor */
+    width: 100%;
     padding: 20px;
 }
 
@@ -440,7 +442,7 @@ form input[type="text"],
 form input[type="email"],
 form input[type="password"],
 form input[type="number"], 
-form select, 
+form select,
 form input[type="date"], 
 form input [type="checkbox"], 
 form input[type="file"], .custom-select {
@@ -458,7 +460,6 @@ form input[type="file"], .custom-select {
 form input[type="file"]{
     background-color: lightgray;
 }
-
 form input[type="text"]:focus, 
 form input[type="number"]:focus, 
 form input[type="date"]:focus,
@@ -469,7 +470,6 @@ form input[type="password"]:focus,
     outline: none;
     background-color: gray;
 }
-
 .custom-select option {
     color: black; /* Color del texto */
     font-size: 16px; /* Tamaño de fuente */
@@ -487,26 +487,333 @@ form input[type="password"]:focus,
     color: var(--title);
     font-size: 30px;
 }
-
-
 .dark-confirm-button {
     background-color: #3085d6; /* Color del botón de confirmación */
     color: #fff; /* Texto del botón de confirmación */
 }
-
 .dark-cancel-button {
     background-color: #d33; /* Color del botón de cancelación */
     color: #fff; /* Texto del botón de cancelación */
 }
-
 .error-title {
     color: #ff4d4d; /* Rojo para errores */
 }
-
 .success-title {
     color: #4CAF50; /* Verde para éxitos */
 }
 
+/* Estilo para el botón de ir arriba */
+#goTopBtn {
+    position: fixed; /* Mantiene el botón en una posición fija */
+    bottom: -80px; /* Sube el botón más arriba para evitar superposiciones */
+    right: 30px; /* Distancia desde la parte derecha */
+    z-index: 99; /* Asegura que el botón esté encima de otros elementos */
+    border: none; /* Sin borde */
+    outline: none; /* Sin contorno */
+    background-color: gold; /* Color de fondo */
+    color: rgb(0, 0, 0); /* Color del texto */
+    cursor: pointer; /* Cursor interactivo */
+    padding: 0; /* Elimina el espacio alrededor del texto */
+    border-radius: 50%; /* Bordes redondeados */
+    width: 50px; /* Ajusta el ancho según tus necesidades */
+    height: 50px; /* Ajusta la altura según tus necesidades */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: bottom 0.5s ease-in-out; /* Agrega una transición en la propiedad bottom */
+}
+
+#goTopBtn i {
+    font-size: 24px; /* Ajusta el tamaño del icono según tus necesidades */
+}
+
+#goTopBtn.active {
+    bottom: 115px; /* Posición final del botón, aparecerá desde el borde inferior */
+}
+
+#right-nav-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.modal-body {
+    border-radius: 20px;
+    background-color: var(--content);
+    padding: 20px;
+    z-index: 99999;
+    margin: 100px;
+}
+
+.model-card {
+    background-color: var(--card-body);
+    border-radius: 25px;
+    padding: 20px;
+    width: auto;
+    margin-bottom: 20px;
+    max-width: 1200px;
+    transition: transform 0.3s;
+    overflow: hidden;
+}
+
+.model-card:hover{
+    transform: scale(1.05);
+}
+
+.model-logo {
+    border-radius: 25px;
+    transition: transform 0.3s;
+    margin: 0 auto;
+    font-size: 50px;
+    text-transform: capitalize;
+}
+
+.model-logo:hover{
+    transform: scale(1.05);
+}
+
+.model-card i{
+    font-size: 40px;
+    color: whitesmoke;
+    margin: 20px;
+}
+
+.model-title {
+    color: var(--title);
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.model-text {
+    color: var(--subtitle);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #fff;
+}
+
+.btn-warning:hover {
+    background-color: #ffca2c;
+    border-color: #ffca2c;
+}
+
+/*--------------------------------------------------------------
+# Contact
+--------------------------------------------------------------*/
+.contact .contact-about h3 {
+    font-size: 28px;
+    margin: 0 0 10px 0;
+    padding: 0;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #222222;
+  }
+
+  a {
+        color: rgb(255 255 255);
+        text-decoration: underline;
+    }
+
+  .contact .contact-about p {
+    font-size: 14px;
+    line-height: 24px;
+    font-family: "Raleway", sans-serif;
+    color: #888;
+  }
+  
+  .contact .social-links {
+    padding-bottom: 20px;
+  }
+  
+  .contact .social-links a {
+    font-size: 18px;
+    display: inline-block;
+    background: #fff;
+    color: #000000;
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+    border: 1px solid #000000;
+    text-decoration: none;
+  }
+  
+  .contact .social-links a:hover {
+    background: gold;
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  .contact .info {
+    color: #444444;
+  }
+  
+  .contact .info i {
+    font-size: 32px;
+    color: gold;
+    float: left;
+    line-height: 1;
+  }
+  
+  .contact .info p {
+    padding: 0 0 10px 42px;
+    line-height: 28px;
+    font-size: 14px;
+  }
+  
+  .contact .php-email-form .error-message {
+    display: none;
+    color: #fff;
+    background: #ed3c0d;
+    text-align: left;
+    padding: 15px;
+    font-weight: 600;
+  }
+  
+  .contact .php-email-form .error-message br+br {
+    margin-top: 25px;
+  }
+  
+  .contact .php-email-form .sent-message {
+    display: none;
+    color: #fff;
+    background: #18d26e;
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+    border-radius: 50px;
+  }
+  
+  .contact .php-email-form .loading {
+    display: none;
+    background: #fff;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .contact .php-email-form .loading:before {
+    content: "";
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px -6px 0;
+    border: 3px solid #18d26e;
+    border-top-color: #eee;
+    animation: animate-loading 1s linear infinite;
+  }
+  
+  .contact .php-email-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .contact .php-email-form input,
+  .contact .php-email-form textarea {
+    border-radius: 20px;
+    box-shadow: none;
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+  
+  .contact .php-email-form input:focus,
+  .contact .php-email-form textarea:focus {
+    border-color: #3498db;
+  }
+  
+  .contact .php-email-form button[type=submit] {
+    background: gold;
+    border: 0;
+    padding: 10px 24px;
+    color: #000000;
+    transition: 0.4s;
+    border-radius: 50px;
+  }
+  
+  .contact .php-email-form button[type=submit]:hover {
+    background: rgba(255, 217, 0, 0.729);
+  }
+  
+  @keyframes animate-loading {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+#footer {
+    /* position: fixed; */
+    bottom: 0; /* Lo posiciona en la parte inferior de la ventana */
+    left: 0; /* Alinea el pie de página a la izquierda */
+    width: 100%; /* Ocupa todo el ancho de la ventana */
+    background: #000000;
+    box-shadow: 0px 0px 50px 0px rgba(255, 217, 0, 0.487);
+    padding: 20px 0;
+    color: #ffffff;
+}
+
+.footer p{
+    color: var(--subtitle);
+    font-size: 20px;
+}
+
+.footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer a:hover{
+    color: var(--title);
+}
+
 .passwords {
     margin: 0 auto;
+}
+
+.lol a{
+    text-decoration: none;
+}
+
+.lol a:hover{
+    color: var(--title);
 }
