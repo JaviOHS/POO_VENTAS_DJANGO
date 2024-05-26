@@ -45,6 +45,8 @@ body{
     display: flex;
     align-items: center;
     padding: 0 20px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(5px);
 }
 
 .navbar-brand {
@@ -496,4 +498,243 @@ form input[type="password"]:focus,
 
 .success-title {
     color: #4CAF50; /* Verde para éxitos */
+}
+
+/* Estilo para el botón de ir arriba */
+#goTopBtn {
+    position: fixed; /* Mantiene el botón en una posición fija */
+    bottom: -80px; /* Sube el botón más arriba para evitar superposiciones */
+    right: 30px; /* Distancia desde la parte derecha */
+    z-index: 99; /* Asegura que el botón esté encima de otros elementos */
+    border: none; /* Sin borde */
+    outline: none; /* Sin contorno */
+    background-color: gold; /* Color de fondo */
+    color: rgb(0, 0, 0); /* Color del texto */
+    cursor: pointer; /* Cursor interactivo */
+    padding: 0; /* Elimina el espacio alrededor del texto */
+    border-radius: 50%; /* Bordes redondeados */
+    width: 50px; /* Ajusta el ancho según tus necesidades */
+    height: 50px; /* Ajusta la altura según tus necesidades */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: bottom 0.5s ease-in-out; /* Agrega una transición en la propiedad bottom */
+}
+
+#goTopBtn i {
+    font-size: 24px; /* Ajusta el tamaño del icono según tus necesidades */
+}
+
+#goTopBtn.active {
+    bottom: 115px; /* Posición final del botón, aparecerá desde el borde inferior */
+}
+
+#right-nav-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# Contact
+--------------------------------------------------------------*/
+.contact .contact-about h3 {
+    font-size: 28px;
+    margin: 0 0 10px 0;
+    padding: 0;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #222222;
+  }
+
+  a {
+        color: rgb(255 255 255);
+        text-decoration: underline;
+    }
+
+  .contact .contact-about p {
+    font-size: 14px;
+    line-height: 24px;
+    font-family: "Raleway", sans-serif;
+    color: #888;
+  }
+  
+  .contact .social-links {
+    padding-bottom: 20px;
+  }
+  
+  .contact .social-links a {
+    font-size: 18px;
+    display: inline-block;
+    background: #fff;
+    color: #000000;
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+    border: 1px solid #000000;
+    text-decoration: none;
+  }
+  
+  .contact .social-links a:hover {
+    background: gold;
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  .contact .info {
+    color: #444444;
+  }
+  
+  .contact .info i {
+    font-size: 32px;
+    color: gold;
+    float: left;
+    line-height: 1;
+  }
+  
+  .contact .info p {
+    padding: 0 0 10px 42px;
+    line-height: 28px;
+    font-size: 14px;
+  }
+  
+  .contact .php-email-form .error-message {
+    display: none;
+    color: #fff;
+    background: #ed3c0d;
+    text-align: left;
+    padding: 15px;
+    font-weight: 600;
+  }
+  
+  .contact .php-email-form .error-message br+br {
+    margin-top: 25px;
+  }
+  
+  .contact .php-email-form .sent-message {
+    display: none;
+    color: #fff;
+    background: #18d26e;
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+    border-radius: 50px;
+  }
+  
+  .contact .php-email-form .loading {
+    display: none;
+    background: #fff;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .contact .php-email-form .loading:before {
+    content: "";
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px -6px 0;
+    border: 3px solid #18d26e;
+    border-top-color: #eee;
+    animation: animate-loading 1s linear infinite;
+  }
+  
+  .contact .php-email-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .contact .php-email-form input,
+  .contact .php-email-form textarea {
+    border-radius: 20px;
+    box-shadow: none;
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+  
+  .contact .php-email-form input:focus,
+  .contact .php-email-form textarea:focus {
+    border-color: #3498db;
+  }
+  
+  .contact .php-email-form button[type=submit] {
+    background: gold;
+    border: 0;
+    padding: 10px 24px;
+    color: #000000;
+    transition: 0.4s;
+    border-radius: 50px;
+  }
+  
+  .contact .php-email-form button[type=submit]:hover {
+    background: rgba(255, 217, 0, 0.729);
+  }
+  
+  @keyframes animate-loading {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+#footer {
+    position: fixed; /* Fija el pie de página */
+    bottom: 0; /* Lo posiciona en la parte inferior de la ventana */
+    left: 0; /* Alinea el pie de página a la izquierda */
+    width: 100%; /* Ocupa todo el ancho de la ventana */
+    background: #000000;
+    box-shadow: 0px 0px 50px 0px rgba(255, 217, 0, 0.487);
+    padding: 30px 0;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+#footer .credits {
+    font-size: 13px;
+    padding-top: 5px;
+    color: #ffffff;
+}
+
+#footer .footer-links a {
+    color: #ffffff;
+    padding-left: 15px;
+}
+
+#footer .footer-links a:first-child {
+    padding-left: 0;
+}
+
+#footer .footer-links a:hover {
+    color: #3498db;
 }

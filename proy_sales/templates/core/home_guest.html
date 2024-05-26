@@ -1,0 +1,153 @@
+<!-- En home.html -->
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %} SGV - Home {% endblock title %}</title>
+{% block content %}
+<section id="home-content" class="mt-4 d-flex justify-content-center align-items-center">
+    <div class="container position-relative">
+        <div class="row home-container" data-aos="fade">
+            <!-- Mensaje de bienvenida a la izquierda -->
+            <div class="col-lg-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="200">
+                <div class="welcome-message">
+                    <p>Bienvenido, usuario</p>
+                    <h2>Explora nuestro increíble sistema!</h2>
+                    <span>Te invitamos a descubrir un mundo de múltiples posibilidades y beneficios, con el objetivo de optimizar tu emprendimiento al siguiente nivel.</span><br>
+                    <a href="#info">
+                        <button class="btn btn-details" style="margin-top: 20px;">Explorar
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <!-- Secuencia de imágenes a la derecha -->
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                <div id="image-carousel" class="carousel slide animate__animated animate__fadeIn" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="carousel-inner">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Informacion -->
+        <div id="info" class="row info-container" data-aos="fade-up">
+            <div class="col-12 align-items-center">
+                <div class="home-info text-center">
+                    <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">Impulsa tu Negocio con Nuestro Sistema</h2>
+                    <p class="mb-4" data-aos="fade-up" data-aos-delay="300">Nuestro sistema innovador ofrece las herramientas necesarias para maximizar el potencial de tu negocio.</p>
+                    <div class="row">
+                        <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                            <div class="info-card info-card-primary d-flex flex-column">
+                                <i class="fas fa-chart-line"></i>
+                                <h2 class="info-title-cards">Optimizar tus operaciones</h2>
+                                <p>Aumenta la eficiencia de tu equipo con herramientas automatizadas y análisis detallados.</p>
+                                <img class="info-img img-fluid mt-auto" src="{% static 'img/home-info/client-2.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="300">
+                            </div>
+                        </div>
+                        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="info-card info-card-secondary d-flex flex-column align-items-center">
+                                <i class="fas fa-cogs"></i>
+                                <h2 class="info-title-cards">Aumentar tus ventas</h2>
+                                <p>Realiza ventas identificando nuevas oportunidades de negocio y cerrando más acuerdos.</p>
+                            </div>
+                            <div class="info-card info-card-info d-flex flex-column align-items-center" data-aos="fade-up" data-aos-delay="400">
+                                <i class="fas fa-users"></i>
+                                <h2 class="info-title-cards">Mejorar la satisfacción del cliente</h2>
+                                <p>El cliente recibe un servicio personalizado y una atención excepcional lo que garantiza su satisfacción.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                            <div class="info-card info-card-success d-flex flex-column">
+                                <i class="fas fa-balance-scale"></i>
+                                <h2 class="info-title-cards">Gestionar tus finanzas</h2>
+                                <p>Administra tus finanzas de manera eficiente y toma decisiones informadas con análisis financieros detallados sobre los producto</p>
+                                <img class="info-img img-fluid mt-auto" src="{% static 'img/home-info/client-1.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="300">
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nosotros -->
+        <div id="team" class="row team-container" data-aos="fade-up">
+            <div class="col-12 align-items-center text-center">
+                <div class="home-team text-center">
+                    <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">Equipo de trabajo</h2>
+                    <p class="mb-4" data-aos="fade-up" data-aos-delay="300">Conozca a nuestro equipo de trabajo.</p>
+                </div>
+                <div class="row align-items-center justify-content-center team-content">
+                    <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                        <div class="team-card team-card-primary d-flex flex-column">
+                            <div class="card-header">
+                                <img class="team-img img-fluid" src="{% static 'img/home-team/team-1.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="400">
+                            </div>
+                            <card-body>
+                                <h2>STEVEN ALEXANDER<br>NIETO DURAN</h2>
+                                <p>
+                                    <i class="fa-solid fa-user-tie"></i>
+                                    <i class="fa-solid fa-briefcase"></i><br>
+                                    Jefe de Proyecto
+                                </p>
+                                <p>
+                                    <i class="fa-solid fa-user"></i>
+                                    <i class="fa-solid fa-laptop-code"></i><br>
+                                    Programador<br>
+                                </p>
+                            </card-body>
+                            <div class="card-footer">
+                                <a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                        <div class="team-card team-card-primary d-flex flex-column">
+                            <div class="card-header">
+                                <img class="team-img img-fluid" src="{% static 'img/home-team/team-2.jfif' %}" alt="Image" data-aos="fade-up" data-aos-delay="400">
+                            </div>
+                            <card-body>
+                                <h2>JAVIER OMAR<br>HARO SOLEDISPA</h2>
+                                <p>
+                                    <i class="fa-solid fa-user-tie"></i>
+                                    <i class="fa-solid fa-briefcase"></i><br>
+                                    Jefe de Proyecto
+                                </p>
+                                <p>
+                                    <i class="fa-solid fa-user"></i>
+                                    <i class="fa-solid fa-laptop-code"></i><br>
+                                    Programador<br>
+                                </p>
+                            </card-body>
+                            <div class="card-footer">
+                                <a href="https://github.com/JaviOHS" target="_blank"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    // Array de rutas de imágenes
+    var imagePaths = [
+        "{% static 'img/home-carausel/carausel-1.jfif' %}",
+        "{% static 'img/home-carausel/carausel-2.jfif' %}",
+        "{% static 'img/home-carausel/carausel-3.jfif' %}",
+        "{% static 'img/home-carausel/carausel-4.jfif' %}",
+        "{% static 'img/home-carausel/carausel-5.jfif' %}",
+        "{% static 'img/home-carausel/carausel-6.jfif' %}",
+        "{% static 'img/home-carausel/carausel-7.jfif' %}",
+        "{% static 'img/home-carausel/carausel-8.jfif' %}",
+    ];
+
+    // Función para generar los elementos del carrusel dinámicamente
+    $(document).ready(function() {
+        var carouselInner = $('#carousel-inner');
+        imagePaths.forEach(function(imagePath, index) {
+            var activeClass = index === 0 ? 'active' : '';
+            carouselInner.append('<div class="carousel-item ' + activeClass + '"><img src="' + imagePath + '" class="d-block w-10" alt="..."></div>');
+        });
+    });
+</script>
+
+{% endblock content %}

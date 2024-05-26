@@ -1,9 +1,132 @@
-<!-- En home.html -->
 {% extends 'base.html' %}
 {% load static %}
 <title>{% block title %} SGV - Home {% endblock title %}</title>
 {% block content %}
 <section id="home-content" class="mt-4 d-flex justify-content-center align-items-center">
+    
+    <!-- Nuevo código para mostrar sobre el formulario -->
+    {% if not user.is_authenticated %}
+    <div class="modal-overlay blur-background no-scroll">
+        <style>
+            /* Estilos adicionales para el modal */
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); 
+                backdrop-filter: blur(5px);
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+            }
+
+            .no-scroll {
+                overflow: hidden;
+            }
+
+            .modal-body {
+                border-radius: 20px;
+                background-color: #f8f9fa;
+                padding: 20px;
+                z-index: 99999;
+                margin: 50vh;
+            }
+
+            .texto-blue {
+                color: #007bff;
+            }
+
+            .border-warning {
+                border-color: #ffc107 !important;
+            }
+
+            .card {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+
+            .card-img-top {
+                width: 65px;
+                height: 76px;
+            }
+
+            .text-blue {
+                color: #007bff;
+            }
+
+            .text-muted {
+                color: #6c757d;
+            }
+
+            .btn-warning {
+                background-color: #ffc107;
+                border-color: #ffc107;
+                color: #fff;
+            }
+
+            .btn-warning:hover {
+                background-color: #ffca2c;
+                border-color: #ffca2c;
+            }
+        </style>
+        <div class="modal-body">
+            <div class="text-center my-lg-6 mx-lg-10 my-sm-3 mx-sm-5">
+                <h3 class="texto-blue"><span class="border border-2 border-left me-2 border-warning"></span>PERFILES</h3>
+                <p class="text-muted">Selecciona tu perfil para iniciar sesión en</p>
+                <img src="static/img/logo1.png" alt="LOGO">
+                <h5 class="texto-blue">Usuario Común, Usuario Administrativo, Modo Invitado</h5>
+                <p class="text-muted">Accede a tus funcionalidades específicas.</p>
+                <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4 mt-3 justify-content-center">
+                    <div class="col">
+                        <div class="card border-0 shadow-none h-100">
+                            <div class="d-flex justify-content-center">
+                                <i class="fas fa-user fa-5x text-secondary"></i>
+                            </div>
+                            <h4 class="text-blue m-0 p-0 text-center">Usuario Común</h4>
+                            <p class="fs-6 text-muted m-0 p-0 text-center" style="line-height: 1.5em">Da gestión de seguimiento a tus Compras y Ventas.</p>
+                            <a class="btn btn-warning btn-large mt-2 rounded-pill px-6" href="{% url 'signup' %}" id="btnUsuarioComun">Ingresar</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border-0 shadow-none h-100">
+                            <div class="d-flex justify-content-center">
+                                <i class="fas fa-user-tie fa-5x text-secondary"></i>
+                            </div>
+                            <h4 class="text-blue m-0 p-0 text-center">Usuario Administrativo</h4>
+                            <p class="fs-6 text-muted m-0 p-0 text-center" style="line-height: 1.5em">Gestiona las categorías, marcas y proveedores de tus productos.</p>
+                            <a class="btn btn-warning btn-large mt-2 rounded-pill px-6" href="{% url 'signin' %}" id="btnUsuarioAdministrativo">Ingresar</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border-0 shadow-none h-100">
+                            <div class="d-flex justify-content-center">
+                                <i class="fas fa-user-secret fa-5x text-secondary"></i>
+                            </div>
+                            <h4 class="text-blue m-0 p-0 text-center">Modo Invitado</h4>
+                            <p class="fs-6 text-muted m-0 p-0 text-center" style="line-height: 1.5em">Revisa las diversas funciones de nuestro sistema.</p>
+                            <a class="btn btn-warning btn-large mt-2 rounded-pill px-6" href="{% url 'home_guest' %}" id="btnModoInvitado">Ingresar</a>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     <div class="container">
         <div class="row home-container" data-aos="fade">
             <!-- Mensaje de bienvenida a la izquierda -->
@@ -95,7 +218,7 @@
                                 </p>
                             </card-body>
                             <div class="card-footer">
-                                <a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
+                                <a href="https://github.com/Alexis2024" target="_blank"><i class="fa-brands fa-github"></i></a>
                             </div>
                         </div>
                     </div>
@@ -125,9 +248,160 @@
                 </div>
             </div>
         </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2 style="text-align: center" class="mb-4" data-aos="fade-up" data-aos-delay="300">Contáctanos</h2>
+      </div>
+<br>
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="contact-about">
+            <div class="logo">
+              <a href="index.html"><img src="static/img/logo1.png" alt="" class="img-fluid"></a>
+            </div>
+            <p style="text-align: justify;">Estamos aquí para ayudarte a impulsar el crecimiento de tu negocio mediante una gestión de ventas inteligente y orientada al futuro. Confía en nosotros para llevar tu proceso de ventas al siguiente nivel.</p>
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+          <div class="info">
+            <div>
+              <i class="ri-map-pin-line"></i>
+              <p><a href="https://www.google.com/maps/place/CYBER+NARANJAL+CITY/@-2.6742357,-79.6256401,17z/data=!3m1!4b1!4m6!3m5!1s0x9032b98b5de80471:0xc56f07b10f1d590!8m2!3d-2.6742357!4d-79.6207745!16s%2Fg%2F11kb5crss4?entry=ttu" target="_blank">
+                Universidad Estatal de Milagro (UNEMI)  Ecuador - Guayas - Milagro <br>Av. 17 de Septiembre
+              </a></p>
+            </div>
+
+            <div>
+              <i class="ri-mail-send-line"></i>
+              <p><a href="mailto:snietod@unemi.edu.ec" target="_blank" >snietod@unemi.edu.ec</a></p> <i class="ri-mail-send-line"></i><p><a href="mailto:jharos@unemi.edu.ec" target="_blank" >jharos@unemi.edu.ec</a></p>
+            </div>
+
+            <div>
+              <i class="ri-phone-line"></i>
+              <p><a href="https://wa.me/593997932650" target="_blank">+593 997 932 650</a></p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">
+          <form action="https://formspree.io/f/myyrwqgz" method="post" role="form" class="php-email-form">
+            <div class="form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" required>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" required>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
+            </div>
+            <div class="my-3">
+              <!--              <div class="loading">Loading</div>-->
+              <!--              <div class="error-message"></div>-->
+              <div class="sent-message">Tu mensaje ha sido enviado. ¡Gracias!</div>
+            </div>
+            <div class="text-center"><button type="submit">Enviar Mensaje</button></div>
+          </form>
+        </div>
+
+        <script>
+          // Espera a que el documento esté completamente cargado
+          document.addEventListener("DOMContentLoaded", function() {
+            // Obtén el formulario
+            var form = document.querySelector('.php-email-form');
+
+            // Agrega un evento para escuchar el envío del formulario
+            form.addEventListener('submit', function(event) {
+              // Evita que el formulario se envíe de forma predeterminada
+              event.preventDefault();
+
+              // Realiza una solicitud AJAX para enviar el formulario
+              var formData = new FormData(form);
+              var xhr = new XMLHttpRequest();
+              xhr.open(form.method, form.action);
+              xhr.setRequestHeader('Accept', 'application/json');
+              xhr.onreadystatechange = function() {
+                if (xhr.readyState !== XMLHttpRequest.DONE) return;
+                if (xhr.status === 200) {
+                  // Éxito: Oculta el mensaje de error si existe
+                  var errorMessage = document.querySelector('.error-message');
+                  if (errorMessage) {
+                    errorMessage.style.display = 'none';
+                  }
+
+                  // Muestra el mensaje de éxito solo si la respuesta es válida
+                  try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.ok) {
+                      var sentMessage = document.querySelector('.sent-message');
+                      if (sentMessage) {
+                        sentMessage.style.display = 'block';
+                      }
+
+                      // Reinicia el formulario si es necesario
+                      form.reset();
+                    } else {
+                      throw new Error(response);
+                    }
+                  } catch (error) {
+                    console.error('Error al analizar la respuesta JSON:', error);
+                  }
+                } else {
+                  // Error: Muestra el mensaje de error si existe
+                  var errorMessage = document.querySelector('.error-message');
+                  if (errorMessage) {
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo más tarde.';
+                  }
+                }
+              };
+              xhr.send(formData);
+            });
+          });
+        </script>
+
+
+      </div>
+
     </div>
+  </section>
+  <!-- End Contact Section -->
+<br>
+<br>
+<br>
+<br>
+    
 </section>
+
+
+ <!-- Botón de ir arriba -->
+ <button onclick="topFunction()" id="goTopBtn" title="Ir arriba"><i class="fa-solid fa-caret-up"></i></button>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.min.css">
+
 
 <script>
     // Array de rutas de imágenes
@@ -151,5 +425,46 @@
         });
     });
 </script>
+
+<script>
+    // Función para ocultar el modal al hacer clic en el botón de "Modo Invitado"
+    $(document).ready(function() {
+        $('#btnModoInvitado').click(function(e) {
+            e.preventDefault(); // Evita que el enlace se siga
+
+            $('.modal-overlay').hide(); // Oculta el modal
+        });
+    });
+</script>
+
+<script>
+    // Función para ocultar el modal al hacer clic en el botón de "Modo Invitado"
+    $(document).ready(function() {
+        $('#btnModoInvitado').click(function(e) {
+            e.preventDefault(); // Evita que el enlace se siga
+
+            $('.modal-overlay').hide(); // Oculta el modal
+
+            // Muestra el SweetAlert personalizado
+            Swal.fire({
+                title: 'Para usar las funciones de nuestra aplicación, debe registrarse en nuestro sistema',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Registrarse',
+                cancelButtonText: 'Continuar con el modo invitado',
+                customClass: {
+                    icon: 'swal2-info-icon'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirecciona a la página de registro
+                    window.location.href = "{% url 'signup' %}";
+                }
+            });
+        });
+    });
+</script>
+
+
 
 {% endblock content %}

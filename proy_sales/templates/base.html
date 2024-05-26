@@ -16,62 +16,92 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
     <!-- AOS Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Iconos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+
     <!-- Titulo -->
     <title>{% block title %} SGV {% endblock title %}</title>
 </head>
 <body>
-    {% if user.is_authenticated %}
+    
+    {% block navbar %}
     <header id="header">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">TeacherCode</a>
+                <a class="navbar-brand" href="{% url 'home' %}">TeacherCode</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse d-flex align-items-center" id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
-                        </li>
-                        {% if user.is_superuser %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'core:product_list' %}">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'core:category_list' %}">Categorías</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'core:brand_list' %}">Marcas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'core:supplier_list' %}">Proveedores</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+                            </li>
+                            {% if user.is_superuser %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'core:product_list' %}">Productos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'core:category_list' %}">Categorías</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'core:brand_list' %}">Marcas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'core:supplier_list' %}">Proveedores</a>
+                                </li>
+                            {% endif %}
                         {% endif %}
-                        <li class="nav-item">
-                            <a class="btn btn-cancel" href="{% url 'logout' %}">Cerrar sesión</a>
-                        </li>
                     </ul>
+                    <div id="right-nav-buttons">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="btn btn-cancel" href="{% url 'logout' %}" style="text-decoration: none;">Cerrar sesión</a>
+                        </li>                        
+                        {% else %}
+                            <!-- BOTONES PARA EL MODO INVITADO -->
+                            <div class="nav-item">
+                                <a href="{% url 'signup' %}" class="btn btn-details" style="margin-right: 10px;">Registrarse</a>
+                            </div>
+                            <div class="nav-item">
+                                <a href="{% url 'signin' %}" class="btn btn-details" style="margin-right: 10px;">Iniciar Sesión</a>
+                            </div> 
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    {% endif %}
+    {% endblock navbar %}
+    
 
 
     <section id="content" class="mt-4 d-flex justify-content-center align-items-center">
         {% block content %}
         {% endblock content %}
     </section>
-    
-    <footer class="footer mt-auto py-3">
-        <div class="container">
-            <div class="row">
-                <a href="https://www.unemi.edu.ec/" target="_blank">
-                    <p>Universidad Estatal de Milagro - Todos los derechos reservados.</p>
-                </a>
-            </div>
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="container">
+      <div style="text-align:center" class="row d-flex align-items-center">
+          <div class="copyright">
+            &copy; Copyright <strong>Sistema de Gestion de Ventas</strong>. Reservados todos los derechos
+            <br>
+            Diseñado por <a href="https://github.com/Alexis2024" target="_blank">Alex Duran</a> y <a href="https://github.com/JaviOHS" target="_blank">Haro Soledispa</a>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+  
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{% static 'js/sweet_alert.js' %}"></script>
@@ -92,5 +122,27 @@
             });
         });
     </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            // Mostrar el botón cuando se desplaza hacia arriba
+            $(window).scroll(function(){
+                if ($(this).scrollTop() > 100) {
+                    $('#goTopBtn').addClass('active');
+                } else {
+                    $('#goTopBtn').removeClass('active');
+                }
+            });
+            // Volver al principio de la página al hacer clic en el botón con una transición suave
+            $('#goTopBtn').click(function(){
+                $('html, body').animate({scrollTop: 0}, 0); // Duración de la animación: 1000 milisegundos (1 segundo)
+                return false;
+            });
+        });
+    </script>
+    
 </body>
 </html>

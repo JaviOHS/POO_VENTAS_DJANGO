@@ -27,5 +27,10 @@ urlpatterns = [
     path('logout/', core.signout, name='logout'),
     path('signin/', core.signin, name='signin'),
     path('', include('core.urls',namespace='core')),
+    
+    
+    path('home-guest/', views.home_guest, name='home_guest')
+    
+      
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

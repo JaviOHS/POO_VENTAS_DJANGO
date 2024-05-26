@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 <title>{% block title %} SGV - Registrarse {% endblock title %}</title>
+
 <section id="home-signup" class="mt-4 d-flex justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
     <div class="container text-center">
         <div class="row">
@@ -68,7 +69,8 @@
                         </div>
                     </div>
                     <button class="btn btn-details" type="submit">Registrarse</button>
-                    <a class="btn btn-details" href="{% url 'signin' %}">Regresar</a>
+                    <a class="btn btn-details" href="{% url 'signin' %}">iniciar Sesión</a>
+                    <a class="btn btn-details" href="{% url 'home' %}">Volver</a>
                 </form>
             </div>
         </div>
@@ -77,3 +79,6 @@
 
 <script src="{% static 'js/validaciones.js' %}"></script>
 {% endblock content  %}
+
+{% block navbar %}
+{% endblock navbar %}
