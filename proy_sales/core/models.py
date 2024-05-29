@@ -5,12 +5,14 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+from proy_sales.utils import phone_regex, valida_cedula
 
 class CustomUser(AbstractUser):
-    dni = models.CharField(max_length=10)
+    dni = models.CharField(max_length=10,unique=True,validators=[valida_cedula])
     full_name = models.CharField(max_length=100)
-    celular = models.CharField(max_length=10, blank=True, null=True)
+    celular = models.CharField(max_length=10,blank=True, null=True,validators=[phone_regex])
     correo = models.EmailField(blank=True, null=True)
+
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
@@ -19,7 +21,7 @@ class CustomUser(AbstractUser):
         return self.username
     
 class Brand(models.Model):
-    description = models.CharField('Articulo', max_length=100)
+    description = models.CharField('Articulo', max_length=100,unique=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -36,9 +38,9 @@ class Brand(models.Model):
 
 class Supplier(models.Model):
     name = models.CharField(max_length=100)
-    ruc = models.CharField(max_length=13)  # RUC tiene 13 dígitos en Ecuador
+    ruc = models.CharField(max_length=10,validators=[valida_cedula],unique=True) 
     address = models.CharField(max_length=200)
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=10,validators=[phone_regex],unique=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -55,7 +57,7 @@ class Supplier(models.Model):
         return self.name
 
 class Category(models.Model):
-    description = models.CharField('Categoría', max_length=100)
+    description = models.CharField('Categoría', max_length=100,unique=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -79,7 +81,7 @@ class Product(models.Model):
         FERRISARITO = 'FS', 'Ferrisariato'
         COMISARIATO = 'CS', 'Comisariato'
 
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=100,unique=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField(default=100)
     expiration_date = models.DateTimeField(default=timezone.now() + datetime.timedelta(days=30))

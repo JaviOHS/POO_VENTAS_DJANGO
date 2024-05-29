@@ -59,14 +59,16 @@
             <div class="col-lg-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="200">
                 <div class="welcome-message">
                     {% if user.is_authenticated %}
-                        {% if user.is_superuser %}
-                            <p>Bienvenido, <span class="username">{{ user.username }}</span>. <i class="fa-solid fa-toolbox"
-                            style="color: whitesmoke;"></i></p>
-                        {% else %}
-                            <p>Bienvenido, <span class="username">{{ user.username }}</span>. <i class="fa-solid fa-user" style="color: whitesmoke;"></i></p>
-                        {% endif %}
+                    {% if user.is_superuser %}
+                    <p>Bienvenido, <span class="username">{{ user.username }}</span>. <i
+                            class="fa-solid fa-toolbox"></i></p>
                     {% else %}
-                        <p>Bienvenido, <span class="username">usuario anónimo</span>. <i class="fa-solid fa-user-secret" style="color: whitesmoke;"></i></p>
+                    <p>Bienvenido, <span class="username">{{ user.username }}</span>. <i class="fa-solid fa-user"></i>
+                    </p>
+                    {% endif %}
+                    {% else %}
+                    <p>Bienvenido, <span class="username">usuario anónimo</span>. <i
+                            class="fa-solid fa-user-secret"></i></p>
                     {% endif %}
 
                     <h2>Explora nuestro increíble sistema!</h2>
@@ -135,6 +137,72 @@
                 </div>
             </div>
         </div>
+
+        <!-- ======= Sección de Características ======= -->
+        <section id="features" class="features">
+            <br><br><br>
+            <div class="container">
+                <div class="home-info text-center">
+                    <div class="section-title" data-aos="fade-up">
+                        <h2>Características de nuestra aplicación</h2>
+                    </div>
+
+                    <div class="row" data-aos="fade-up" data-aos-delay="300">
+                        <div class="col-lg-3 col-md-4">
+                            <div class="icon-box">
+                                <i class="fas fa-users" style="color: #800080;"></i>
+                                <h3><a href="">Dar seguimiento de sus proveedores</a></h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+                            <div class="icon-box">
+                                <i class="fas fa-tv" style="color: #5578ff;"></i>
+                                <h3><a href="">Interfaz Minimalista</a></h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+                            <div class="icon-box">
+                                <i class="fas fa-clock" style="color: #e80368;"></i>
+                                <h3><a href="">Disponibilidad 24/7</a></h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
+                            <div class="icon-box">
+                                <i class="fas fa-shopping-cart" style="color: #e361ff;"></i>
+                                <h3><a href="">Gestiona tus Ventas y Compras</a></h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 mt-4">
+                            <div class="icon-box">
+                                <i class="fas fa-check-circle" style="color: #ffa76e;"></i>
+                                <h3><a href="">Servisio Garantizados</a></h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 mt-4">
+                            <div class="icon-box">
+                                <i class="fas fa-shield-alt" style="color: #4233ff;"></i>
+                                <h3><a href="">Aplicación Segura</a></h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 mt-4">
+                            <div class="icon-box">
+                                <i class="fas fa-users" style="color: #14dc99;"></i>
+                                <h3><a href="">Contacto con los administradores</a></h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 mt-4">
+                            <div class="icon-box">
+                                <i class="fas fa-moon" style="color: #ffa500;"></i>
+                                <h3><a href="">Implementación del modo oscuro</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
         <!-- Nosotros -->
         <div id="team" class="row team-container" data-aos="fade-up">
             <div class="col-12 align-items-center text-center">
@@ -149,7 +217,8 @@
                                 <img class="team-img img-fluid" src="{% static 'img/home-team/team-1.jfif' %}"
                                     alt="Image" data-aos="fade-up" data-aos-delay="400">
                             </div>
-                            <card-body>
+
+                            <card-body class="light-mode">
                                 <h2>STEVEN ALEXANDER<br>NIETO DURAN</h2>
                                 <p>
                                     <i class="fa-solid fa-user-tie"></i>
@@ -174,7 +243,7 @@
                                 <img class="team-img img-fluid" src="{% static 'img/home-team/team-2.jfif' %}"
                                     alt="Image" data-aos="fade-up" data-aos-delay="400">
                             </div>
-                            <card-body>
+                            <card-body class="light-mode">
                                 <h2>JAVIER OMAR<br>HARO SOLEDISPA</h2>
                                 <p>
                                     <i class="fa-solid fa-user-tie"></i>
@@ -225,7 +294,7 @@
                         <div class="info">
                             <div>
                                 <i class="ri-map-pin-line"></i>
-                                <p><a href="https://www.google.com/maps/place/CYBER+NARANJAL+CITY/@-2.6742357,-79.6256401,17z/data=!3m1!4b1!4m6!3m5!1s0x9032b98b5de80471:0xc56f07b10f1d590!8m2!3d-2.6742357!4d-79.6207745!16s%2Fg%2F11kb5crss4?entry=ttu"
+                                <p><a href="https://www.google.com/maps/place/UNEMI+-+Universidad+Estatal+de+Milagro/@-2.149223,-79.60552,17z/data=!3m1!4b1!4m6!3m5!1s0x902d465523c50e37:0x70a5136e6272715f!8m2!3d-2.149223!4d-79.6029451!16s%2Fg%2F1tt1j8j4?entry=ttu"
                                         target="_blank">
                                         Universidad Estatal de Milagro (UNEMI) Ecuador - Guayas - Milagro <br>Av. 17 de
                                         Septiembre
@@ -260,8 +329,8 @@
                                     required>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Mensaje"
-                                    required></textarea>
+                                <textarea style="background-color: rgb(205, 205, 205)" class="form-control"
+                                    name="message" rows="5" placeholder="Mensaje" required></textarea>
                             </div>
                             <div class="my-3">
                                 <!--              <div class="loading">Loading</div>-->
@@ -330,6 +399,11 @@
             </div>
         </section>
         <!-- End Contact Section -->
+
+        <br>
+        <br>
+        <br>
+        <br>
 </section>
 
 <!-- Botón de ir arriba -->

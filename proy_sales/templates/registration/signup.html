@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <title>{% block title %} SGV - Registrarse {% endblock title %}</title>
-
+<div id="notification-container"></div>
 <section id="home-signup" class="mt-4" data-aos="fade-up" data-aos-delay="200">
     <div class="container">
         <div class="row home-container" data-aos="fade">
@@ -17,7 +17,7 @@
             <!-- Columna del formulario de registro -->
             <div class="col-lg-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="200">
                 <div id="form-signup" class="form-container-login">
-                    <form id="register-form" method="POST" enctype="multipart/form-data" onsubmit="validarRegistro(event)">
+                    <form id="register-form" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{error}}
                         <!-- Datos de Usuario -->
@@ -58,7 +58,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <!-- Contraseña -->
                         <div class="row">
                             <div class="col-md-6 passwords">
@@ -88,8 +87,65 @@
     </div>
 </section>
 
+<script>
+    function showNotification(message, duration = 5000) {
+        const notificationContainer = document.getElementById('notification-container');
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerText = message;
+        notificationContainer.appendChild(notification);
 
-<script src="{% static 'js/validaciones.js' %}"></script>
+        // Mostrar notificación
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 100);
+
+        // Ocultar y eliminar notificación después de la duración
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                notificationContainer.removeChild(notification);
+            }, 500);
+        }, duration);
+    }
+
+    // Mostrar errores del formulario
+    {% for field in form %}
+        {% for error in field.errors %}
+            showNotification("{{ error }}");
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        showNotification("{{ error }}");
+    {% endfor %}
+</script>
+<script>
+    function showSuccessMessage(message, duration = 5000) {
+        const successContainer = document.getElementById('success-container');
+        const successMessage = document.createElement('div');
+        successMessage.className = 'success-message';
+        successMessage.innerText = message;
+        successContainer.appendChild(successMessage);
+
+        // Mostrar mensaje de éxito
+        setTimeout(() => {
+            successMessage.classList.add('show');
+        }, 100);
+
+        // Ocultar y eliminar mensaje de éxito después de la duración
+        setTimeout(() => {
+            successMessage.classList.remove('show');
+            setTimeout(() => {
+                successContainer.removeChild(successMessage);
+            }, 500);
+        }, duration);
+    }
+
+    // Llamar a la función para mostrar el mensaje de éxito
+    showSuccessMessage("¡Registro exitoso!");
+</script>
+
+<!-- <script src="{% static 'js/validaciones.js' %}"></script> -->
 {% endblock content  %}
 
 {% block navbar %}
