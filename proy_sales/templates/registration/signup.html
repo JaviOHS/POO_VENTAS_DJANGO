@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <title>{% block title %} SGV - Registrarse {% endblock title %}</title>
-<div id="notification-container"></div>
+
 <section id="home-signup" class="mt-4" data-aos="fade-up" data-aos-delay="200">
     <div class="container">
         <div class="row home-container" data-aos="fade">
@@ -11,7 +11,8 @@
                 <div class="welcome-message text-center">
                     <h2 class="title">{{ title2 }}</h2>
                     <p>¡Únete a nuestra comunidad!<br>Regístrate para acceder a nuestros servicios. </p>
-                    <img src="{% static 'img/register/signup.jfif' %}" class="img-fluid mx-auto d-block" alt="Signup" style="width: 70%; border-radius: 25px;">
+                    <img src="{% static 'img/register/signup.jfif' %}" class="img-fluid mx-auto d-block" alt="Signup"
+                        style="width: 70%; border-radius: 25px;">
                 </div>
             </div>
             <!-- Columna del formulario de registro -->
@@ -19,27 +20,38 @@
                 <div id="form-signup" class="form-container-login">
                     <form id="register-form" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{error}}
                         <!-- Datos de Usuario -->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
-                                    {{ form.username }}
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                                        <input type="text" class="form-control" id="id_username" name="username">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
-                                    {{ form.first_name }}
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa-solid fa-user-pen"></i></span>
+                                        <input type="text" class="form-control" id="id_first_name" name="first_name">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="{{ form.dni.id_for_label }}">{{ form.dni.label }}</label>
-                                    {{ form.dni }}
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa-solid fa-address-card"></i></span>
+                                        <input type="text" class="form-control" id="id_dni" name="dni">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
-                                    {{ form.last_name }}
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa-solid fa-user-gear"></i></span>
+                                        <input type="text" class="form-control" id="id_last_name" name="last_name">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -48,13 +60,19 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="{{ form.celular.id_for_label }}">{{ form.celular.label }}</label>
-                                    {{ form.celular }}
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa-solid fa-phone fa-shake"></i></span>
+                                        <input type="text" class="form-control" id="id_celular" name="celular">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="{{ form.correo.id_for_label }}">{{ form.correo.label }}</label>
-                                    {{ form.correo }}
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                        <input type="text" class="form-control" id="id_correo" name="correo">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -65,19 +83,37 @@
                                     <div>
                                         <div class="form-group">
                                             <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
-                                            {{ form.password1 }}
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                                                <input type="password" class="form-control" id="id_password1"
+                                                    name="password1">
+                                                <button class="btn btn-outline-secondary input-btn toggle-password"
+                                                    type="button" data-target="id_password1">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
-                                            {{ form.password2 }}
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                                                <input type="password" class="form-control" id="id_password2"
+                                                    name="password2">
+                                                <button class="btn btn-outline-secondary input-btn toggle-password"
+                                                    type="button" data-target="id_password2">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-details btn-block mt-3" type="submit"><i class="fa-solid fa-user-plus"></i> Registrarse</button><br>
-                            <a class="btn btn-details btn-block" href="{% url 'home' %}"><i class="fas fa-arrow-left"></i> Volver</a>
+                            <button class="btn btn-details btn-block mt-3" type="submit"><i
+                                    class="fa-solid fa-user-plus"></i> Registrarse</button><br>
+                            <a class="btn btn-details btn-block" href="{% url 'home' %}"><i
+                                    class="fas fa-arrow-left"></i> Volver</a>
                         </div>
                     </form>
                 </div>
@@ -86,67 +122,25 @@
         </div>
     </div>
 </section>
-
 <script>
-    function showNotification(message, duration = 5000) {
-        const notificationContainer = document.getElementById('notification-container');
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.innerText = message;
-        notificationContainer.appendChild(notification);
-
-        // Mostrar notificación
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 100);
-
-        // Ocultar y eliminar notificación después de la duración
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                notificationContainer.removeChild(notification);
-            }, 500);
-        }, duration);
-    }
-
-    // Mostrar errores del formulario
-    {% for field in form %}
-        {% for error in field.errors %}
-            showNotification("{{ error }}");
-        {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-        showNotification("{{ error }}");
-    {% endfor %}
+    document.querySelectorAll(".toggle-password").forEach(function(btn) {
+        btn.addEventListener("click", function () {
+            var targetId = this.getAttribute("data-target");
+            var passwordInput = document.getElementById(targetId);
+            var icon = this.querySelector("i");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        });
+    });
 </script>
-<script>
-    function showSuccessMessage(message, duration = 5000) {
-        const successContainer = document.getElementById('success-container');
-        const successMessage = document.createElement('div');
-        successMessage.className = 'success-message';
-        successMessage.innerText = message;
-        successContainer.appendChild(successMessage);
-
-        // Mostrar mensaje de éxito
-        setTimeout(() => {
-            successMessage.classList.add('show');
-        }, 100);
-
-        // Ocultar y eliminar mensaje de éxito después de la duración
-        setTimeout(() => {
-            successMessage.classList.remove('show');
-            setTimeout(() => {
-                successContainer.removeChild(successMessage);
-            }, 500);
-        }, duration);
-    }
-
-    // Llamar a la función para mostrar el mensaje de éxito
-    showSuccessMessage("¡Registro exitoso!");
-</script>
-
-<!-- <script src="{% static 'js/validaciones.js' %}"></script> -->
-{% endblock content  %}
+{% endblock content %}
 
 {% block navbar %}
 {% endblock navbar %}

@@ -3,7 +3,7 @@ from core import views
  
 app_name='core' # define un espacio de nombre para la aplicación
 urlpatterns = [    
-    path('', views.home_guest, name='home'),  # Página de inicio para todos los usuarios'
+    path('', views.home, name='home'),  # Página de inicio para todos los usuarios'
 
     # Otras URLs
     path('signup/', views.signup, name='signup'),

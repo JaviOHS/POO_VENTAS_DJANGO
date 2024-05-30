@@ -2,7 +2,9 @@
 {% load static %}
 <title>{% block title %} SGV - Home {% endblock title %}</title>
 {% block content %}
+
 <section id="home-content" class="mt-4 d-flex justify-content-center align-items-center">
+
     <!-- Nuevo código para mostrar sobre el formulario -->
     {% if not user.is_authenticated %}
     <div class="modal-overlay blur-background no-scroll" data-aos="fade-up" data-aos-delay="50">
@@ -53,6 +55,7 @@
     </div>
     {% endif %}
 
+    <!-- Contenedor principal -->
     <div class="container">
         <div class="row home-container" data-aos="fade">
             <!-- Mensaje de bienvenida a la izquierda -->
@@ -71,7 +74,7 @@
                             class="fa-solid fa-user-secret"></i></p>
                     {% endif %}
 
-                    <h2>Explora nuestro increíble sistema!</h2>
+                    <h2>¡Explora nuestro increíble sistema! </h2>
                     <span>Te invitamos a descubrir un mundo de múltiples posibilidades y beneficios, con el objetivo de
                         optimizar tu emprendimiento al siguiente nivel.</span><br>
                     <a href="#info">
@@ -90,6 +93,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Informacion -->
         <div id="info" class="row info-container" data-aos="fade-up">
             <div class="col-12 align-items-center">
@@ -115,8 +119,7 @@
                                 <p>Realiza ventas identificando nuevas oportunidades de negocio y cerrando más acuerdos.
                                 </p>
                             </div>
-                            <div class="info-card info-card-info d-flex flex-column align-items-center"
-                                data-aos="fade-up" data-aos-delay="400">
+                            <div class="info-card info-card-info d-flex flex-column align-items-center">
                                 <i class="fas fa-users"></i>
                                 <h2 class="info-title-cards">Mejorar la satisfacción del cliente</h2>
                                 <p>El cliente recibe un servicio personalizado y una atención excepcional lo que
@@ -138,7 +141,7 @@
             </div>
         </div>
 
-        <!-- ======= Sección de Características ======= -->
+        <!-- Caracteristicas -->
         <section id="features" class="features">
             <br><br><br>
             <div class="container">
@@ -146,7 +149,6 @@
                     <div class="section-title" data-aos="fade-up">
                         <h2>Características de nuestra aplicación</h2>
                     </div>
-
                     <div class="row" data-aos="fade-up" data-aos-delay="300">
                         <div class="col-lg-3 col-md-4">
                             <div class="icon-box">
@@ -175,7 +177,7 @@
                         <div class="col-lg-3 col-md-4 mt-4">
                             <div class="icon-box">
                                 <i class="fas fa-check-circle" style="color: #ffa76e;"></i>
-                                <h3><a href="">Servisio Garantizados</a></h3>
+                                <h3><a href="">Servicios Garantizados</a></h3>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4 mt-4">
@@ -198,10 +200,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
-
 
         <!-- Nosotros -->
         <div id="team" class="row team-container" data-aos="fade-up">
@@ -265,7 +265,8 @@
                 </div>
             </div>
         </div>
-        <!-- ======= Contact Section ======= -->
+
+        <!-- Contacto -->
         <section id="contact" class="contact" style="margin-top: 100px;">
             <div class="container">
                 <div class="section-title" data-aos="fade-up">
@@ -276,11 +277,9 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="contact-about">
                             <div class="logo">
-                                <a href="index.html"><img src="static/img/logo1.png" alt="" class="img-fluid"></a>
+                                <a class="navbar-brand" href="#" style="font-size: 24px;">TeacherCode <i class="fa-solid fa-crown"></i></a>
                             </div>
-                            <p style="text-align: justify;">Estamos aquí para ayudarte a impulsar el crecimiento de tu
-                                negocio mediante una gestión de ventas inteligente y orientada al futuro. Confía en
-                                nosotros para llevar tu proceso de ventas al siguiente nivel.</p>
+                            <p style="text-align: justify;">"En nuestro corazón late el deseo ferviente de ser parte de tu éxito. Queremos ser el impulso que eleva tus sueños, la chispa que enciende tu visión. Confía en nosotros para ser tus aliados en esta travesía hacia el triunfo. Juntos, llevaremos tu negocio más allá de lo imaginable. Tu éxito es nuestro mayor logro."</p><span class="autor">- BurritoGPT <i class="fa-solid fa-users-rays"></i></span>
                             <div class="social-links">
                                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -337,7 +336,7 @@
                                 <!--              <div class="error-message"></div>-->
                                 <div class="sent-message">Tu mensaje ha sido enviado. ¡Gracias!</div>
                             </div>
-                            <div class="text-center"><button type="submit">Enviar Mensaje</button></div>
+                            <div class="text-center"><button type="submit" class="btn btn-details"><i class="ri-send-plane-fill"></i> Enviar Mensaje</button></div>
                         </form>
                     </div>
                     <script>
@@ -399,11 +398,6 @@
             </div>
         </section>
         <!-- End Contact Section -->
-
-        <br>
-        <br>
-        <br>
-        <br>
 </section>
 
 <!-- Botón de ir arriba -->

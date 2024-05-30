@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 <title>{% block title %} SGV - Iniciar sesión {% endblock title %}</title>
-<div id="notification-container" data-aos="fade-up" data-aos-delay="100"></div>
 <section id="home-signin" class="mt-4" data-aos="fade-up" data-aos-delay="200">
     <div class="container">
         <div class="row home-container" data-aos="fade">
@@ -22,18 +21,26 @@
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
-                            {{ form.username }}
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                                <input type="text" class="form-control" id="id_username" name="username">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
-                            {{ form.password }}
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                                <input type="password" class="form-control" id="id_password" name="password">
+                                <button class="btn btn-outline-secondary input-btn" type="button" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="text-center">
                             <button class="btn btn-details btn-block mt-3" type="submit"><i
                                     class="fas fa-sign-in-alt"></i> Iniciar sesión</button> <!-- Agregado icono -->
-                            <button class="btn btn-details btn-block mt-2"
-                                onclick="window.location.href='{% url 'home' %}'"><i class="fas fa-arrow-left"></i>
-                                Volver</button> <!-- Agregado icono -->
+                            <a class="btn btn-details btn-block" href="{% url 'home' %}"><i
+                                    class="fas fa-arrow-left"></i> Volver</a>
                         </div>
                     </form>
                 </div>
@@ -42,39 +49,22 @@
         <p class="lol text-center mt-3">¿No tienes una cuenta? <a href="{% url 'signup' %}">Regístrate</a></p>
     </div>
 </section>
-
 <script>
-    function showNotification(message, duration = 5000) {
-        const notificationContainer = document.getElementById('notification-container');
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.innerText = message;
-        notificationContainer.appendChild(notification);
-
-        // Mostrar notificación
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 100);
-
-        // Ocultar y eliminar notificación después de la duración
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                notificationContainer.removeChild(notification);
-            }, 500);
-        }, duration);
-    }
-
-    // Mostrar errores del formulario
-    {% for field in form %}
-    {% for error in field.errors %}
-    showNotification("{{ error }}");
-    {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-    showNotification("{{ error }}");
-    {% endfor %}
+    document.getElementById("togglePassword").addEventListener("click", function () {
+        var passwordInput = document.getElementById("id_password");
+        var icon = this.querySelector("i");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    });
 </script>
+
 {% endblock content %}
 
 {% block navbar %}

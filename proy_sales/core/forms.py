@@ -1,8 +1,5 @@
 from django import forms
-from core.models import Product
-from core.models import Brand
-from core.models import Supplier
-from core.models import Category
+from core.models import Product, Brand, Supplier, Category
 from django.utils import timezone
 import datetime
 
@@ -24,6 +21,14 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['description', 'price', 'stock', 'brand', 'categories', 'line', 'supplier', 'expiration_date', 'image', 'state']
+        error_messages = {
+            'description': {
+                'unique': "Ya existe un producto con este nombre.",
+            },
+            'supplier': {
+                'unique': "Ya existe un producto con este proveedor.",
+            },
+        }
         widgets = {
             'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese descripción del producto', 'id': 'id_description'}),
             'price': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese precio del producto', 'id': 'id_price'}),
@@ -54,10 +59,19 @@ class ProductForm(forms.ModelForm):
         if not self.instance.pk:  # Solo establecer el valor predeterminado si el objeto es nuevo
             self.fields['expiration_date'].initial = (timezone.now() + datetime.timedelta(days=30)).date().isoformat()
 
+    def clean_description(self):
+        description = self.cleaned_data.get('description')
+        return description.upper()
+
 class BrandForm(forms.ModelForm):
     class Meta:
         model = Brand
         fields = ['description', 'state']
+        error_messages = {
+            'description': {
+                'unique': "Ya existe una marca con este nombre.",
+            },
+        }
         widgets = {
             'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese descripción de la marca'}),
             'state': forms.CheckboxInput(attrs={'class': 'form-check-input'})
@@ -67,10 +81,25 @@ class BrandForm(forms.ModelForm):
             'state': 'Estado', # Agrega la etiqueta para el campo 'state'
         }
 
+    def clean_description(self):
+        description = self.cleaned_data.get('description')
+        return description.upper()
+
 class SupplierForm(forms.ModelForm):
     class Meta:
         model = Supplier
         fields = ['name','ruc','address','phone', 'state', 'image']
+        error_messages = {
+            'ruc': {
+                'unique': "Ya existe un proveedor con este RUC.",
+            },
+            'phone': {
+                'unique': "Ya existe un proveedor con este número de celular.",
+            },
+            'name': {
+                'unique': "Ya existe un proveedor con este nombre.",
+            },
+        }
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese nombre del proveedor', 'id': 'id_name'}),
             'ruc': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese RUC del proveedor', 'id': 'id_ruc'}),
@@ -88,10 +117,19 @@ class SupplierForm(forms.ModelForm):
             'image': 'Imagen',
         }
 
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        return name.upper()
+
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['description','state']
+        error_messages = {
+            'description': {
+                'unique': "Ya existe una categoría con este nombre.",
+            },
+        }
         widgets = {
             'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese categoría'}),
             'state': forms.CheckboxInput(attrs={'class': 'form-check-input'})
@@ -100,3 +138,7 @@ class CategoryForm(forms.ModelForm):
             'description': 'Categoría',
             'state': 'Estado', 
         }
+
+    def clean_description(self):
+        description = self.cleaned_data.get('description')
+        return description.upper()

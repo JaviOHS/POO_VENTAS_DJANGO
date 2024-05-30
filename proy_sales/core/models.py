@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
-from proy_sales.utils import phone_regex, valida_cedula
+from proy_sales.utils import phone_regex, valida_cedula, valida_numero_flotante_positivo, valida_numero_entero_positivo
 
 class CustomUser(AbstractUser):
     dni = models.CharField(max_length=10,unique=True,validators=[valida_cedula])
@@ -37,7 +37,7 @@ class Brand(models.Model):
         return self.description
 
 class Supplier(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     ruc = models.CharField(max_length=10,validators=[valida_cedula],unique=True) 
     address = models.CharField(max_length=200)
     phone = models.CharField(max_length=10,validators=[phone_regex],unique=True)
@@ -82,8 +82,8 @@ class Product(models.Model):
         COMISARIATO = 'CS', 'Comisariato'
 
     description = models.CharField(max_length=100,unique=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    stock = models.IntegerField(default=100)
+    price = models.DecimalField(max_digits=10, decimal_places=2,validators=[valida_numero_flotante_positivo])
+    stock = models.IntegerField(default=100,validators=[valida_numero_entero_positivo])
     expiration_date = models.DateTimeField(default=timezone.now() + datetime.timedelta(days=30))
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='product', verbose_name='Marca')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

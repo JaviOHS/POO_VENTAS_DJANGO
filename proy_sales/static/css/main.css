@@ -342,8 +342,6 @@ span {
 }
 
 .module-head h2 {
-    text-transform: uppercase;
-    /* Convertir el texto del h2 en mayúsculas */
     color: var(--title);
     font-weight: 800;
     font-size: 32px;
@@ -577,6 +575,22 @@ form input[type="password"]:focus,
     border-radius: 25px;
 }
 
+.input-btn, .input-group-text{
+    margin: 10px 0 25px;
+    padding: 10px;
+    height: auto;
+    background-color: var(--subtitle);
+    border: none;
+    color: var(--content);
+}
+
+.input-group-text {
+    background-color: var(--color-1);
+    padding-left: 15px;
+    padding-right: 15px;
+    color: whitesmoke;
+}
+
 /* Estilos para Sweet Alert */
 .dark-popup {
     background: var(--content) !important;
@@ -767,25 +781,30 @@ form input[type="password"]:focus,
 }
 
 a {
-    color: rgb(255 255 255);
-    text-decoration: underline;
+    color: var(--subtitle);
+    text-decoration: none;
+    font-weight: 800;
 }
 
 .contact .contact-about p {
-    font-size: 14px;
-    line-height: 24px;
-    font-family: "Raleway", sans-serif;
-    color: #888;
+    font-size: 16px;
+    color: var(--subtitle);
+    font-weight: 500;
+    font-style: italic;
+}
+
+.contact .contact-about .autor {
+    color: var(--color-1);
 }
 
 .contact .social-links {
-    padding-bottom: 20px;
+    padding: 20px;
 }
 
 .contact .social-links a {
     font-size: 18px;
     display: inline-block;
-    background: #fff;
+    background: var(--title);
     color: #000000;
     line-height: 1;
     padding: 8px 0;
@@ -800,7 +819,7 @@ a {
 }
 
 .contact .social-links a:hover {
-    background: gold;
+    background: var(--subtitle);
     color: #000000;
     text-decoration: none;
 }
@@ -913,7 +932,7 @@ a {
     width: 100%;
     /* Ocupa todo el ancho de la ventana */
     background: #000000;
-    box-shadow: 0px 0px 50px 0px rgba(255, 217, 0, 0.487);
+    box-shadow: 0px 0px 50px 0px rgba(207, 200, 160, 0.487);
     padding: 20px 0;
     color: #ffffff;
     /* position: fixed; */
@@ -925,7 +944,7 @@ a {
 
 .footer p {
     color: var(--subtitle);
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .footer a {
@@ -941,8 +960,10 @@ a {
     margin: 0 auto;
 }
 
+/* Esto es para el enlace de 'No tienes cuenta? Registrate' o 'Ya tienes cuenta? Inicia sesion', no sabia que nombre ponerle  */
 .lol a {
     text-decoration: none;
+    color: var(--labels);
 }
 
 .lol a:hover {
@@ -1046,31 +1067,77 @@ a {
 }
 
 
-/* Notificaciones en login */
+/* Notificaciones en error */
 #notification-container {
     position: fixed;
     top: 20px;
     right: 20px;
     display: flex;
-    flex-direction: column; /* Cambiar el flujo a vertical */
-    align-items: flex-end; /* Alinear las notificaciones a la derecha */
+    flex-direction: column;
+    align-items: center;
     z-index: 1000;
 }
 
-.notification {
-    background-color: #f44336;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
+.card.notification-card {
+    padding: 0;
+    /* Elimina el padding extra, ya que la card tiene su propio padding */
+    border-radius: 0.25rem;
     opacity: 0;
-    transition: opacity 0.5s ease;
-    margin-bottom: 10px; /* Espacio entre notificaciones */
-    font-size: 16px;
-    width: auto;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    max-width: 300px;
+    word-wrap: break-word;
 }
 
-.notification.show {
+.card-header.bg-danger {
+    background-color: #b80000;
+    /* Rojo */
+    color: white;
+}
+
+.card-header i {
+    font-size: 20px;
+    margin-right: 0.5rem;
+}
+
+.card-body {
+    font-size: 18px;
+    padding: 1rem;
+    font-weight: 400;
+}
+
+.card-body.text-danger {
+    color: #b80000;
+    /* Rojo para el texto */
+}
+
+.notification-card.show {
     opacity: 1;
+    transform: translateY(0);
+    /* Posición final */
+}
+
+.notification-card {
+    transform: translateY(-20px);
+    /* Posición inicial para animación */
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+.notification-card {
+    animation: fadeout 5s forwards;
 }
 
 /* Estilos para el modo claro */
@@ -1286,8 +1353,25 @@ body.light-mode {
         color: #888;
     }
 
-    .contact .social-links a:hover {
+    .contact .social-links a {
+        font-size: 18px;
+        display: inline-block;
         background: #18d26e;
+        color: #000000;
+        line-height: 1;
+        padding: 8px 0;
+        margin-right: 4px;
+        border-radius: 50%;
+        text-align: center;
+        width: 36px;
+        height: 36px;
+        transition: 0.3s;
+        text-decoration: none;
+        border: none;
+    }
+
+    .contact .social-links a:hover {
+        background: #0A3D62;
         color: #ffffff;
         text-decoration: none;
     }
@@ -1315,8 +1399,12 @@ body.light-mode {
         text-decoration: none;
     }
 
+    .lol a {
+        color: #0A3D62;
+    }
+
     a:hover {
-        color: #14dc99; 
+        color: #14dc99;
     }
 
     #footer {
@@ -1329,7 +1417,7 @@ body.light-mode {
 
     .footer p {
         color: var(--subtitle);
-        font-size: 15px;
+        font-size: 18px;
     }
 
     .footer a {
@@ -1370,5 +1458,21 @@ body.light-mode {
         transform: scale(1.05);
         /* Aumenta el tamaño al pasar el cursor */
         border: 4px solid #14dc99;
+    }
+
+    .input-btn, .input-group-text{
+        margin: 10px 0 25px;
+        padding: 10px;
+        height: auto;
+        background-color: rgb(205, 205, 205);
+        border: none;
+        color: var(--content);
+    }
+    
+    .input-group-text {
+        background-color: #0A3D62;
+        padding-left: 15px;
+        padding-right: 15px;
+        color: whitesmoke;
     }
 }

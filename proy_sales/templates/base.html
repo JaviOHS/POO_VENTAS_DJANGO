@@ -102,12 +102,58 @@
     </header>
     {% endblock navbar %}
 
+    <!-- Alertas de éxito -->
+    {% block success %}
+    {% if messages %}
+    <div id="notification-container">
+        {% for message in messages %}
+        <div class="card notification-card border-success mb-3 show">
+            <div class="card-header bg-success text-white text-center">
+                <i class="fa-solid fa-thumbs-up"></i> ÉXITO
+            </div>
+            <div class="card-body text-success">
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endblock success %}
+
+    <!-- Alertas de error -->
+    {% block error %}
+    <div id="notification-container">
+        {% if form.errors %}
+        <div class="card notification-card border-danger mb-3 show">
+            <div class="card-header bg-danger text-white text-center">
+                <i class="fa-solid fa-bug"></i> ERROR
+            </div>
+            <div class="card-body text-danger">
+                <ul class="list-unstyled mb-0"><hr>
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <li><strong>{{ field.label }}:</strong> 
+                        <br>{{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul><hr>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% endblock error %}
+
+    <!-- Contenido -->
     <section id="content" class="mt-4 d-flex justify-content-center align-items-center">
         {% block content %}
+
         {% endblock content %}
     </section>
 
-    <!-- ======= Footer ======= -->
+    <!-- Footer -->
     <footer id="footer">
         <div class="container">
             <div style="text-align:center" class="footer row d-flex align-items-center">
@@ -123,14 +169,16 @@
             </div>
         </div>
     </footer>
-    <!-- End Footer -->
+    
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{% static 'js/sweet_alert.js' %}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
         integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
 
     <script>
         AOS.init();
@@ -196,7 +244,7 @@
                         if (body.classList.contains('dark-mode')) {
                             link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--title').trim();
                         } else {
-                            link.style.color = '#14dc99'; // color rojo para el modo claro
+                            link.style.color = '#14dc99';
                         }
                     }
                 });
