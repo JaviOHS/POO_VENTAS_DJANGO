@@ -27,233 +27,439 @@
     <!-- Iconos -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <!-- Whatsaap -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'plugin/whatsapp-chat-support.css' %}">
+    <link rel="stylesheet" href="{% static 'plugin/components/Font Awesome/css/font-awesome.min.css' %}">
     <!-- Titulo -->
     <title>{% block title %} SGV {% endblock title %}</title>
 </head>
+<div id="content">
 
-<body class="light-mode">
-    {% block navbar %}
-    <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">TeacherCode <i class="fa-solid fa-crown"></i></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}"><i class="ri-home-2-fill"></i></a>
+    <body class="light-mode">
+        {% block navbar %}
+        <header id="header">
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">TeacherCode <i class="fa-solid fa-crown"></i></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}"><i class="fa-solid fa-house"></i></a>
+                            </li>
+                            {% if user.is_authenticated %}
+                            {% if user.is_superuser %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'core:product_list' %}">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'core:category_list' %}">Categorías</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'core:brand_list' %}">Marcas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'core:supplier_list' %}">Proveedores</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'purchase:shop' %}">Tienda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'purchase:shopping_cart' %}">Carrito de Compras</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'purchase:shopping_list' %}">Mis compras</a>
+                            </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a class="btn btn-cancel" href="{% url 'logout' %}" style="text-decoration: none;"><i
+                                        class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar sesión</a>
+                            </li>
+                            {% else %}
+                            <!-- BOTONES PARA EL MODO INVITADO -->
+                            <li class="nav-item">
+                                <a href="{% url 'signup' %}" class="btn btn-details" style="margin-right: 10px;"><i
+                                        class="fa-solid fa-user-plus"></i> Registrarse</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'signin' %}" class="btn btn-details" style="margin-right: 10px;"><i
+                                        class="fa-solid fa-user -check"></i> Iniciar Sesión</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        <div class="profile-picture-container" data="fa-arrow-left">
+                            {% if user.is_authenticated %}
+                            {% if user.get_profile_picture_url %}
+                            <div class="profile-picture">
+                                <img id="profile-picture" src="{{ user.get_profile_picture_url }}" alt="Profile Picture"
+                                    style="border: none;">
+                            </div>
+                            {% else %}
+                            <div class="profile-picture">
+                                <img id="profile-picture" src="{% static 'img/default_person.png' %}"
+                                    alt="Default Profile Picture">
+                            </div>
+                            {% endif %}
+                            {% else %}
+                            <div class="profile-picture">
+                                <img id="profile-picture" src="{% static 'img/usuario_anonimo.png' %}"
+                                    alt="Anonymous Profile Picture">
+                            </div>
+                            {% endif %}
+                            <div id="profile-menu" class="profile-menu" data-aos="fade-up" data-aos-delay="50">
+                                <div id="profile-menu-items" class="hidden">
+                                    {% if user.is_authenticated %}
+                                    <p class="text-center"><span class="username">@{{ user.username }}</span></p>
+                                    <a href="{% url 'profile' %}">PERFIL DE USUARIO</a>
+                                    {% endif %}
+                                    <div class="toggle-container">
+                                        <div class="toggle-wrapper">
+                                            <div class="toggle-custom">
+                                                <input type="checkbox" id="toggle-custom" />
+                                                <label for="toggle-custom">
+                                                    <span class="moon"><i class="fas fa-moon"></i></span>
+                                                    <span class="sun"><i class="fas fa-sun"></i></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#" id="menu-button">TEMAS</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        {% endblock navbar %}
+
+        <!-- Menú de Temas -->
+        <div id="menu" class="closed sidebar d-flex flex-column justify-content-center align-items-center"
+            style="height: 100vh;">
+            <div style="margin-top: 7vh;"
+                class="sidebar-header d-flex justify-content-between align-items-center px-3 py-2">
+                <h2 style="font-size: 24px;text-align: center;">Temas de la aplicación</h2>
+                <div id="menu-toggle">
+                    <span id="menu-icon">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="sidebar-body">
+                <div class="opcion-color d-flex align-items-center justify-content-between px-3 py-2"
+                    onclick="togglePinkMode()">
+                    <div class="color" style="background-color: pink;"></div>
+                </div>
+            </div>
+            <div class="sidebar-body">
+                <div class="opcion-color d-flex align-items-center justify-content-between px-3 py-2"
+                    onclick="no_disponible()">
+                    <div class="color" style="background-color: green;"></div>
+                </div>
+            </div>
+            <div class="sidebar-body">
+                <div class="opcion-color d-flex align-items-center justify-content-between px-3 py-2"
+                    onclick="no_disponible()">
+                    <div class="color" style="background-color: purple;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alertas de éxito -->
+        {% block success %}
+        {% if messages %}
+        <div id="notification-container">
+            {% for message in messages %}
+            <div class="card notification-card border-success mb-3 show">
+                <div class="card-header bg-success text-white text-center">
+                    <i class="fa-solid fa-thumbs-up"></i> ÉXITO
+                </div>
+                <div class="card-body text-success">
+                    {{ message }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endblock success %}
+
+        <!-- Alertas de error -->
+        {% block error %}
+        <div id="notification-container">
+            {% if form.errors %}
+            <div class="card notification-card border-danger mb-3 show">
+                <div class="card-header bg-danger text-white text-center">
+                    <i class="fa-solid fa-bug"></i> ERROR
+                </div>
+                <div class="card-body text-danger">
+                    <ul class="list-unstyled mb-0">
+                        <hr>
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <li><strong>{{ field.label }}:</strong>
+                            <br>{{ error }}
                         </li>
-                        {% if user.is_authenticated %}
-                        {% if user.is_superuser %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'core:product_list' %}">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'core:category_list' %}">Categorías</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'core:brand_list' %}">Marcas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'core:supplier_list' %}">Proveedores</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'purchase:shop' %}">Tienda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'purchase:shopping_cart' %}">Carrito de Compras</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'purchase:shopping_list' %}">Mis compras</a>
-                        </li>
-                        {% endif %}
-                        <li class="nav-item">
-                            <a class="btn btn-cancel" href="{% url 'logout' %}" style="text-decoration: none;"><i
-                                    class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar
-                                sesión</a>
-                        </li>
-                        {% else %}
-                        <!-- BOTONES PARA EL MODO INVITADO -->
-                        <li class="nav-item">
-                            <a href="{% url 'signup' %}" class="btn btn-details" style="margin-right: 10px;"><i
-                                    class="fa-solid fa-user-plus"></i> Registrarse</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{% url 'signin' %}" class="btn btn-details" style="margin-right: 10px;"><i
-                                    class="fa-solid fa-user-check"></i> Iniciar
-                                Sesión</a>
-                        </li>
-                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
                     </ul>
-                    <div style="text-align: center;" class="toggle-custom">
-                        <input type="checkbox" id="toggle-custom" />
-                        <label for="toggle-custom">
-                            <span class="moon"><i class="fas fa-moon"></i></span>
-                            <span class="sun"><i class="fas fa-sun"></i></span>
-                        </label>
+                    <hr>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endblock error %}
+
+        <!-- Contenido -->
+        <section id="content" class="mt-4 d-flex justify-content-center align-items-center">
+            {% block content %}
+
+            {% endblock content %}
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="container">
+                <div style="text-align:center" class="footer row d-flex align-items-center">
+                    <div class="copyright">
+                        <p>
+                            &copy; Copyright <span class="username">Sistema de Gestion de Ventas</span>. <br>Reservados
+                            todos los derechos
+                            <br>
+                            Diseñado por <a href="https://github.com/Alexis2024" target="_blank">Alex Duran</a> y <a
+                                href="https://github.com/JaviOHS" target="_blank">Javier Haro</a>
+                        </p>
                     </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    {% endblock navbar %}
+        </footer>
+</div>
 
-    <!-- Alertas de éxito -->
-    {% block success %}
-    {% if messages %}
-    <div id="notification-container">
-        {% for message in messages %}
-        <div class="card notification-card border-success mb-3 show">
-            <div class="card-header bg-success text-white text-center">
-                <i class="fa-solid fa-thumbs-up"></i> ÉXITO
-            </div>
-            <div class="card-body text-success">
-                {{ message }}
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-    {% endblock success %}
+<!-- Botón de ir arriba -->
+<button onclick="topFunction()" id="goTopBtn" title="Ir arriba"><i class="fa-solid fa-caret-up"></i></button>
 
-    <!-- Alertas de error -->
-    {% block error %}
-    <div id="notification-container">
-        {% if form.errors %}
-        <div class="card notification-card border-danger mb-3 show">
-            <div class="card-header bg-danger text-white text-center">
-                <i class="fa-solid fa-bug"></i> ERROR
-            </div>
-            <div class="card-body text-danger">
-                <ul class="list-unstyled mb-0"><hr>
-                    {% for field in form %}
-                    {% for error in field.errors %}
-                    <li><strong>{{ field.label }}:</strong> 
-                        <br>{{ error }}</li>
-                    {% endfor %}
-                    {% endfor %}
-                    {% for error in form.non_field_errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul><hr>
-            </div>
-        </div>
-        {% endif %}
-    </div>
-    {% endblock error %}
-
-    <!-- Contenido -->
-    <section id="content" class="mt-4 d-flex justify-content-center align-items-center">
-        {% block content %}
-
-        {% endblock content %}
-    </section>
-
-    <!-- Footer -->
-    <footer id="footer">
-        <div class="container">
-            <div style="text-align:center" class="footer row d-flex align-items-center">
-                <div class="copyright">
-                    <p>
-                        &copy; Copyright <span class="username">Sistema de Gestion de Ventas</span>. <br>Reservados
-                        todos los derechos
-                        <br>
-                        Diseñado por <a href="https://github.com/Alexis2024" target="_blank">Alex Duran</a> y <a
-                            href="https://github.com/JaviOHS" target="_blank">Javier Haro</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{% static 'js/sweet_alert.js' %}"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
-        integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{% static 'js/sweet_alert.js' %}"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+    integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
     </script>
 
-    <script>
-        AOS.init();
-    </script>
+<script>
+    AOS.init();
+</script>
 
-    <script>
-        // Mostrar el botón cuando se desplaza hacia arriba
-        $(document).ready(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 100) {
-                    $('#goTopBtn').addClass('active');
-                } else {
-                    $('#goTopBtn').removeClass('active');
-                }
-            });
-            // Volver al principio de la página al hacer clic en el botón con una transición suave
-            $('#goTopBtn').click(function () {
-                $('html, body').animate({ scrollTop: 0 }, 0); // Duración de la animación: 1000 milisegundos (1 segundo)
-                return false;
-            });
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const currentPath = window.location.pathname;
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+                link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--title').trim();
+            }
         });
-    </script>
+    });
+</script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggleSwitch = document.getElementById('toggle-custom');
-            const body = document.querySelector('body');
+<script>
+    function no_disponible() {
+        DarkSwal.fire({
+            icon: 'info',
+            title: '<h2 class="dark-title">¡Lo sentimos!</h2>',
+            text: 'Esta funcionalidad aún no está disponible. ¡Estamos trabajando en ello!',
+            confirmButtonText: 'Entendido'
+        });
+    }
+</script>
+<script>
+    // Mostrar el botón cuando se desplaza hacia arriba
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#goTopBtn').addClass('active');
+            } else {
+                $('#goTopBtn').removeClass('active');
+            }
+        });
+        // Volver al principio de la página al hacer clic en el botón con una transición suave
+        $('#goTopBtn').click(function () {
+            $('html, body').animate({ scrollTop: 0 }, 0); // Duración de la animación: 1000 milisegundos (1 segundo)
+            return false;
+        });
+    });
+</script>
 
-            // Recuperar el estado del modo oscuro desde el localStorage al cargar la página
-            const isDarkMode = localStorage.getItem('darkMode') === 'true';
-            if (isDarkMode) {
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleSwitch = document.getElementById('toggle-custom');
+        const body = document.querySelector('body');
+
+        // Recuperar el estado del modo oscuro desde el localStorage al cargar la página
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        if (isDarkMode) {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            toggleSwitch.checked = true;
+        } else {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+            toggleSwitch.checked = false;
+        }
+
+        toggleSwitch.addEventListener('change', function () {
+            if (this.checked) {
                 body.classList.remove('light-mode');
                 body.classList.add('dark-mode');
-                toggleSwitch.checked = true;
+                // Guardar el estado del modo oscuro en el localStorage
+                localStorage.setItem('darkMode', 'true');
             } else {
                 body.classList.remove('dark-mode');
                 body.classList.add('light-mode');
-                toggleSwitch.checked = false;
+                // Guardar el estado del modo claro en el localStorage
+                localStorage.setItem('darkMode', 'false');
             }
-
-            toggleSwitch.addEventListener('change', function () {
-                if (this.checked) {
-                    body.classList.remove('light-mode');
-                    body.classList.add('dark-mode');
-                    // Guardar el estado del modo oscuro en el localStorage
-                    localStorage.setItem('darkMode', 'true');
-                } else {
-                    body.classList.remove('dark-mode');
-                    body.classList.add('light-mode');
-                    // Guardar el estado del modo claro en el localStorage
-                    localStorage.setItem('darkMode', 'false');
-                }
-                // Actualizar el color de los enlaces activos
-                updateNavLinkColors();
-            });
-
-            function updateNavLinkColors() {
-                const navLinks = document.querySelectorAll('.nav-link');
-                const currentPath = window.location.pathname;
-
-                navLinks.forEach(link => {
-                    if (link.getAttribute('href') === currentPath) {
-                        if (body.classList.contains('dark-mode')) {
-                            link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--title').trim();
-                        } else {
-                            link.style.color = '#14dc99';
-                        }
-                    }
-                });
-            }
-
-            // Inicializar el color de los enlaces activos al cargar la página
+            // Actualizar el color de los enlaces activos
             updateNavLinkColors();
         });
-    </script>
+
+        function updateNavLinkColors() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const currentPath = window.location.pathname;
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    if (body.classList.contains('dark-mode')) {
+                        link.style.color = getComputedStyle(document.documentElement).getPropertyValue('--title').trim();
+                    } else {
+                        link.style.color = '#14dc99';
+                    }
+                }
+            });
+        }
+
+    });
+</script>
+
+<script>
+    const profilePicture = document.getElementById('profile-picture');
+    const profileMenu = document.getElementById('profile-menu-items');
+
+    if (profilePicture && profileMenu) {
+        profilePicture.addEventListener('mouseover', () => {
+            profileMenu.classList.add('show');
+        });
+
+        profileMenu.addEventListener('mouseleave', () => {
+            profileMenu.classList.remove('show');
+        });
+    }
+</script>
+
+<!-- jQuery 1.8+ -->
+<script src="{% static 'plugin/components/jQuery/jquery-1.11.3.min.js' %}"></script>
+<!-- Plugin JS file -->
+<script src="{% static 'plugin/components/moment/moment.min.js' %}"></script>
+<script src="{% static 'plugin/components/moment/moment-timezone-with-data.min.js' %}"></script>
+<script src="{% static 'plugin/whatsapp-chat-support.js' %}"></script>
+<script>
+    $('#button-w').whatsappChatSupport({
+        defaultMsg: '',
+    });
+
+    $(document).ready(function () {
+        $('#menu-button').click(function (e) {
+            e.preventDefault();
+            $('#menu').toggleClass('open');
+        });
+    });
+
+
+    function openMenu() {
+        const body = document.querySelector('body');
+        body.classList.add('menu-open');
+        menu.classList.add('open');
+        menuIcon.classList.remove('open');
+        menuIcon.classList.add('closed');
+    }
+
+    function closeMenu() {
+        const body = document.querySelector('body');
+        body.classList.remove('menu-open');
+        menu.classList.remove('open');
+        menuIcon.classList.remove('closed');
+        menuIcon.classList.add('open');
+    }
+
+
+
+
+
+    // MODO PINK
+    function togglePinkMode() {
+        const body = document.body;
+        body.classList.toggle('pink-mode');
+        body.classList.toggle('light-mode'); // Alternar también la clase 'light-mode'
+
+        // Verificar si el modo de color está activado y guardar en el localStorage
+        const isPinkMode = body.classList.contains('pink-mode');
+        localStorage.setItem('pinkMode', isPinkMode);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const body = document.body;
+        const isPinkMode = localStorage.getItem('pinkMode') === 'true';
+
+        // Aplicar el modo de color guardado al cargar la página
+        if (isPinkMode) {
+            body.classList.add('pink-mode');
+            body.classList.remove('light-mode');
+        }
+    });
+
+
+
+</script>
+
+<script>
+    // Función para mostrar el contenido
+    function showContent() {
+        document.body.style.visibility = 'visible';
+        document.body.style.opacity = '1';
+    }
+
+    // Evento para detectar cuando se hayan cargado los estilos CSS
+    document.addEventListener('DOMContentLoaded', function () {
+        // Espera un breve tiempo para asegurarse de que se hayan cargado los estilos
+        setTimeout(showContent, 100);
+    });
+
+
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuIcon = document.getElementById('menu-icon');
+    const menu = document.getElementById('menu');
+
+    menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        menuIcon.classList.toggle('open');
+        menuIcon.classList.toggle('closed');
+    });
+
+
+</script>
+
 </body>
 
 </html>

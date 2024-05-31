@@ -2,6 +2,7 @@ from django import forms
 from core.models import Product, Brand, Supplier, Category
 from django.utils import timezone
 import datetime
+from django.contrib.auth.forms import UserChangeForm
 
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
@@ -15,7 +16,41 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = CustomUser
-        fields = ('username', 'dni', 'first_name', 'last_name', 'celular', 'correo', 'password1', 'password2')
+        fields = ['username', 'first_name', 'last_name', 'dni', 'celular', 'correo', 'imagen', 'password1', 'password2']
+
+class CustomUserUpdateForm(UserChangeForm):
+    password = None
+
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'dni', 'celular', 'correo', 'imagen']
+        error_messages = {
+            'dni': {
+                'unique': "Ya existe un usuario con este DNI.",
+            },
+            'celular': {
+                'unique': "Ya existe un usuario con este número de celular.",
+            },
+            'correo': {
+                'unique': "Ya existe un usuario con este correo electrónico.",
+            },
+        }
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese nombres del usuario'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese apellidos del usuario'}),
+            'dni': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese DNI del usuario'}),
+            'celular': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese número celular del usuario'}),
+            'correo': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese correo electrónico del usuario'}),
+            'imagen': forms.FileInput(attrs={'class': 'form-control', 'type': 'file', 'id': 'id_imagen'}),
+        }
+        labels = {
+            'first_name': 'Nombres',
+            'last_name': 'Apellidos',
+            'dni': 'DNI',
+            'celular': 'Celular',
+            'correo': 'Correo electrónico',
+            'imagen': 'Imagen',
+        }
 
 class ProductForm(forms.ModelForm):
     class Meta:

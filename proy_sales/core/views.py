@@ -5,8 +5,25 @@ from core.models import Product, Brand, Supplier, Category
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django .contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserUpdateForm
 from django.contrib import messages
+
+# ----------------- Perfil -----------------
+def profile(request):
+    return render(request, 'core/profile.html')
+
+#  Actualizar perfil 
+def update_profile(request):
+    if request.method == 'POST':
+        form = CustomUserUpdateForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '¡Tu perfil ha sido actualizado exitosamente!')
+            return redirect('profile')
+    else:
+        form = CustomUserUpdateForm(instance=request.user)
+    
+    return render(request, 'core/update_profile.html', {'form': form})
 
 # ----------------- Registro -----------------
 def signup(request):

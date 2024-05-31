@@ -21,9 +21,12 @@
 }
 
 body {
-    transition: background-color 0.5s ease, color 0.5s ease;
+    visibility: hidden;
+    opacity: 0;
+    transition: black 3s ease;
+    /* Agrega una transición suave para el cambio de color de fondo */
     background-color: black;
-    color: #fff;
+    color: #000000;
     font-family: "Ubuntu Sans", sans-serif;
     font-optical-sizing: auto;
     /* <weight>: Use a value from 100 to 800 */
@@ -84,6 +87,8 @@ body {
 .nav-link.active {
     color: var(--title);
 }
+
+
 
 /* Home - Bienvenida */
 #home-content {
@@ -402,6 +407,7 @@ span {
     /* Centra el texto */
     font-weight: bold;
     /* Resalta el texto */
+
 }
 
 .card-body {
@@ -575,7 +581,8 @@ form input[type="password"]:focus,
     border-radius: 25px;
 }
 
-.input-btn, .input-group-text{
+.input-btn,
+.input-group-text {
     margin: 10px 0 25px;
     padding: 10px;
     height: auto;
@@ -635,7 +642,7 @@ form input[type="password"]:focus,
     /* Mantiene el botón en una posición fija */
     bottom: -80px;
     /* Sube el botón más arriba para evitar superposiciones */
-    right: 30px;
+    right: 25px;
     /* Distancia desde la parte derecha */
     z-index: 99;
     /* Asegura que el botón esté encima de otros elementos */
@@ -670,8 +677,15 @@ form input[type="password"]:focus,
 }
 
 #goTopBtn.active {
-    bottom: 115px;
+    bottom: 180px;
     /* Posición final del botón, aparecerá desde el borde inferior */
+}
+
+@media (max-width: 700px) {
+    #goTopBtn {
+        right: 13px;
+        /* Distancia desde la parte derecha */
+    }
 }
 
 #right-nav-buttons {
@@ -925,6 +939,8 @@ a {
 
 /* Estilos para el footer */
 #footer {
+    /* position: fixed; */
+    /* Agregado para mantenerlo pegado al final */
     bottom: 0;
     /* Lo posiciona en la parte inferior de la ventana */
     left: 0;
@@ -935,11 +951,13 @@ a {
     box-shadow: 0px 0px 50px 0px rgba(207, 200, 160, 0.487);
     padding: 20px 0;
     color: #ffffff;
-    /* position: fixed; */
     height: 11%;
+    /* Ajusta la altura según tus necesidades */
     border-radius: 15px;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
+    z-index: 1000;
+
 }
 
 .footer p {
@@ -1056,7 +1074,7 @@ a {
     color: #ffffff;
     transition: ease-in-out 0.3s;
     text-decoration: none;
-}
+}le-
 
 .icon-box h3 a:hover {
     color: #3498db;
@@ -1066,6 +1084,78 @@ a {
     background: #161616;
 }
 
+/* Perfil */
+.profile-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--title);
+    border: var(--subtitle) 4px solid;
+    margin: 6px;
+}
+
+.profile-picture img {
+    width: 100%;
+    object-fit: cover;
+    background-color: #ff0000;
+}
+
+.profile-menu {
+    position: relative;
+}
+
+#profile-menu-items {
+    display: none;
+    position: absolute;
+    background-color: var(--content);
+    box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.5);
+    z-index: 1;
+    border-radius: 15px;
+    left: -200px;
+    width: 290px;
+}
+
+#profile-menu-items a {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--subtitle);
+    text-decoration: none;
+    margin: 20px;
+    display: block;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#profile-menu-items a:hover {
+    transform: scale(1.05);
+    color: var(--title);
+}
+
+.show {
+    display: block !important;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-custom {
+    margin-right: 10px;
+    /* Ajusta el espacio entre el toggle y el texto según tus necesidades */
+}
+
+.fa-whatsapp {
+    color: white;
+}
 
 /* Notificaciones en error */
 #notification-container {
@@ -1140,25 +1230,118 @@ a {
     animation: fadeout 5s forwards;
 }
 
+#menu {
+    z-index: 9;
+    transition-duration: 1s;
+    border-radius: 25px;
+    position: fixed;
+    background-color: var(--content);
+    top: 0;
+    left: -250px;
+    /* Para que inicialmente esté oculto */
+    width: 250px;
+    height: 100vh;
+    /* Ocupa toda la altura de la página */
+    transition: left 0.3s;
+    /* Para animar el despliegue */
+}
+
+#menu.open {
+    left: 0;
+    /* Cuando está abierto, se desplaza a la posición 0 */
+}
+
+#temas {
+    margin-top: 10vh;
+}
+
+.opcion-color {
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.opcion-color:hover {
+    transform: scale(1.05);
+    /* Agranda un poco al pasar el mouse */
+    border-radius: 15px;
+}
+
+.color {
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+}
+
+#content {
+    transition: margin-left 0.3s;
+    /* Transición para el desplazamiento del contenido */
+    margin-left: 0;
+    /* Ajusta el margen izquierdo inicial del contenido */
+}
+
+#menu.open~#content {
+    margin-left: 250px;
+    /* Desplaza el contenido hacia la derecha cuando el menú está abierto */
+}
+
+/* Estilo para mover la página cuando el menú está abierto */
+body.menu-open {
+    position: fixed;
+    left: 250px;
+    /* Mueve la página hacia la derecha */
+}
+
+#menu-toggle {
+    position: absolute;
+    top: 50vh;
+    right: -50px;
+    /* Posicionamos el ícono ligeramente fuera del menú */
+    transform: translateY(-50%);
+    /* Centramos verticalmente el ícono */
+    transition: right 0.3s ease-in-out;
+    /* Animación para la transición */
+}
+
+#menu.open #menu-toggle {
+    right: 10px;
+    /* Cuando el menú está abierto, el ícono se mueve hacia adentro */
+}
+
+#menu-icon {
+    display: inline-block;
+    padding: 10px;
+    background-color: var(--title);
+    color: #000000;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+    /* Animación para la rotación */
+}
+
+#menu.open #menu-icon {
+    transform: rotate(180deg);
+    /* Rotamos el ícono 180 grados cuando el menú está abierto */
+}
+
 /* Estilos para el modo claro */
 body.light-mode {
-    transition-duration: .5s;
     background-color: #f5f5f5;
-    color: #e3e3e3;
+    color: #000000;
+    font-family: "Ubuntu Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    margin: 0;
+    font-size: 18px;
 
-    body.light-mode {
-        background-color: #f5f5f5;
-        color: #333333;
-        font-family: "Ubuntu Sans", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 500;
-        font-style: normal;
-        margin: 0;
-        font-size: 18px;
-    }
 
     .team-card i {
         color: rgb(0, 0, 0);
+    }
+
+    #menu-toggle {
+        color: #000000;
     }
 
     ::selection {
@@ -1460,7 +1643,8 @@ body.light-mode {
         border: 4px solid #14dc99;
     }
 
-    .input-btn, .input-group-text{
+    .input-btn,
+    .input-group-text {
         margin: 10px 0 25px;
         padding: 10px;
         height: auto;
@@ -1468,11 +1652,435 @@ body.light-mode {
         border: none;
         color: var(--content);
     }
-    
+
     .input-group-text {
         background-color: #0A3D62;
         padding-left: 15px;
         padding-right: 15px;
         color: whitesmoke;
+    }
+
+    #profile-menu-items {
+        background-color: #ffffff;
+    }
+
+    .navbar-toggler-icon {
+        color: black;
+    }
+
+    .fa-whatsapp {
+        color: white;
+    }
+
+    #menu {
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-picture {
+        background-color: #14dc99;
+        border: #14dc99 4px solid;
+    }
+
+    #menu-icon {
+        background-color: #14dc99;
+    }
+
+    #profile-menu-items a {
+        color: #0A3D62;
+    }
+
+    #profile-menu-items a:hover {
+        color: #14dc99;
+    }
+}
+
+/* Estilos para el modo rosado */
+body.pink-mode {
+    background-color: #d66fa042;
+    color: #000000;
+    font-family: "Ubuntu Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    margin: 0;
+    font-size: 18px;
+
+    .team-card i {
+        color: rgb(0, 0, 0);
+    }
+
+    ::selection {
+        background-color: #333333;
+        color: #ffffff;
+    }
+
+    /* Barra de navegacion */
+    .navbar {
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(5px);
+    }
+
+    .navbar-brand {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    .nav-item {
+        margin: 0 15px;
+    }
+
+    .nav-link {
+        color: rgb(95, 95, 95);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    /* Estilos para el mensaje de bienvenida */
+    .welcome-message {
+        background-color: white;
+    }
+
+    h2 {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    p {
+        color: black;
+    }
+
+    span {
+        color: black;
+    }
+
+    .username {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    /* Estilos para la informacion */
+    .info-card {
+        background-color: whitesmoke;
+        transition: transform 0.3s, background-color 0.3s, color 0.3s;
+        box-shadow: 0px 0px 50px 0px rgba(128, 128, 128, 0.487);
+    }
+
+    .info-card i {
+        color: gray;
+    }
+
+    .btn-details {
+        background-color: #ff6eb4;
+        /* Cambiar a color rosado */
+        /* Color de fondo */
+    }
+
+    .btn-details:hover,
+    .btn-cancel:hover,
+    .btn-update:hover,
+    .btn-add:hover {
+        color: #fff;
+        transform: scale(1.05);
+        /* Aumenta el tamaño al pasar el cursor */
+    }
+
+    .btn-details:hover {
+        background-color: #ff9ed6;
+        /* Cambiar a un tono más claro de rosado */
+        /* Cambiar a un color más claro */
+    }
+
+    .card-body {
+        background-color: whitesmoke;
+    }
+
+    /* Cards de Modulos */
+    .module-cards {
+        background-color: white;
+        box-shadow: 0 4px 8px rgb(255, 255, 255);
+    }
+
+    .module-cards h2 {
+        color: black;
+    }
+
+    .module-cards h3 {
+        color: black;
+    }
+
+    h3 .info {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    .module-cards p {
+        color: rgb(255, 255, 255);
+    }
+
+    .module-cards .description {
+        color: black
+    }
+
+    .card-header,
+    .card-footer {
+        background-color: rgb(224, 224, 224);
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 12px rgb(255, 255, 255);
+        /* Aumenta la sombra al pasar el cursor */
+    }
+
+    .module-cards h2 {
+        color: black;
+    }
+
+    .module-cards p {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    .form-container-login {
+        background-color: white;
+    }
+
+    label {
+        color: black;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="number"],
+    form select,
+    form input[type="date"],
+    form input [type="checkbox"],
+    form input[type="file"],
+    .custom-select {
+        background-color: #ffeef6;
+    }
+
+    form input[type="text"]:focus,
+    form input[type="number"]:focus,
+    form input[type="date"]:focus,
+    form input[type="file"]:focus,
+    form input[type="email"]:focus,
+    form input[type="password"]:focus,
+    .custom-select:focus {
+        outline: none;
+        background-color: rgb(255, 255, 255);
+    }
+
+    element.style {
+        background-color: rgb(255, 255, 255);
+    }
+
+    /* Estilos para Sweet Alert */
+    .dark-popup {
+        background: white !important;
+        /* Fondo oscuro */
+        color: #000000 !important;
+        /* Texto blanco */
+        border-radius: 20px;
+    }
+
+    /* Estilo para el botón de ir arriba */
+    #goTopBtn {
+        background-color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    .modal-body {
+        background-color: white;
+    }
+
+    .model-card {
+        background-color: whitesmoke;
+    }
+
+    .model-card i {
+        color: gray;
+    }
+
+    .contact .contact-about h3 {
+        color: #000000;
+    }
+
+    .contact .contact-about p {
+        color: #888;
+    }
+
+    .contact .social-links a {
+        font-size: 18px;
+        display: inline-block;
+        background: #ff6eb4;
+        /* Cambiar a color rosado */
+        color: #000000;
+        line-height: 1;
+        padding: 8px 0;
+        margin-right: 4px;
+        border-radius: 50%;
+        text-align: center;
+        width: 36px;
+        height: 36px;
+        transition: 0.3s;
+        text-decoration: none;
+        border: none;
+    }
+
+    .contact .social-links a:hover {
+        background: #0A3D62;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .contact .info i {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    .contact .php-email-form button[type=submit] {
+        background: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    @keyframes animate-loading {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    a {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+    }
+
+    .lol a {
+        color: #0A3D62;
+    }
+
+    a:hover {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    #footer {
+        background: #ffffff;
+        color: #000000;
+        box-shadow: 0px 0px 50px 0px rgba(128, 128, 128, 0.487);
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(5px);
+    }
+
+    .footer p {
+        color: var(--subtitle);
+        font-size: 18px;
+    }
+
+    .footer a {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .footer a:hover {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    card-body {
+        background-color: rgb(255, 255, 255);
+    }
+
+    .form-container {
+        background-color: #ffffff;
+    }
+
+    .features .icon-box {
+        background: #ffffff;
+        box-shadow: 0 0 29px 0 rgba(255, 237, 237, 0.12);
+    }
+
+    .icon-box h3 a {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    .icon-box:hover {
+        background: #ffedf7;
+        /* Cambiar a un tono más claro de rosado */
+    }
+
+    .team-card {
+        border: none;
+    }
+
+    .team-card:hover {
+        transform: scale(1.05);
+        /* Aumenta el tamaño al pasar el cursor */
+        border: 4px solid #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    .input-btn,
+    .input-group-text {
+        margin: 10px 0 25px;
+        padding: 10px;
+        height: auto;
+        background-color: rgb(205, 205, 205);
+        border: none;
+        color: var(--content);
+    }
+
+    .input-group-text {
+        background-color: #ff6eb4;
+        /* Cambiar a color rosado */
+        padding-left: 15px;
+        padding-right: 15px;
+        color: whitesmoke;
+    }
+
+    #profile-menu-items {
+        background-color: #ffffff;
+    }
+
+    .navbar-toggler-icon {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
+    }
+
+    .fa-whatsapp {
+        color: white;
+    }
+
+    #menu {
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-picture {
+        background-color: #ff6eb4;
+        border: #ff6eb4 4px solid;
+    }
+
+    #menu-icon {
+        background-color: #ff6eb4;
+    }
+
+    #profile-menu-items a {
+        color: #0A3D62;
+    }
+
+    #profile-menu-items a:hover {
+        color: #ff6eb4;
+        /* Cambiar a color rosado */
     }
 }
